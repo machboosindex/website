@@ -23,6 +23,7 @@
   --good:#1B7A4B; --good-soft:#E1F3E9;
   --bad:#B3402D;  --bad-soft:#F8E3DF;
   --c1:#0E5C72; --c2:#B97A06; --c3:#7B4FA6; --c4:#C2492F; --c5:#2E7D5B; --c6:#8A6D3B;
+  --hero-sky:#E2EEF1; --hero-city:#C7D9DF; --hero-ground:#EADFC8; --hero-arrow:#C93A26;
   --font-display:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif;
   --font-body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:light;
@@ -33,6 +34,7 @@
     --accent:#F0B43C; --accent-soft:#3A2D12; --sea:#62B6CC;
     --good:#5ACB90; --good-soft:#143A28; --bad:#F08A77; --bad-soft:#40201B;
     --c1:#62B6CC; --c2:#F0B43C; --c3:#B793E0; --c4:#F08A77; --c5:#6FD3A0; --c6:#D9B77A;
+  --hero-sky:#0F2730; --hero-city:#1C3A45; --hero-ground:#2A3A3A; --hero-arrow:#F0735E;
     color-scheme:dark;
   }
 }
@@ -41,6 +43,7 @@
   --accent:#F0B43C; --accent-soft:#3A2D12; --sea:#62B6CC;
   --good:#5ACB90; --good-soft:#143A28; --bad:#F08A77; --bad-soft:#40201B;
   --c1:#62B6CC; --c2:#F0B43C; --c3:#B793E0; --c4:#F08A77; --c5:#6FD3A0; --c6:#D9B77A;
+  --hero-sky:#0F2730; --hero-city:#1C3A45; --hero-ground:#2A3A3A; --hero-arrow:#F0735E;
   color-scheme:dark;
 }
 
@@ -156,6 +159,28 @@ td.low span{background:var(--good-soft);color:var(--good);font-weight:700;paddin
 .history-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .history-head h3{font-size:20px}
 .ranges{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.hero-art{overflow:hidden;display:grid}
+.hero-svg{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+.hero-copy{padding:18px 22px 22px;display:grid;gap:6px}
+.hero-copy h1{font-size:clamp(26px,4vw,40px)}
+.hero-copy p{color:var(--muted);max-width:62ch}
+.hs-sky{fill:var(--hero-sky)} .hs-city{fill:var(--hero-city)} .hs-ground{fill:var(--hero-ground)}
+.hs-arrow{fill:none;stroke:var(--hero-arrow);stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
+.hs-arrow-head{fill:var(--hero-arrow)}
+.hs-plate{fill:var(--surface);stroke:var(--line);stroke-width:3}
+.hs-steam{fill:none;stroke:var(--muted);stroke-width:3;stroke-linecap:round;opacity:.45}
+.hs-tag{fill:var(--accent)}
+.hs-tag-l{font-family:var(--font-body);font-size:17px;font-weight:600;fill:#fff}
+.hs-tag-p{font-family:var(--font-display);font-size:24px;font-weight:700;fill:#fff}
+:root[data-theme="dark"] .hs-tag-l,:root[data-theme="dark"] .hs-tag-p{fill:#1d1503}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hs-tag-l,:root:not([data-theme="light"]) .hs-tag-p{fill:#1d1503}}
+.dish-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--bg)}
+.seg[hidden]{display:none}
+.seg button{border:0;background:transparent;padding:7px 16px;cursor:pointer;font-weight:600;font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .seg button[aria-pressed="true"]{color:#1d1503}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{color:#1d1503}}
 .ranges button{border:0;background:var(--surface);padding:6px 12px;cursor:pointer;font-size:14px}
 .ranges button+button{border-inline-start:1px solid var(--line)}
 .ranges button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
@@ -221,15 +246,138 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-s
 
 <main class="wrap">
 
+  <!-- Hero illustration -->
+  <section class="card hero-art" aria-labelledby="heroTitle">
+    <svg class="hero-svg" viewBox="0 0 1200 400" role="img" aria-labelledby="heroSvgTitle">
+      <title id="heroSvgTitle">A man looks up in surprise at a price arrow climbing above plates of chicken and lamb machboos</title>
+      <defs>
+        <pattern id="ghutraCheck" width="12" height="12" patternUnits="userSpaceOnUse">
+          <rect width="12" height="12" fill="#FFFFFF"/>
+          <path d="M0 6h12M6 0v12" stroke="#C8352B" stroke-width="2.2"/>
+        </pattern>
+      </defs>
+
+      <!-- sky, skyline, ground -->
+      <rect class="hs-sky" width="1200" height="400"/>
+      <g class="hs-city">
+        <rect x="30" y="250" width="60" height="90" rx="3"/>
+        <rect x="96" y="222" width="38" height="118" rx="3"/>
+        <rect x="330" y="262" width="52" height="78" rx="3"/>
+        <rect x="960" y="240" width="46" height="100" rx="3"/>
+        <rect x="1012" y="270" width="40" height="70" rx="3"/>
+        <!-- towers by the sea: spires with spheres -->
+        <rect x="1106" y="110" width="8" height="230" rx="4"/>
+        <circle cx="1110" cy="222" r="28"/>
+        <circle cx="1110" cy="166" r="15"/>
+        <rect x="1148" y="196" width="7" height="144" rx="3.5"/>
+        <circle cx="1151.5" cy="248" r="19"/>
+        <rect x="1074" y="236" width="5" height="104" rx="2.5"/>
+      </g>
+      <rect class="hs-ground" y="330" width="1200" height="70"/>
+
+      <!-- rising price arrow -->
+      <path class="hs-arrow" d="M318 236 L452 150 L522 172 L672 94 L752 116 L1012 40"/>
+      <path class="hs-arrow-head" d="M1054 27 L1004 19 L1018 64 Z"/>
+
+      <!-- table -->
+      <rect x="392" y="308" width="560" height="14" rx="7" fill="#9C6B3F"/>
+      <rect x="420" y="320" width="12" height="18" fill="#7E5430"/>
+      <rect x="912" y="320" width="12" height="18" fill="#7E5430"/>
+
+      <!-- chicken machboos -->
+      <g>
+        <path class="hs-steam" d="M492 196 q-12 -14 0 -28 q12 -14 0 -28"/>
+        <path class="hs-steam" d="M528 186 q-12 -14 0 -28 q12 -14 0 -28"/>
+        <ellipse class="hs-plate" cx="530" cy="300" rx="120" ry="20"/>
+        <path d="M424 298 Q432 230 530 222 Q628 230 636 298 Z" fill="#E7B23F"/>
+        <path d="M452 286 Q470 262 498 270 M560 276 Q584 258 606 284 M480 252 Q500 240 516 248" stroke="#F6DC8C" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M474 240 Q482 206 528 202 Q574 206 584 238 Q556 254 528 252 Q496 254 474 240 Z" fill="#A9582A"/>
+        <path d="M494 222 Q512 210 536 212" stroke="#CF7F45" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M570 230 L600 204" stroke="#A9582A" stroke-width="18" stroke-linecap="round"/>
+        <circle cx="606" cy="198" r="7" fill="#F4EEE2"/>
+        <circle cx="612" cy="203" r="6" fill="#F4EEE2"/>
+        <circle cx="462" cy="276" r="3.5" fill="#6B3E1F"/>
+        <circle cx="592" cy="270" r="3.5" fill="#6B3E1F"/>
+        <circle cx="520" cy="268" r="3.5" fill="#6B3E1F"/>
+        <path d="M450 292 l10 -8 m60 10 l8 -9 m60 5 l9 -7" stroke="#4F8A3B" stroke-width="5" stroke-linecap="round"/>
+      </g>
+
+      <!-- lamb machboos -->
+      <g>
+        <path class="hs-steam" d="M790 196 q-12 -14 0 -28 q12 -14 0 -28"/>
+        <path class="hs-steam" d="M826 186 q-12 -14 0 -28 q12 -14 0 -28"/>
+        <ellipse class="hs-plate" cx="818" cy="300" rx="120" ry="20"/>
+        <path d="M712 298 Q720 230 818 222 Q916 230 924 298 Z" fill="#E7B23F"/>
+        <path d="M740 286 Q758 262 786 270 M848 276 Q872 258 894 284" stroke="#F6DC8C" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M836 222 L866 166" stroke="#F4EEE2" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="862" cy="160" r="9" fill="#F4EEE2"/>
+        <circle cx="874" cy="166" r="9" fill="#F4EEE2"/>
+        <ellipse cx="812" cy="236" rx="50" ry="28" fill="#7A3B20"/>
+        <path d="M782 226 Q806 212 834 220" stroke="#9D5530" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <circle cx="752" cy="276" r="3.5" fill="#6B3E1F"/>
+        <circle cx="884" cy="270" r="3.5" fill="#6B3E1F"/>
+        <path d="M740 292 l10 -8 m60 10 l8 -9 m60 5 l9 -7" stroke="#4F8A3B" stroke-width="5" stroke-linecap="round"/>
+      </g>
+
+      <!-- price tags on the ground -->
+      <rect class="hs-tag" x="458" y="340" width="144" height="54" rx="10"/>
+      <text class="hs-tag-l" x="530" y="361" text-anchor="middle" id="hero-chicken-l">Chicken</text>
+      <text class="hs-tag-p" x="530" y="386" text-anchor="middle" id="hero-chicken">KD 2.250</text>
+      <rect class="hs-tag" x="746" y="340" width="144" height="54" rx="10"/>
+      <text class="hs-tag-l" x="818" y="361" text-anchor="middle" id="hero-lamb-l">Lamb</text>
+      <text class="hs-tag-p" x="818" y="386" text-anchor="middle" id="hero-lamb">KD 4.750</text>
+
+      <!-- the shopper -->
+      <g>
+        <ellipse cx="172" cy="338" rx="16" ry="6" fill="#5A3A22"/>
+        <ellipse cx="214" cy="338" rx="16" ry="6" fill="#5A3A22"/>
+        <path d="M150 204 Q192 188 236 204 L264 334 Q204 346 136 334 Z" fill="#FBFAF6" stroke="#D8D2C4" stroke-width="2"/>
+        <path d="M193 212 L196 330" stroke="#E2DCCF" stroke-width="2"/>
+        <circle cx="195" cy="226" r="2.5" fill="#D8D2C4"/>
+        <circle cx="195" cy="240" r="2.5" fill="#D8D2C4"/>
+        <!-- raised arm pointing up -->
+        <path d="M228 214 L264 178 L284 136" stroke="#FBFAF6" stroke-width="24" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M228 214 L264 178 L284 136" stroke="#D8D2C4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+        <circle cx="288" cy="124" r="11" fill="#C68B5F"/>
+        <path d="M290 116 L298 96" stroke="#C68B5F" stroke-width="7" stroke-linecap="round"/>
+        <!-- head and face, tilted up -->
+        <rect x="186" y="186" width="22" height="20" rx="6" fill="#B97D52"/>
+        <circle cx="200" cy="166" r="30" fill="#C68B5F"/>
+        <ellipse cx="213" cy="160" rx="6.5" ry="7.5" fill="#FFFFFF"/>
+        <ellipse cx="229" cy="162" rx="6" ry="7" fill="#FFFFFF"/>
+        <circle cx="215" cy="156" r="3.2" fill="#1F1A17"/>
+        <circle cx="231" cy="158" r="3" fill="#1F1A17"/>
+        <path d="M206 147 Q213 142 220 145 M224 148 Q230 144 236 148" stroke="#2B211C" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M225 168 Q232 172 228 176" stroke="#9E6440" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M211 181 Q222 176 233 181" stroke="#2B211C" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <ellipse cx="223" cy="189" rx="4" ry="5" fill="#5B2A1C"/>
+        <path d="M180 178 Q186 198 208 199 Q226 197 232 188" stroke="#2B211C" stroke-width="5" fill="none" stroke-linecap="round" opacity=".85"/>
+        <!-- ghutra (head cloth) and iqal (black cord) -->
+        <path d="M158 220 L166 150 L186 158 L192 214 Z" fill="url(#ghutraCheck)" stroke="#B9302A" stroke-width="1"/>
+        <path d="M164 166 Q160 116 202 112 Q242 114 240 158 L232 158 Q230 136 202 136 Q178 136 176 168 Z" fill="url(#ghutraCheck)" stroke="#B9302A" stroke-width="1"/>
+        <ellipse cx="202" cy="121" rx="35" ry="8" fill="none" stroke="#1E1E1E" stroke-width="7"/>
+        <!-- worried sweat drop -->
+        <path d="M250 126 Q257 137 250 143 Q243 137 250 126 Z" fill="#6FB4D9"/>
+      </g>
+    </svg>
+    <div class="hero-copy">
+      <h1 id="heroTitle" data-i18n="heroTitle">How much is a plate of machboos today?</h1>
+      <p data-i18n="heroLead">We track what people in Kuwait pay for machboos and for the groceries to cook it, month by month.</p>
+    </div>
+  </section>
+
   <!-- Machboos Index -->
   <section aria-labelledby="idxTitle">
     <div class="hero">
       <article class="card tag">
         <div class="tag-top"><span id="idxTitle" data-i18n="idxEyebrow">The Machboos Index</span><span class="num" id="idxMonth"></span></div>
         <div class="tag-body">
-          <div>
-            <div class="tag-ar">مجبوس دجاج</div>
-            <div class="tag-en" data-i18n="idxItem">Chicken machboos, one plate</div>
+          <div class="dish-head">
+            <div>
+              <div class="tag-ar" id="idxDishAr">مجبوس دجاج</div>
+              <div class="tag-en" id="idxItem">Chicken machboos, one plate</div>
+            </div>
+            <div class="seg" id="dishToggle" role="group" aria-label="Choose dish"></div>
           </div>
           <div>
             <div class="price-row"><span class="price-big num" id="idxPrice">–</span><span class="price-cur" data-i18n="cur">KD</span></div>
@@ -296,8 +444,8 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-s
         <h3 data-i18n="methodTitle">How the numbers work</h3>
         <ol>
           <li data-i18n="m1">Products are matched by exact brand and size at every store, so each comparison is like for like.</li>
-          <li data-i18n="m2">The Machboos Index is the median price of one chicken machboos plate at a fixed list of restaurants, checked every month.</li>
-          <li data-i18n="m3">The home-cooked plate uses co-op prices for 250 g rice, 300 g chicken, onion, tomato, loomi, oil and spices.</li>
+          <li data-i18n="m2">The Machboos Index is the median price of one machboos plate, chicken or lamb, at a fixed list of restaurants, checked every month.</li>
+          <li data-i18n="m3">The home-cooked plate uses co-op prices for 250 g rice, 300 g chicken or lamb, onion, tomato, loomi, oil and spices.</li>
           <li data-i18n="m4">Price changes compare the latest month with the same month last year.</li>
         </ol>
       </div>
@@ -339,6 +487,8 @@ const SETTINGS = {
   // rice 1/20 of a 5 kg bag = 250 g; chick 0.3 of 1 kg = 300 g; and so on.
   HOME_RECIPE: { rice: 1/20, chick: 0.3, onion: 0.1, tomato: 0.1, loomi: 1/25, oil: 1/60 },
   // Spices and anything else per plate, in KD.
+  // The same for a lamb plate (300 g of lamb in place of chicken).
+  HOME_RECIPE_LAMB: { rice: 1/20, lamb: 0.3, onion: 0.1, tomato: 0.1, loomi: 1/25, oil: 1/60 },
   HOME_EXTRA: 0.040
 };
 /* ===================================================================== */
@@ -355,7 +505,8 @@ const T = {
     errPill:"Problem", loadErr:"Couldn't load the price sheet, so made-up sample prices are shown. Check that the Google Sheet is shared as \"Anyone with the link can view\" and has tabs named items, stores, prices and machboos.",
     loading:"Loading prices…",
     langBtn:"العربية", cur:"KD",
-    idxEyebrow:"The Machboos Index", idxItem:"Chicken machboos, one plate", idxSub:"Median price across the restaurants we check",
+    idxEyebrow:"The Machboos Index", idxItem:"Chicken machboos, one plate", idxItemLamb:"Lamb machboos, one plate", dChicken:"Chicken", dLamb:"Lamb",
+    heroTitle:"How much is a plate of machboos today?", heroLead:"We track what people in Kuwait pay for machboos and for the groceries to cook it, month by month.", idxSub:"Median price across the restaurants we check",
     idxSubN:"Median price across {n} restaurants", noMach:"No machboos prices yet.",
     yoy:"{p} vs. a year ago", since:"{p} since {m}",
     tBudget:"Budget restaurants", tMid:"Mid-range restaurants", tPremium:"Premium restaurants",
@@ -379,8 +530,8 @@ const T = {
     submitTitle:"Saw a price? Add it", submitLead:"Shoppers keep the board current. Add a receipt or shelf photo so the price can be checked.",
     methodTitle:"How the numbers work",
     m1:"Products are matched by exact brand and size at every store, so each comparison is like for like.",
-    m2:"The Machboos Index is the median price of one chicken machboos plate at a fixed list of restaurants, checked every month.",
-    m3:"The home-cooked plate uses co-op prices for 250 g rice, 300 g chicken, onion, tomato, loomi, oil and spices.",
+    m2:"The Machboos Index is the median price of one machboos plate, chicken or lamb, at a fixed list of restaurants, checked every month.",
+    m3:"The home-cooked plate uses co-op prices for 250 g rice, 300 g chicken or lamb, onion, tomato, loomi, oil and spices.",
     m4:"Price changes compare the latest month with the same month last year.",
     fItem:"Item", fStore:"Store", fPrice:"Price (KD)", fDate:"Date seen", fPhoto:"Receipt or shelf photo (optional)", fSubmit:"Submit price",
     ok:"Thanks! Saving shopper prices isn't switched on yet, so this price wasn't saved.",
@@ -395,7 +546,8 @@ const T = {
     errPill:"خلل", loadErr:"تعذّر تحميل جدول الأسعار، لذلك تظهر أسعار افتراضية. تأكد أن جدول Google مشارك لـ\"أي شخص لديه الرابط\" وأن أسماء الأوراق items وstores وprices وmachboos.",
     loading:"جارٍ تحميل الأسعار…",
     langBtn:"English", cur:"د.ك",
-    idxEyebrow:"مؤشر المجبوس", idxItem:"صحن واحد", idxSub:"السعر الوسيط في المطاعم التي نتابعها",
+    idxEyebrow:"مؤشر المجبوس", idxItem:"صحن واحد", idxItemLamb:"صحن واحد", dChicken:"دجاج", dLamb:"لحم",
+    heroTitle:"كم سعر صحن المجبوس اليوم؟", heroLead:"نتابع كم يدفع الناس في الكويت ثمن المجبوس ومكوّناته، شهراً بعد شهر.", idxSub:"السعر الوسيط في المطاعم التي نتابعها",
     idxSubN:"السعر الوسيط في {n} مطعماً", noMach:"لا توجد أسعار مجبوس بعد.",
     yoy:"{p} مقارنة بالعام الماضي", since:"{p} منذ {m}",
     tBudget:"مطاعم اقتصادية", tMid:"مطاعم متوسطة", tPremium:"مطاعم راقية",
@@ -419,8 +571,8 @@ const T = {
     submitTitle:"شفت سعر؟ أضفه", submitLead:"المتسوّقون يحدّثون اللوحة. أرفق صورة الفاتورة أو الرف للتحقق من السعر.",
     methodTitle:"كيف نحسب الأرقام",
     m1:"نطابق كل منتج بالعلامة التجارية والحجم نفسه في كل متجر، لتكون المقارنة عادلة.",
-    m2:"مؤشر المجبوس هو السعر الوسيط لصحن مجبوس دجاج في قائمة ثابتة من المطاعم، ويُحدَّث شهرياً.",
-    m3:"صحن البيت محسوب بأسعار الجمعيات لـ250 غ أرز و300 غ دجاج وبصل وطماطم ولومي وزيت وبهارات.",
+    m2:"مؤشر المجبوس هو السعر الوسيط لصحن مجبوس دجاج أو لحم في قائمة ثابتة من المطاعم، ويُحدَّث شهرياً.",
+    m3:"صحن البيت محسوب بأسعار الجمعيات لـ250 غ أرز و300 غ دجاج أو لحم وبصل وطماطم ولومي وزيت وبهارات.",
     m4:"نسبة التغيّر تقارن آخر شهر بالشهر نفسه من العام الماضي.",
     fItem:"الصنف", fStore:"المتجر", fPrice:"السعر (د.ك)", fDate:"تاريخ المشاهدة", fPhoto:"صورة الفاتورة أو الرف (اختياري)", fSubmit:"أرسل السعر",
     ok:"شكراً! حفظ أسعار المتسوّقين غير مفعّل بعد، لذلك لم يُحفظ هذا السعر.",
@@ -520,7 +672,7 @@ async function loadSheet(){
   const itemIds = new Set(items.map(i => i.id)), storeIds = new Set(stores.map(s => s.id));
   const prices = pricesT.filter(real).map(r => ({ m:toMonth(r.month), item:r.item_id, store:r.store_id, p:num(r.price) }))
                         .filter(x => x.m && x.p != null && x.p > 0 && itemIds.has(x.item) && storeIds.has(x.store));
-  const machRows = machT.filter(real).map(r => ({ m:toMonth(r.month), med:num(r.median), bud:num(r.budget), pre:num(r.premium), n:num(r.restaurants_checked) }))
+  const machRows = machT.filter(real).map(r => ({ dish:/^\s*(lamb|لحم)/i.test(r.dish || "") ? "lamb" : "chicken", m:toMonth(r.month), med:num(r.median), bud:num(r.budget), pre:num(r.premium), n:num(r.restaurants_checked) }))
                         .filter(x => x.m && x.med != null);
 
   const all = prices.map(x => x.m).concat(machRows.map(x => x.m)).sort();
@@ -543,8 +695,9 @@ async function loadSheet(){
       it.s[s.id] = arr;
     });
   });
-  const mach = { med:blank(), bud:blank(), pre:blank(), n:blank() };
-  machRows.forEach(x => { const i = at[x.m]; mach.med[i] = x.med; mach.bud[i] = x.bud; mach.pre[i] = x.pre; mach.n[i] = x.n; });
+  const set = () => ({ med:blank(), bud:blank(), pre:blank(), n:blank() });
+  const mach = { chicken:set(), lamb:set() };
+  machRows.forEach(x => { const i = at[x.m], s = mach[x.dish]; s.med[i] = x.med; s.bud[i] = x.bud; s.pre[i] = x.pre; s.n[i] = x.n; });
   return finish({ mode:"live", months, stores, items, mach });
 }
 
@@ -556,6 +709,7 @@ function makeSample(){
   const stores = [
     { id:"coop", en:"Co-op (avg.)", ar:"الجمعيات (متوسط)", m:0.97 },
     { id:"lulu", en:"Lulu", ar:"لولو", m:0.99 },
+    { id:"cc",   en:"City Centre", ar:"سيتي سنتر", m:1.03 },
     { id:"tsc",  en:"Sultan Center", ar:"مركز سلطان", m:1.10 },
     { id:"crf",  en:"Carrefour", ar:"كارفور", m:1.02 }
   ];
@@ -592,33 +746,39 @@ function makeSample(){
       });
     });
   });
-  const mach = { med:[], bud:[], pre:[], n:[] };
-  months.forEach((_, i) => {
-    let v = 1.65 * Math.pow(2.25 / 1.65, i / NOW); if (i < SPIKE) v *= 0.97;
-    const med = Math.round(v * 40) / 40;
-    mach.med.push(med); mach.bud.push(Math.round(med * 0.7 * 20) / 20); mach.pre.push(Math.round(med * 1.9 * 4) / 4); mach.n.push(40);
-  });
+  const series = (from, to, budF, preF) => {
+    const o = { med:[], bud:[], pre:[], n:[] };
+    months.forEach((_, i) => {
+      let v = from * Math.pow(to / from, i / NOW); if (i < SPIKE) v *= 0.97;
+      const med = Math.round(v * 40) / 40;
+      o.med.push(med); o.bud.push(Math.round(med * budF * 20) / 20); o.pre.push(Math.round(med * preF * 4) / 4); o.n.push(40);
+    });
+    return o;
+  };
+  const mach = { chicken: series(1.65, 2.25, 0.7, 1.9), lamb: series(3.50, 4.75, 0.75, 1.8) };
   return finish({ mode:"sample", months, stores, items, mach });
 }
 
 /* ---------- Derived numbers ---------- */
-function finish(d){
-  const byId = Object.fromEntries(d.items.map(i => [i.id, i]));
-  d.byId = byId;
-  const recipe = Object.entries(SETTINGS.HOME_RECIPE);
-  const homeOk = recipe.every(([id]) => byId[id] && byId[id].s[SETTINGS.HOME_STORE]);
-  d.home = d.months.map((_, i) => {
-    if (!homeOk) return null;
+function homeSeries(d, recipeObj){
+  const recipe = Object.entries(recipeObj || {});
+  const ok = recipe.length && recipe.every(([id]) => d.byId[id] && d.byId[id].s[SETTINGS.HOME_STORE]);
+  return d.months.map((_, i) => {
+    if (!ok) return null;
     let sum = SETTINGS.HOME_EXTRA;
-    for (const [id, share] of recipe) { const p = lastAt(byId[id].s[SETTINGS.HOME_STORE], i); if (p == null) return null; sum += p * share; }
+    for (const [id, share] of recipe) { const p = lastAt(d.byId[id].s[SETTINGS.HOME_STORE], i); if (p == null) return null; sum += p * share; }
     return +sum.toFixed(3);
   });
+}
+function finish(d){
+  d.byId = Object.fromEntries(d.items.map(i => [i.id, i]));
+  d.home = { chicken: homeSeries(d, SETTINGS.HOME_RECIPE), lamb: homeSeries(d, SETTINGS.HOME_RECIPE_LAMB) };
   return d;
 }
 
 /* ---------- State ---------- */
 let basket = {};
-let cat = "cAll", query = "", selected = null, range = 36;
+let cat = "cAll", query = "", selected = null, range = 36, dish = "chicken";
 
 /* ---------- Static text ---------- */
 function applyText(){
@@ -641,38 +801,56 @@ function applyText(){
 function latestMonthLabel(){
   let k = -1;
   D.items.forEach(it => D.stores.forEach(s => { k = Math.max(k, lastIdx(it.s[s.id])); }));
-  k = Math.max(k, lastIdx(D.mach.med));
+  k = Math.max(k, lastIdx(D.mach.chicken.med), lastIdx(D.mach.lamb.med));
   return k >= 0 ? monthLabel(k) : "–";
 }
 
 /* ---------- Machboos Index ---------- */
+const DISHES = { chicken:{ ar:"مجبوس دجاج", label:"dChicken", item:"idxItem" }, lamb:{ ar:"مجبوس لحم", label:"dLamb", item:"idxItemLamb" } };
+const hasDish = k => D.mach[k].med.some(v => v != null);
+function renderDishToggle(){
+  const opts = Object.keys(DISHES).filter(hasDish);
+  const box = $("dishToggle");
+  box.hidden = opts.length < 2;
+  box.innerHTML = opts.map(k => `<button type="button" data-dish="${k}" aria-pressed="${k === dish}">${esc(t(DISHES[k].label))}</button>`).join("");
+}
+function renderHero(){
+  ["chicken", "lamb"].forEach(k => {
+    const s = D.mach[k].med, j = lastIdx(s);
+    $("hero-" + k).textContent = j >= 0 ? money(s[j]) : "–";
+    $("hero-" + k + "-l").textContent = t(DISHES[k].label);
+  });
+}
 function renderIndex(){
-  const k = lastIdx(D.mach.med);
+  const M = D.mach[dish], H = D.home[dish];
+  $("idxDishAr").textContent = DISHES[dish].ar;
+  $("idxItem").textContent = t(DISHES[dish].item);
+  const k = lastIdx(M.med);
   if (k < 0) {
     $("idxMonth").textContent = ""; $("idxPrice").textContent = "–";
     $("idxSub").textContent = t("noMach"); $("idxChips").innerHTML = "";
   } else {
-    const cur = D.mach.med[k];
+    const cur = M.med[k];
     $("idxMonth").textContent = monthLabel(k);
     $("idxPrice").textContent = fmt(cur);
-    $("idxSub").textContent = D.mach.n[k] ? t("idxSubN", { n: D.mach.n[k] }) : t("idxSub");
+    $("idxSub").textContent = M.n[k] ? t("idxSubN", { n: M.n[k] }) : t("idxSub");
     const chips = [];
-    if (k >= 12 && D.mach.med[k - 12] != null) { const p = pct(cur, D.mach.med[k - 12]); chips.push(`<span class="pill ${chipClass(p)} num">${t("yoy", { p: pctStr(p) })}</span>`); }
-    const f = D.mach.med.findIndex(v => v != null);
-    if (f >= 0 && f < k - 12) { const p = pct(cur, D.mach.med[f]); chips.push(`<span class="pill ${chipClass(p)} num">${t("since", { p: pctStr(p), m: monthLabel(f) })}</span>`); }
+    if (k >= 12 && M.med[k - 12] != null) { const p = pct(cur, M.med[k - 12]); chips.push(`<span class="pill ${chipClass(p)} num">${t("yoy", { p: pctStr(p) })}</span>`); }
+    const f = M.med.findIndex(v => v != null);
+    if (f >= 0 && f < k - 12) { const p = pct(cur, M.med[f]); chips.push(`<span class="pill ${chipClass(p)} num">${t("since", { p: pctStr(p), m: monthLabel(f) })}</span>`); }
     $("idxChips").innerHTML = chips.join("");
   }
   const rows = [];
   if (k >= 0) {
-    if (D.mach.bud[k] != null) rows.push([t("tBudget"), "", D.mach.bud[k]]);
-    rows.push([t("tMid"), "", D.mach.med[k]]);
-    if (D.mach.pre[k] != null) rows.push([t("tPremium"), "", D.mach.pre[k]]);
+    if (M.bud[k] != null) rows.push([t("tBudget"), "", M.bud[k]]);
+    rows.push([t("tMid"), "", M.med[k]]);
+    if (M.pre[k] != null) rows.push([t("tPremium"), "", M.pre[k]]);
   }
-  const h = lastAt(D.home, D.home.length - 1);
+  const h = lastAt(H, H.length - 1);
   if (h != null) rows.push([t("home"), t("homeNote"), h]);
   rows.push([t("falafel"), t("falafelNote"), 0.100]);
-  $("tierList").innerHTML = rows.map(([l, s, v]) =>
-    `<li><span class="lbl">${esc(l)}${s ? `<small>${esc(s)}</small>` : ""}</span><span class="val num">${money(v)}</span></li>`).join("");
+  $("tierList").innerHTML = rows.map(([l, sb, v]) =>
+    `<li><span class="lbl">${esc(l)}${sb ? `<small>${esc(sb)}</small>` : ""}</span><span class="val num">${money(v)}</span></li>`).join("");
 }
 
 /* ---------- Charts ---------- */
@@ -699,8 +877,9 @@ function renderIdxChart(){
   if (!window.Chart || !D) return;
   idxChart && idxChart.destroy();
   const labels = D.months.map((_, i) => monthLabel(i));
-  const sets = [{ label:t("sRest"), data:D.mach.med, borderColor:tok("--accent"), backgroundColor:tok("--accent"), borderWidth:2.5, stepped:true, pointRadius:endDot(D.mach.med), pointHoverRadius:4 }];
-  if (D.home.some(v => v != null)) sets.push({ label:t("sHome"), data:D.home, borderColor:tok("--sea"), backgroundColor:tok("--sea"), borderWidth:2, borderDash:[5,4], tension:.25, pointRadius:endDot(D.home), pointHoverRadius:4 });
+  const M = D.mach[dish].med, H = D.home[dish];
+  const sets = [{ label:t("sRest"), data:M, borderColor:tok("--accent"), backgroundColor:tok("--accent"), borderWidth:2.5, stepped:true, pointRadius:endDot(M), pointHoverRadius:4 }];
+  if (H.some(v => v != null)) sets.push({ label:t("sHome"), data:H, borderColor:tok("--sea"), backgroundColor:tok("--sea"), borderWidth:2, borderDash:[5,4], tension:.25, pointRadius:endDot(H), pointHoverRadius:4 });
   const o = baseOptions(); o.scales.y.min = 0;
   idxChart = new Chart($("idxChart"), { type:"line", data:{ labels, datasets:sets }, options:o });
 }
@@ -813,7 +992,7 @@ function renderForm(){
 function renderAll(){
   applyText();
   if (!D) return;
-  renderIndex(); renderIdxChart();
+  renderHero(); renderDishToggle(); renderIndex(); renderIdxChart();
   renderPick(); renderTotals();
   renderCats(); renderBoard(); renderRanges(); renderHistChart();
   renderForm();
@@ -844,6 +1023,10 @@ $("pickList").addEventListener("input", e => {
     const id = e.target.dataset.id;
     if (document.getElementById("b-" + id).checked) { basket[id] = Math.min(20, Math.round(+e.target.value)); renderTotals(); }
   }
+});
+$("dishToggle").addEventListener("click", e => {
+  const b = e.target.closest("[data-dish]"); if (!b) return;
+  dish = b.dataset.dish; renderDishToggle(); renderIndex(); renderIdxChart();
 });
 $("search").addEventListener("input", e => { query = e.target.value; renderBoard(); });
 $("cats").addEventListener("click", e => {
@@ -889,6 +1072,7 @@ function start(data, m){
   Object.keys(def).forEach(k => { if (D.byId[k]) basket[k] = def[k]; });
   if (!Object.keys(basket).length) D.items.slice(0, 5).forEach(it => basket[it.id] = 1);
   selected = D.byId.rice ? "rice" : (D.items[0] && D.items[0].id);
+  dish = hasDish("chicken") || !hasDish("lamb") ? "chicken" : "lamb";
   renderAll();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
 }
