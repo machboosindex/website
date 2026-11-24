@@ -1,0 +1,283 @@
+date_collected,source,delivery_area,restaurant,talabat_branch_id,kitchen_group,dish,meat_origin,item_name,list_price_kd,price_shown_kd,used_in_index,used_in_origin_median,note
+2026-11-24,Talabat,Dasma,Ahed Al Deyafa,689377,Ahed Al Deyafa,chicken,,Chicken Majboos,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Ahed Al Deyafa,689377,Ahed Al Deyafa,lamb,australian,Australian Lamb Machboos,4.750,4.750,yes,yes,
+2026-11-24,Talabat,Dasma,Ahlah Ghadwah,683438,Ahlah Ghadwah,chicken,,Royal Majboos Chicken,3.250,2.275,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Ahlah Ghadwah,683438,Ahlah Ghadwah,lamb,australian,Australian Lamb Majboos Platter,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Ahlah Ghadwah,683438,Ahlah Ghadwah,lamb,australian,Australian Lamb Majboos,4.500,3.150,yes,yes,discounted on the day
+2026-11-24,Talabat,Dasma,Ahlah Ghadwah,683438,Ahlah Ghadwah,lamb,unspecified,Lamb Meat Moozat Majboos,5.000,3.500,no,no,discounted on the day
+2026-11-24,Talabat,Dasma,Ahlah Ghadwah,683438,Ahlah Ghadwah,lamb,arabic,Arabic Lamb Machboos,6.000,4.200,no,yes,discounted on the day
+2026-11-24,Talabat,Dasma,Aish w Robyan,43438,Aish w Robyan,chicken,,Chicken Machboos,2.500,2.500,yes,no,
+2026-11-24,Talabat,Dasma,Al Anode,621443,Al Anode,chicken,,Chicken Majboos,2.850,2.850,yes,no,
+2026-11-24,Talabat,Dasma,Al Anode,621443,Al Anode,chicken,,Chicken Majboos Anode,3.150,3.150,no,no,
+2026-11-24,Talabat,Dasma,Al Anode,621443,Al Anode,lamb,unspecified,Meat Majboos,5.150,5.150,yes,no,
+2026-11-24,Talabat,Dasma,Al Baharana Restaurant,23753,Al Baharana Restaurant,chicken,,Chicken Machboos,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Al Baharana Restaurant,23753,Al Baharana Restaurant,chicken,,Red Chicken Machboos,3.000,3.000,no,no,
+2026-11-24,Talabat,Dasma,Al Baharana Restaurant,23753,Al Baharana Restaurant,lamb,unspecified,Meat Machboos,4.250,4.250,yes,no,
+2026-11-24,Talabat,Dasma,Al Baharana Restaurant,23753,Al Baharana Restaurant,lamb,unspecified,Red Meat Machboos,4.500,4.500,no,no,
+2026-11-24,Talabat,Dasma,Al Kabsh,15738,Al Kabsh,chicken,,Machboos Chicken,3.000,3.000,yes,no,
+2026-11-24,Talabat,Dasma,Al Kabsh,15738,Al Kabsh,chicken,,Chicken Majboos Brown Rice,3.200,3.200,no,no,
+2026-11-24,Talabat,Dasma,Al Kabsh,15738,Al Kabsh,lamb,australian,Australian Meat Majboos Brown Rice,5.250,5.250,yes,yes,
+2026-11-24,Talabat,Dasma,Al Kabsh,15738,Al Kabsh,lamb,australian,Machboos Australian Meat,5.250,5.250,no,no,
+2026-11-24,Talabat,Dasma,Al Kabsh,15738,Al Kabsh,lamb,arabic,Arabic Meat Majboos Brown Rice,6.250,6.250,no,yes,
+2026-11-24,Talabat,Dasma,AL Mamlakah,3883,AL Mamlakah,chicken,,Royal Special Chicken Majboos,3.250,3.250,yes,no,
+2026-11-24,Talabat,Dasma,AL Mamlakah,3883,AL Mamlakah,lamb,australian,Signature Royal Australian Lamb Majboos,5.500,5.500,yes,yes,
+2026-11-24,Talabat,Dasma,AL Mamlakah,3883,AL Mamlakah,lamb,australian,Special Australian Lamb Majboos,6.500,6.500,no,no,
+2026-11-24,Talabat,Dasma,AL Mamlakah,3883,AL Mamlakah,lamb,arabic,Royal Special Arabic Meat Majboos,7.500,7.500,no,yes,
+2026-11-24,Talabat,Dasma,Al Siteenat,744614,Al Siteenat,chicken,,Chicken Majboos,2.500,2.500,yes,no,
+2026-11-24,Talabat,Dasma,Al Sofra Al Khlejya,50378,Al Sofra Al Khlejya,chicken,,Chicken Majboos,3.250,3.250,yes,no,
+2026-11-24,Talabat,Dasma,Al Zaafranee,24723,Al Zaafranee,chicken,,Chicken Majbous,3.000,3.000,yes,no,
+2026-11-24,Talabat,Dasma,Al Zaafranee,24723,Al Zaafranee,lamb,australian,Meat Majbous Australian,5.000,5.000,yes,yes,
+2026-11-24,Talabat,Dasma,Al Zaafranee,24723,Al Zaafranee,lamb,arabic,Meat Majbous Arabic,7.000,7.000,no,yes,
+2026-11-24,Talabat,Dasma,Alghabga Alkuwaitiya,37599,Hail w Darsen,chicken,,Charcoal Grilled Chicken Majboos,3.500,3.500,no,no,same menu as Hail w Darsen; counted once
+2026-11-24,Talabat,Dasma,Alghabga Alkuwaitiya,37599,Hail w Darsen,lamb,unspecified,Majboos Meat Brown Rice,6.250,6.250,no,no,same menu as Hail w Darsen; counted once
+2026-11-24,Talabat,Dasma,Aljoun,668395,Aljoun,chicken,,Chicken Majboos,3.000,3.000,yes,no,
+2026-11-24,Talabat,Dasma,Aljoun,668395,Aljoun,chicken,,Aljoun Chicken majbos,6.500,6.500,no,no,
+2026-11-24,Talabat,Dasma,Aljoun,668395,Aljoun,lamb,australian,Meat Majboos,5.150,5.150,yes,yes,
+2026-11-24,Talabat,Dasma,Aljoun,668395,Aljoun,lamb,unspecified,majbos meat neck,7.000,7.000,no,no,
+2026-11-24,Talabat,Dasma,Almaten,617500,Almaten,chicken,,Machboos Almaten Chicken,3.950,3.950,yes,no,
+2026-11-24,Talabat,Dasma,Almaten,617500,Almaten,lamb,unspecified,Machboos Almaten Meat,4.950,4.950,yes,no,
+2026-11-24,Talabat,Dasma,AlRuban Al Kuwaity,624723,Hail w Darsen,chicken,,Chicken Majbos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,AlRuban Al Kuwaity,624723,Hail w Darsen,chicken,,Charcoal Grilled Chicken Majboos,3.500,3.500,no,no,same menu as Hail w Darsen; counted once
+2026-11-24,Talabat,Dasma,AlRuban Al Kuwaity,624723,Hail w Darsen,lamb,unspecified,Majboos Meat Brown Rice,6.250,6.250,no,no,same menu as Hail w Darsen; counted once
+2026-11-24,Talabat,Dasma,Alzaizafoon,5175,Alzaizafoon,lamb,unspecified,Machboos Laham,5.100,5.100,yes,no,
+2026-11-24,Talabat,Dasma,Arkan,25341,Arkan,chicken,,Machboos Chicken With Red Rice,2.950,2.950,yes,no,
+2026-11-24,Talabat,Dasma,Arkan,25341,Arkan,chicken,,Chicken Machboos,2.950,2.950,no,no,
+2026-11-24,Talabat,Dasma,Arkan,25341,Arkan,lamb,australian,Australian Meat Machboos - Red Rice,4.500,4.500,yes,yes,
+2026-11-24,Talabat,Dasma,Arkan,25341,Arkan,lamb,australian,Australian Lamb Machboos,4.750,4.750,no,no,
+2026-11-24,Talabat,Dasma,Arkan,25341,Arkan,lamb,arabic,Arabic Meat Majboos With Red Rice,5.950,5.950,no,yes,
+2026-11-24,Talabat,Dasma,Arkan,25341,Arkan,lamb,arabic,Arabian Meat Machboos,6.500,6.500,no,no,
+2026-11-24,Talabat,Dasma,Arzaag,23153,Arzaag,lamb,unspecified,Lahm Machboos,4.750,4.750,yes,no,
+2026-11-24,Talabat,Dasma,Aysh Express,800118,Aysh Express,chicken,,Chicken Machboos,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Aysh Express,800118,Aysh Express,lamb,unspecified,Meat Machboos,4.450,4.450,yes,no,
+2026-11-24,Talabat,Dasma,Bait Al Khaleej,761723,Bait Al Khaleej,chicken,,Chicken Majboos,3.500,3.500,yes,no,
+2026-11-24,Talabat,Dasma,Bait Al Khaleej,761723,Bait Al Khaleej,lamb,australian,Australian Meat Majboos,5.950,5.950,yes,yes,
+2026-11-24,Talabat,Dasma,Bait Al Khaleej,761723,Bait Al Khaleej,lamb,arabic,Arabic Lamb Majboos,7.000,7.000,no,yes,
+2026-11-24,Talabat,Dasma,Bait Aleajuz,661183,Bait Aleajuz,chicken,,Chicken Machboos,2.950,2.950,yes,no,
+2026-11-24,Talabat,Dasma,Bait Aleajuz,661183,Bait Aleajuz,chicken,,Chicken Majboos With Red Rice,3.200,3.200,no,no,
+2026-11-24,Talabat,Dasma,Bait Aleajuz,661183,Bait Aleajuz,chicken,,Chicken Hafedah Machboos,3.400,3.400,no,no,
+2026-11-24,Talabat,Dasma,Bait Aleajuz,661183,Bait Aleajuz,lamb,australian,Australian Meat Machboos,4.250,4.250,yes,yes,
+2026-11-24,Talabat,Dasma,Bait Amsha,41259,Bait Amsha,chicken,,Chicken Majbos,2.950,2.950,yes,no,
+2026-11-24,Talabat,Dasma,Bait Amsha,41259,Bait Amsha,chicken,,Chicken With Red Rice Majbos,2.950,2.950,no,no,
+2026-11-24,Talabat,Dasma,Bait Amsha,41259,Bait Amsha,chicken,,Chicken Majboos Bait Amsha,3.150,3.150,no,no,
+2026-11-24,Talabat,Dasma,Bait Amsha,41259,Bait Amsha,chicken,,Chicken Hafedah Majboos,3.250,3.250,no,no,
+2026-11-24,Talabat,Dasma,Bait Amsha,41259,Bait Amsha,chicken,,Chicken Hafedah Red Rice Majbos,3.450,3.450,no,no,
+2026-11-24,Talabat,Dasma,Bait Amsha,41259,Bait Amsha,lamb,australian,Australian Meat Majboos,4.250,4.250,yes,yes,
+2026-11-24,Talabat,Dasma,Bait Amsha,41259,Bait Amsha,lamb,australian,Australian Meat Majbos With Red Rice,4.750,4.750,no,no,
+2026-11-24,Talabat,Dasma,Bait Amsha,41259,Bait Amsha,lamb,australian,Australian Meat Majboos With Yogurt,4.750,4.750,no,no,
+2026-11-24,Talabat,Dasma,Bayt Al Azaim,662850,Bayt Al Azaim,chicken,,Chicken Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Bayt Al Azaim,662850,Bayt Al Azaim,lamb,australian,Australian Lamb Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Bayt Al Azaim,662850,Bayt Al Azaim,lamb,arabic,Naemi Arabic Meat Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Bayt Al Azzayem,803078,Bayt Al Azzayem,chicken,,Chicken Majboos,2.250,2.250,yes,no,
+2026-11-24,Talabat,Dasma,Bayt Al Azzayem,803078,Bayt Al Azzayem,lamb,unspecified,Meat Majboos,4.000,4.000,yes,no,
+2026-11-24,Talabat,Dasma,Bayt Al Azzayem,803078,Bayt Al Azzayem,lamb,unspecified,Royal lamb Majboos,4.950,4.950,no,no,
+2026-11-24,Talabat,Dasma,Beit Dickson,705002,Beit Dickson,chicken,,Machbous Chicken,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Beit Dickson,705002,Beit Dickson,chicken,,Chicken Machbous Platter,12.000,12.000,no,no,excluded: looks like a multi-person portion
+2026-11-24,Talabat,Dasma,Beit Dickson,705002,Beit Dickson,lamb,unspecified,Machboos Lamb,4.750,4.750,yes,no,
+2026-11-24,Talabat,Dasma,Beit Dickson,705002,Beit Dickson,lamb,unspecified,Machbous Lamb (Shank),4.950,4.950,no,no,
+2026-11-24,Talabat,Dasma,Beit Dickson,705002,Beit Dickson,lamb,arabic,Machbous Lamb (Naemi),6.900,6.900,no,yes,
+2026-11-24,Talabat,Dasma,Beit Dickson,705002,Beit Dickson,lamb,unspecified,Machbous Lamb Platter,20.000,20.000,no,no,excluded: looks like a multi-person portion
+2026-11-24,Talabat,Dasma,Beit Ladan,35821,Beit Ladan,chicken,,Chicken Majboos,3.450,3.450,yes,no,
+2026-11-24,Talabat,Dasma,Beit Ladan,35821,Beit Ladan,lamb,unspecified,Meat Machbos,5.650,5.650,yes,no,
+2026-11-24,Talabat,Dasma,Beit Wadha,695687,Beit Wadha,chicken,,Chicken Machboos,3.950,3.950,yes,no,
+2026-11-24,Talabat,Dasma,Beit Wadha,695687,Beit Wadha,lamb,arabic,Majbous Naemi Meat one pcs,4.500,4.500,yes,yes,
+2026-11-24,Talabat,Dasma,Beit Wadha,695687,Beit Wadha,lamb,australian,Majboos with Australian Lamb,5.750,5.750,no,yes,
+2026-11-24,Talabat,Dasma,Beit Wadha,695687,Beit Wadha,lamb,arabic,Na’eemi Lamb Majboos,8.500,8.500,no,no,
+2026-11-24,Talabat,Dasma,Ben Mandeel,3931,Ben Mandeel,chicken,,Chicken Machboos,3.250,3.250,yes,no,
+2026-11-24,Talabat,Dasma,Ben Mandeel,3931,Ben Mandeel,lamb,australian,Australian Meat Majboos,5.500,5.500,yes,yes,
+2026-11-24,Talabat,Dasma,Ben Mandeel,3931,Ben Mandeel,lamb,arabic,Arabic Meat Machboos,7.500,7.500,no,yes,
+2026-11-24,Talabat,Dasma,Biryani Rubyan,676644,Umm Alaish,chicken,,Chicken Majboos,3.250,3.250,no,no,same menu as Umm Alaish; counted once
+2026-11-24,Talabat,Dasma,Biryani Rubyan,676644,Umm Alaish,lamb,unspecified,Meat Majboos,5.000,5.000,no,no,same menu as Umm Alaish; counted once
+2026-11-24,Talabat,Dasma,Bishawir,771236,Bishawir,chicken,,Oven Chicken Majboos,3.250,3.250,yes,no,
+2026-11-24,Talabat,Dasma,Bishawir,771236,Bishawir,chicken,,Fried Chicken Majboos,3.250,3.250,no,no,
+2026-11-24,Talabat,Dasma,Bishawir,771236,Bishawir,chicken,,Chicken Majboos (Bishawir),4.500,4.500,no,no,
+2026-11-24,Talabat,Dasma,Bishawir,771236,Bishawir,lamb,australian,Meat Majboos (Australian),4.500,4.500,yes,yes,
+2026-11-24,Talabat,Dasma,Bishawir,771236,Bishawir,lamb,unspecified,Meat Majboos (Bishawir),6.250,6.250,no,no,
+2026-11-24,Talabat,Dasma,Bishawir,771236,Bishawir,lamb,arabic,Majboos Meat (Naimi),7.500,7.500,no,yes,
+2026-11-24,Talabat,Dasma,Bukhari and Mansaf,717709,Bukhari and Mansaf,chicken,,Machboos Chicken,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Bukhari and Mansaf,717709,Bukhari and Mansaf,lamb,unspecified,Meat Majboos,6.000,6.000,yes,no,
+2026-11-24,Talabat,Dasma,Cafe Bazza,20012,Cafe Bazza,chicken,,Machbous Chicken,4.450,4.450,yes,no,
+2026-11-24,Talabat,Dasma,Cafe Bazza,20012,Cafe Bazza,lamb,unspecified,Machbous Lamb,4.950,4.950,yes,no,
+2026-11-24,Talabat,Dasma,catering factory,687587,catering factory,chicken,,Chicken Machboos,3.150,3.150,yes,no,
+2026-11-24,Talabat,Dasma,catering factory,687587,catering factory,chicken,,Chicken Majboos Brown Rice,3.200,3.200,no,no,
+2026-11-24,Talabat,Dasma,catering factory,687587,catering factory,chicken,,Charcoal Grilled Chicken Majboos,3.500,3.500,no,no,
+2026-11-24,Talabat,Dasma,catering factory,687587,catering factory,lamb,australian,Australian Meat Majboos Brown Aish,5.250,5.250,yes,yes,
+2026-11-24,Talabat,Dasma,catering factory,687587,catering factory,lamb,australian,Australian Meat Majboos,5.250,5.250,no,no,
+2026-11-24,Talabat,Dasma,catering factory,687587,catering factory,lamb,unspecified,Majbus Lahm Astiralia 'arz Ahmar,5.250,5.250,no,no,
+2026-11-24,Talabat,Dasma,catering factory,687587,catering factory,lamb,unspecified,Majboos Meat Brown Rice,6.250,6.250,no,no,
+2026-11-24,Talabat,Dasma,catering factory,687587,catering factory,lamb,arabic,Arabic Meat Majboos,6.250,6.250,no,yes,
+2026-11-24,Talabat,Dasma,Chef@Home,605337,Chef@Home,chicken,,Chicken Majboos,3.000,3.000,yes,no,
+2026-11-24,Talabat,Dasma,Chef@Home,605337,Chef@Home,lamb,australian,Lamb Majboos,4.000,4.000,yes,yes,
+2026-11-24,Talabat,Dasma,Cleopatra Restaurant,774373,Cleopatra Restaurant,chicken,,Majbous (Chicken),2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Cleopatra Restaurant,774373,Cleopatra Restaurant,lamb,australian,Majbous (Meat),4.750,4.750,yes,yes,
+2026-11-24,Talabat,Dasma,Cotton Candy,603497,Hail w Darsen,chicken,,Charcoal Grilled Chicken Majboos,3.500,3.500,no,no,same menu as Hail w Darsen; counted once
+2026-11-24,Talabat,Dasma,Cotton Candy,603497,Hail w Darsen,lamb,unspecified,Majboos Meat Brown Rice,6.250,6.250,no,no,same menu as Hail w Darsen; counted once
+2026-11-24,Talabat,Dasma,Daar Alsaad,651304,Daar Alsaad,chicken,,Dar Alsaad Majboos Chicken,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Daar Alsaad,651304,Daar Alsaad,chicken,,Chicken Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Daar Alsaad,651304,Daar Alsaad,chicken,,Chicken With Red Rice Majbos,2.800,2.800,yes,no,
+2026-11-24,Talabat,Dasma,Daar Alsaad,651304,Daar Alsaad,chicken,,Grilled Chicken Majboos,3.000,3.000,no,no,
+2026-11-24,Talabat,Dasma,Daar Alsaad,651304,Daar Alsaad,chicken,,Royal Majboos Chicken,3.250,3.250,no,no,
+2026-11-24,Talabat,Dasma,Daar Alsaad,651304,Daar Alsaad,chicken,,Jadar Majboos Chicken Dar Alsaad,4.000,4.000,no,no,
+2026-11-24,Talabat,Dasma,Daar Alsaad,651304,Daar Alsaad,lamb,arabic,Arabic Meat Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Daar Alsaad,651304,Daar Alsaad,lamb,australian,Australian Mutton Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Dampa D Nest,30322,Dampa D Nest,chicken,,Machboos Chicken,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Dar Ali,47973,Dar Ali,chicken,,Chicken Majboos,2.950,2.065,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Dar Fares,704092,Dar Fares,chicken,,Royal Majboos Chicken Meal,3.250,3.250,yes,no,
+2026-11-24,Talabat,Dasma,Dar Fares,704092,Dar Fares,chicken,,Royal Grilled Chicken Majboos,3.250,3.250,no,no,
+2026-11-24,Talabat,Dasma,Dar Fares,704092,Dar Fares,lamb,unspecified,Royal Grilled Meat Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Dar Fares,704092,Dar Fares,lamb,unspecified,Royal Slow-Cooked Lamb Machboos,5.500,5.500,yes,no,
+2026-11-24,Talabat,Dasma,Dar Fares,704092,Dar Fares,lamb,arabic,Royal Arabic Lamb Majboos Meal,8.500,8.500,no,yes,
+2026-11-24,Talabat,Dasma,Dar Jasem,40190,Dar Jasem,chicken,,Chicken Machboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Dar Jasem,40190,Dar Jasem,chicken,,Dar Jasem Chicken Majboos Meal,3.500,3.500,yes,no,
+2026-11-24,Talabat,Dasma,Dar Jasem,40190,Dar Jasem,lamb,unspecified,Meat Machboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Dar Jasem,40190,Dar Jasem,lamb,arabic,Arabic Meat Machboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Dar Noor,762161,Dar Noor,chicken,,Chicken Machboos,3.000,3.000,yes,no,
+2026-11-24,Talabat,Dasma,Dar Noor,762161,Dar Noor,chicken,,Chicken Machboos,3.000,2.550,no,no,discounted on the day
+2026-11-24,Talabat,Dasma,Dar Noor,762161,Dar Noor,lamb,unspecified,Meat Machboos,4.500,3.825,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Dasman,49656,Dasman,chicken,,Chicken Majboos,3.250,3.250,yes,no,
+2026-11-24,Talabat,Dasma,Dasman,49656,Dasman,lamb,unspecified,Meat Majboos,5.250,5.250,yes,no,
+2026-11-24,Talabat,Dasma,Elite Spoon,713035,Elite Spoon,chicken,,Boneless Chicken Machboos,3.950,3.950,yes,no,
+2026-11-24,Talabat,Dasma,Emberech,802764,Emberech,chicken,,Chicken Machboos,3.500,3.500,yes,no,
+2026-11-24,Talabat,Dasma,Emerald,25338,Emerald,chicken,,Chicken Machboos,2.950,2.950,yes,no,
+2026-11-24,Talabat,Dasma,Emerald,25338,Emerald,chicken,,Chicken Machboos With Red Rice,2.950,2.950,no,no,
+2026-11-24,Talabat,Dasma,Emerald,25338,Emerald,lamb,australian,Australian Meat Machboos,4.000,4.000,yes,yes,
+2026-11-24,Talabat,Dasma,Emerald,25338,Emerald,lamb,australian,Machboos Australian Meat With Red Rice,4.000,4.000,no,no,
+2026-11-24,Talabat,Dasma,Emerald,25338,Emerald,lamb,arabic,Local Arabic Meat Machboos,5.950,5.950,no,yes,
+2026-11-24,Talabat,Dasma,Emerald,25338,Emerald,lamb,arabic,Arabic Meat Majbos With Red Rice,5.950,5.950,no,no,
+2026-11-24,Talabat,Dasma,Eydaam,37403,Eydaam,chicken,,Jeder Machboos Chicken,3.750,3.750,yes,no,
+2026-11-24,Talabat,Dasma,Eydaam,37403,Eydaam,chicken,,Jeder Machboos Chicken Royale,4.950,4.950,no,no,
+2026-11-24,Talabat,Dasma,Eydaam,37403,Eydaam,lamb,unspecified,Jeder Machboos Meat,5.250,5.250,yes,no,
+2026-11-24,Talabat,Dasma,Eydaam,37403,Eydaam,lamb,unspecified,Jeder Machboos Meat Mozat,6.950,6.950,no,no,
+2026-11-24,Talabat,Dasma,Freej Azaiem 75,663153,Freej Azaiem 75,chicken,,Majbos Chicken,3.000,2.400,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Galba,789976,Galba,chicken,,Chicken Machboos,9.250,9.250,no,no,excluded: looks like a multi-person portion
+2026-11-24,Talabat,Dasma,Ghraeyf,803366,Ghraeyf,chicken,,Chicken Majboos,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Hail w Darsen,25744,Hail w Darsen,chicken,,Charcoal Grilled Chicken Majboos,3.500,3.500,yes,no,
+2026-11-24,Talabat,Dasma,Hail w Darsen,25744,Hail w Darsen,lamb,unspecified,Majboos Meat Brown Rice,6.250,6.250,yes,no,
+2026-11-24,Talabat,Dasma,Hail W Zaafran,714751,Hail W Zaafran,chicken,,Machboos Chicken,3.000,3.000,yes,no,
+2026-11-24,Talabat,Dasma,Hail W Zaafran,714751,Hail W Zaafran,lamb,arabic,Fresh Arabic Meat Majboos,5.500,5.500,yes,yes,
+2026-11-24,Talabat,Dasma,Hamour Sharq Restaurant,29886,Hamour Sharq Restaurant,chicken,,Chicken Majbos Meal,3.500,3.500,yes,no,
+2026-11-24,Talabat,Dasma,Hamour Sharq Restaurant,29886,Hamour Sharq Restaurant,lamb,unspecified,Meat Majbos Meal,5.000,5.000,yes,no,
+2026-11-24,Talabat,Dasma,Hashi Basha,1103293,Hashi Basha,chicken,,Mahshi Chicken Majboos,3.500,3.500,yes,no,
+2026-11-24,Talabat,Dasma,Hubbis,802757,Hubbis,chicken,,Hubbis Chicken Machboos,2.500,2.500,yes,no,
+2026-11-24,Talabat,Dasma,Indef,802760,Indef,chicken,,Indef Chicken Machboos,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Jamal Catering,613353,Jamal Catering,chicken,,Chicken Machboos,3.250,3.250,yes,no,
+2026-11-24,Talabat,Dasma,Jamal Catering,613353,Jamal Catering,lamb,unspecified,Lamb Machboos,4.500,4.500,yes,no,
+2026-11-24,Talabat,Dasma,Jeder Soad,668019,Al Anode,chicken,,Chicken Majboos,2.850,2.850,no,no,same menu as Al Anode; counted once
+2026-11-24,Talabat,Dasma,Jeder Soad,668019,Al Anode,chicken,,Chicken Majboos Soad,3.350,3.350,no,no,same menu as Al Anode; counted once
+2026-11-24,Talabat,Dasma,Jeder Soad,668019,Al Anode,lamb,unspecified,Meat Majboos,5.150,5.150,no,no,same menu as Al Anode; counted once
+2026-11-24,Talabat,Dasma,Jedty Noura,770157,Jedty Noura,lamb,unspecified,Majboos Meat Brown Rice,6.250,6.250,yes,no,
+2026-11-24,Talabat,Dasma,Jood Gourmet,2760,Jood Gourmet,chicken,,Chicken Machboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Jood Gourmet,2760,Jood Gourmet,chicken,,Grilled Chicken Machboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Jood Gourmet,2760,Jood Gourmet,lamb,unspecified,Meat Machboos,4.500,4.500,yes,no,
+2026-11-24,Talabat,Dasma,Kabsa House,786844,Monasabat,chicken,,Chicken Majboos,2.750,2.750,no,no,same menu as Monasabat; counted once
+2026-11-24,Talabat,Dasma,Kabsa House,786844,Monasabat,chicken,,Chicken Majboos Chili,2.950,2.950,no,no,same menu as Monasabat; counted once
+2026-11-24,Talabat,Dasma,Kabsa House,786844,Monasabat,lamb,australian,Australian meat majboos,4.600,4.600,no,no,same menu as Monasabat; counted once
+2026-11-24,Talabat,Dasma,Kabsa House,786844,Monasabat,lamb,arabic,Naemi meat majboos,6.950,6.950,no,no,same menu as Monasabat; counted once
+2026-11-24,Talabat,Dasma,Kashounat Al Bait,14449,Kashounat Al Bait,chicken,,Chicken Machboos,4.500,4.500,yes,no,
+2026-11-24,Talabat,Dasma,Khaneen,48860,Khaneen,lamb,unspecified,Lamb Machboos,6.650,6.650,yes,no,
+2026-11-24,Talabat,Dasma,Kl Shay,666088,Kl Shay,chicken,,Chicken Machboos Plate,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Kl Shay,666088,Kl Shay,chicken,,Chicken Majbous Platter,3.500,3.500,yes,no,
+2026-11-24,Talabat,Dasma,Kl Shay,666088,Kl Shay,lamb,unspecified,Meat Majbous Platter,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Kl Shay,666088,Kl Shay,lamb,arabic,Arabic Meat Machboos Plate,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Kout Way,681062,Kout Way,chicken,,Chicken Machbous,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Kout Way,681062,Kout Way,lamb,australian,Meat Machbous Australian,4.000,4.000,yes,yes,
+2026-11-24,Talabat,Dasma,Kout Way,681062,Kout Way,lamb,arabic,Meat Machbous Naimi,5.900,5.900,no,yes,
+2026-11-24,Talabat,Dasma,Kuwaiti Cook,776127,Kuwaiti Cook,chicken,,United Chicken Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Kuwaiti Cook,776127,Kuwaiti Cook,chicken,,Mama Munira's Chicken Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Kuwaiti Cook,776127,Kuwaiti Cook,lamb,arabic,Arabic Meat Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Kuwaiti Cook,776127,Kuwaiti Cook,lamb,arabic,Arabic Lamb Rib Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Kuwaiti Cook,776127,Kuwaiti Cook,lamb,arabic,Mama Munira's Arabic Lamb Majboos,6.000,6.000,yes,yes,
+2026-11-24,Talabat,Dasma,M3zbna,12960,M3zbna,lamb,australian,Australian Meat Majboos Platter,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,M3zbna,12960,M3zbna,lamb,australian,Australian Meat Majboos,4.750,4.750,yes,yes,
+2026-11-24,Talabat,Dasma,M3zbna,12960,M3zbna,lamb,arabic,Arabic Meat Naemi Majbos Meal,7.500,7.500,no,yes,
+2026-11-24,Talabat,Dasma,Machboos Department,761166,Machboos Department,lamb,arabic,Lamb Machboos Neck and Katf,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Machboos Department,761166,Machboos Department,lamb,arabic,Lamb Machbous - Neck And Katf,5.950,5.950,yes,yes,
+2026-11-24,Talabat,Dasma,Machboos Express,668229,Machboos Express,chicken,,Machboos Chicken,3.100,2.170,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Machboos Express,668229,Machboos Express,lamb,unspecified,Machboos Lamb,5.750,4.025,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Mahyouf,789853,Mahyouf,chicken,,Chicken Machboos,5.450,5.450,yes,no,
+2026-11-24,Talabat,Dasma,Mahyouf,789853,Mahyouf,lamb,unspecified,Lamb Neck Machboos,7.950,7.950,yes,no,
+2026-11-24,Talabat,Dasma,Mahyouf,789853,Mahyouf,lamb,unspecified,Lamb Shank Machboos,7.950,7.950,no,no,
+2026-11-24,Talabat,Dasma,Mahyouf,789853,Mahyouf,lamb,unspecified,Lamb Ribs Machboos,7.950,7.950,no,no,
+2026-11-24,Talabat,Dasma,Majabis Al - Dasmah,1126473,Majabis Al - Dasmah,chicken,,Chicken Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Majabis Al - Dasmah,1126473,Majabis Al - Dasmah,lamb,unspecified,Meat Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Majboos Al Hajia,631292,Majboos Al Hajia,chicken,,Chicken Majboos,2.950,2.950,yes,no,
+2026-11-24,Talabat,Dasma,Majboos Al Hajia,631292,Majboos Al Hajia,chicken,,Baby Chicken Majboos,3.750,3.750,no,no,
+2026-11-24,Talabat,Dasma,Majboos Al Hajia,631292,Majboos Al Hajia,lamb,arabic,Na'eemi Arabic Lamb Majboos,7.500,7.500,yes,yes,
+2026-11-24,Talabat,Dasma,Majbous Time,35486,Majbous Time,chicken,,Chicken Machboos,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Majbous Time,35486,Majbous Time,chicken,,Chicken Machboos Time,3.250,3.250,no,no,
+2026-11-24,Talabat,Dasma,Majbous Time,35486,Majbous Time,lamb,unspecified,Meat Machboos,5.000,5.000,yes,no,
+2026-11-24,Talabat,Dasma,Majbous Time,35486,Majbous Time,lamb,unspecified,Mooza meat majboos,5.500,5.500,no,no,
+2026-11-24,Talabat,Dasma,Malek Al Majbous,661310,Malek Al Majbous,chicken,,Machboos Chicken,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Malek Al Majbous,661310,Malek Al Majbous,lamb,australian,Australian Meat Majboos,4.750,4.750,yes,yes,
+2026-11-24,Talabat,Dasma,Malek Al Majbous,661310,Malek Al Majbous,lamb,arabic,Arabic Meat Majboos,7.000,7.000,no,yes,
+2026-11-24,Talabat,Dasma,Malek Al Majbous,661310,Malek Al Majbous,lamb,arabic,Arabic Meat Majboos,7.000,7.000,no,no,
+2026-11-24,Talabat,Dasma,Malek Al Majbous,661310,Malek Al Majbous,lamb,unspecified,Majboos Lamb Neck Special,7.950,7.950,no,no,
+2026-11-24,Talabat,Dasma,Mama Do Restaurant,39227,Mama Do Restaurant,chicken,,Chicken Majbos,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Mama Do Restaurant,39227,Mama Do Restaurant,chicken,,Mama Do Chicken Majboos,3.450,3.450,no,no,
+2026-11-24,Talabat,Dasma,Mama Do Restaurant,39227,Mama Do Restaurant,lamb,unspecified,Meat Majboos,5.000,5.000,yes,no,
+2026-11-24,Talabat,Dasma,Mama Do Restaurant,39227,Mama Do Restaurant,lamb,unspecified,Mama Do's Meat majboos,5.500,5.500,no,no,
+2026-11-24,Talabat,Dasma,Mama Mariam,11227,Mama Mariam,chicken,,Chicken Majboos,3.450,3.450,yes,no,
+2026-11-24,Talabat,Dasma,Manama Kitchen,778834,Manama Kitchen,chicken,,Original Bahraini Chicken Majboos,2.950,2.950,yes,no,
+2026-11-24,Talabat,Dasma,Mandi Al Wadi,790001,Mandi Al Wadi,chicken,,Chicken Machboos,3.000,3.000,yes,no,
+2026-11-24,Talabat,Dasma,Mandi Al Wadi,790001,Mandi Al Wadi,chicken,,Chicken Majboos,3.000,3.000,no,no,
+2026-11-24,Talabat,Dasma,Mandi Al Wadi,790001,Mandi Al Wadi,lamb,arabic,Arabic meat majboos,6.500,6.500,yes,yes,
+2026-11-24,Talabat,Dasma,Mandi Al Wadi,790001,Mandi Al Wadi,lamb,unspecified,Meat Majboos,6.500,6.500,no,no,
+2026-11-24,Talabat,Dasma,Manout,800760,Manout,chicken,,Chicken Majboos,2.500,2.500,yes,no,
+2026-11-24,Talabat,Dasma,Mansaf Al Arabi,7462,Mansaf Al Arabi,chicken,,مجبوس دجاج,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Mansaf Al Arabi,7462,Mansaf Al Arabi,chicken,,Chicken Majboos,2.500,2.250,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Mansaf Al Arabi,7462,Mansaf Al Arabi,lamb,unspecified,Meat Majboos,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Mansaf Al Arabi,7462,Mansaf Al Arabi,lamb,arabic,مجبوس لحم عربي,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Mansaf Al Arabi,7462,Mansaf Al Arabi,lamb,australian,مجبوس لحم استرالي,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Marahib Dubai,17631,Marahib Dubai,lamb,australian,Australian Majboos Meat,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Marahib Dubai,17631,Marahib Dubai,lamb,unspecified,Majboos Meat,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Marhaba Al Kuwait,800108,Marhaba Al Kuwait,chicken,,Chicken Machboos,3.750,3.750,yes,no,
+2026-11-24,Talabat,Dasma,Master Chef,647636,Master Chef,chicken,,Chicken Majboos,3.500,3.500,yes,no,
+2026-11-24,Talabat,Dasma,Master Chef,647636,Master Chef,lamb,unspecified,Meat Majboos,6.500,6.500,yes,no,
+2026-11-24,Talabat,Dasma,Mel7 W Filfil,4858,Mel7 W Filfil,chicken,,Fresh Chicken Majboos Today,3.000,2.400,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Mel7 W Filfil,4858,Mel7 W Filfil,lamb,unspecified,Daily Lamb Machboos,5.000,4.000,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Michabees,676181,Michabees,chicken,,Royal Chicken Majboos,3.250,2.275,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Michabees,676181,Michabees,lamb,australian,Australian Meat Majboos,4.500,3.150,yes,yes,discounted on the day
+2026-11-24,Talabat,Dasma,Miskan,769361,Miskan,lamb,unspecified,Miskan Meat Majboos,6.950,6.950,yes,no,
+2026-11-24,Talabat,Dasma,Monasabat,26845,Monasabat,chicken,,Chicken Majboos,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Monasabat,26845,Monasabat,chicken,,Musakhan-Style Chicken Machboos,2.750,2.750,no,no,
+2026-11-24,Talabat,Dasma,Monasabat,26845,Monasabat,chicken,,Chicken Majbos Barbque,2.750,2.750,no,no,
+2026-11-24,Talabat,Dasma,Monasabat,26845,Monasabat,lamb,arabic,BBQ Naeimi Lamb Majboos Platter,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Monasabat,26845,Monasabat,lamb,australian,Australian meat majboos,4.600,4.600,yes,yes,
+2026-11-24,Talabat,Dasma,Monasabat,26845,Monasabat,lamb,australian,AUSTRALIAN MEAT MAJBOOS BARBEQUE,4.600,4.600,no,no,
+2026-11-24,Talabat,Dasma,Monasabat,26845,Monasabat,lamb,arabic,Naemi meat majboos,6.950,6.950,no,yes,
+2026-11-24,Talabat,Dasma,Monasabat,26845,Monasabat,lamb,arabic,MACHBOUS NAEEMI MEAT BARBEQUE,6.950,6.950,no,no,
+2026-11-24,Talabat,Dasma,Nathri,673607,Nathri,chicken,,Chicken Majboos Al Motaheda,2.500,2.500,yes,no,
+2026-11-24,Talabat,Dasma,Nathri,673607,Nathri,lamb,unspecified,Meat Majboos,4.500,4.500,yes,no,
+2026-11-24,Talabat,Dasma,Ostath Nagroor,10741,Ostath Nagroor,chicken,,Machboos Chicken,3.000,2.700,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Queezeen,604582,Queezeen,chicken,,Chicken Majbous Meal,5.500,5.500,yes,no,
+2026-11-24,Talabat,Dasma,Queezeen,604582,Queezeen,lamb,unspecified,Lamb Neck Majbous,6.000,6.000,yes,no,
+2026-11-24,Talabat,Dasma,Queezeen,604582,Queezeen,lamb,unspecified,Meat Majbous Meal,6.500,6.500,no,no,
+2026-11-24,Talabat,Dasma,Reyhoon,635656,Reyhoon,chicken,,Chicken Majboos,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Senyar,18781,Senyar,chicken,,Chicken Majboos,2.950,2.950,yes,no,
+2026-11-24,Talabat,Dasma,Senyar,18781,Senyar,chicken,,Chicken Majboos Synyar,3.150,3.150,no,no,
+2026-11-24,Talabat,Dasma,Senyar,18781,Senyar,lamb,unspecified,Meat Majboos,4.950,4.950,yes,no,
+2026-11-24,Talabat,Dasma,Sredan,9217,Sredan,chicken,,Kuwaiti Chicken Machboos,2.500,2.500,yes,no,
+2026-11-24,Talabat,Dasma,Sredan,9217,Sredan,lamb,unspecified,Meat Machboos,6.000,6.000,yes,no,
+2026-11-24,Talabat,Dasma,TAJRAN,742226,TAJRAN,chicken,,Chicken Majboos,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Tasa Express,801756,Tasa Express,chicken,,Machboos Chicken,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Tasa Express,801756,Tasa Express,chicken,,Half Chicken Machboos With Bones,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Tasa Express,801756,Tasa Express,lamb,unspecified,Machboos Meat,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Tasa Express,801756,Tasa Express,lamb,unspecified,Boneless Machboos Meat,,,no,no,price depends on size selection; not captured
+2026-11-24,Talabat,Dasma,Umm Alaish,668214,Umm Alaish,chicken,,Chicken Majboos,3.250,3.250,yes,no,
+2026-11-24,Talabat,Dasma,Umm Alaish,668214,Umm Alaish,lamb,unspecified,Meat Majboos,5.000,5.000,yes,no,
+2026-11-24,Talabat,Dasma,Villa Babak,654096,Villa Babak,chicken,,Machboos Chicken,3.250,2.275,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Villa Babak,654096,Villa Babak,lamb,unspecified,Machboos Meat,5.000,3.500,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Wahat Al Bustan,602723,Wahat Al Bustan,chicken,,United Chicken Machboos,2.950,2.655,yes,no,discounted on the day
+2026-11-24,Talabat,Dasma,Wahat Al Bustan,602723,Wahat Al Bustan,lamb,arabic,Fresh Meat Machboos,3.950,3.555,yes,yes,discounted on the day
+2026-11-24,Talabat,Dasma,Weld Al Asayel,30726,Al Kabsh,chicken,,Machboos Chicken,3.150,3.150,no,no,same menu as Al Kabsh; counted once
+2026-11-24,Talabat,Dasma,Weld Al Asayel,30726,Al Kabsh,chicken,,Chicken Majboos Brown Rice,3.200,3.200,no,no,same menu as Al Kabsh; counted once
+2026-11-24,Talabat,Dasma,Weld Al Asayel,30726,Al Kabsh,chicken,,Charcoal Grilled Chicken Majboos,3.500,3.500,no,no,same menu as Al Kabsh; counted once
+2026-11-24,Talabat,Dasma,Weld Al Asayel,30726,Al Kabsh,lamb,australian,Australian Meat Majboos Brown Rice,5.250,5.250,no,no,same menu as Al Kabsh; counted once
+2026-11-24,Talabat,Dasma,Weld Al Asayel,30726,Al Kabsh,lamb,australian,Machboos Australian meat,5.250,5.250,no,no,same menu as Al Kabsh; counted once
+2026-11-24,Talabat,Dasma,Weld Al Asayel,30726,Al Kabsh,lamb,arabic,Arabic Meat Majboos Brown Rice,6.250,6.250,no,no,same menu as Al Kabsh; counted once
+2026-11-24,Talabat,Dasma,Weld Al Asayel,30726,Al Kabsh,lamb,arabic,Arabic Meat Majboos,6.250,6.250,no,no,same menu as Al Kabsh; counted once
+2026-11-24,Talabat,Dasma,Yemeni table mandi,720915,Yemeni table mandi,chicken,,Machboos Chicken,2.750,2.750,yes,no,
+2026-11-24,Talabat,Dasma,Yemeni table mandi,720915,Yemeni table mandi,lamb,arabic,Arabic Meat Majboos,4.750,4.750,yes,yes,
+2026-11-24,Talabat,Dasma,Zwara,614183,Zwara,chicken,,Chicken Majbos,3.250,3.250,yes,no,
+2026-11-24,Talabat,Dasma,Zwarah,761379,Zwarah,chicken,,Machboos Chicken,4.250,4.250,yes,no,
+2026-11-24,Talabat,Dasma,Zwarah,761379,Zwarah,lamb,unspecified,Zwarah Machboos Meat,4.950,4.950,yes,no,
+2026-11-24,Talabat,Dasma,Zwarah,761379,Zwarah,lamb,unspecified,Machboos Meat,4.950,4.950,no,no,
