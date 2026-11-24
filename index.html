@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machboos Index</title>
+<meta name="description" content="Compare supermarket prices in Kuwait and track the Machboos Index.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  /* Layout: a supermarket shelf-tag hero for the Machboos Index, then a basket calculator and a store-by-store price board; one column on phones */
+  --bg:#F1F5F6;
+  --surface:#FFFFFF;
+  --ink:#0F2F3A;
+  --muted:#58707A;
+  --line:#D9E3E7;
+  --accent:#B97A06;        /* saffron, the colour of machboos rice */
+  --accent-soft:#FBF0D8;
+  --sea:#0E5C72;           /* Gulf blue */
+  --good:#1B7A4B; --good-soft:#E1F3E9;
+  --bad:#B3402D;  --bad-soft:#F8E3DF;
+  --c1:#0E5C72; --c2:#B97A06; --c3:#7B4FA6; --c4:#C2492F; --c5:#2E7D5B; --c6:#8A6D3B;
+  --font-display:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1A20; --surface:#122830; --ink:#E3EDF0; --muted:#97ABB2; --line:#23424C;
+    --accent:#F0B43C; --accent-soft:#3A2D12; --sea:#62B6CC;
+    --good:#5ACB90; --good-soft:#143A28; --bad:#F08A77; --bad-soft:#40201B;
+    --c1:#62B6CC; --c2:#F0B43C; --c3:#B793E0; --c4:#F08A77; --c5:#6FD3A0; --c6:#D9B77A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1A20; --surface:#122830; --ink:#E3EDF0; --muted:#97ABB2; --line:#23424C;
+  --accent:#F0B43C; --accent-soft:#3A2D12; --sea:#62B6CC;
+  --good:#5ACB90; --good-soft:#143A28; --bad:#F08A77; --bad-soft:#40201B;
+  --c1:#62B6CC; --c2:#F0B43C; --c3:#B793E0; --c4:#F08A77; --c5:#6FD3A0; --c6:#D9B77A;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.2;margin:0;text-wrap:balance}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* Header */
+.site-head{border-bottom:1px solid var(--line);background:var(--surface)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:34px;height:34px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:#fff;font-family:var(--font-display);font-size:15px;font-weight:700}
+.brand-name{font-family:var(--font-display);font-size:20px;font-weight:700}
+.brand-tag{font-size:13px;color:var(--muted)}
+.lang-btn{border:1px solid var(--line);background:var(--bg);padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:500}
+.lang-btn:hover{border-color:var(--accent)}
+
+.demo{background:var(--accent-soft);border-bottom:1px solid var(--line)}
+.demo .wrap{padding-top:9px;padding-bottom:9px;font-size:14px;display:flex;gap:10px;align-items:center}
+.demo b{font-weight:600}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.pill-demo{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .pill-demo{color:#1d1503}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pill-demo{color:#1d1503}}
+
+main{display:grid;gap:56px;padding:36px 0 64px}
+section{display:grid;gap:20px}
+.sec-head{display:grid;gap:6px;max-width:65ch}
+.sec-head h2{font-size:28px}
+.sec-head p{color:var(--muted)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px}
+
+/* Hero: shelf tag */
+.hero{display:grid;grid-template-columns:minmax(290px,380px) 1fr;gap:20px;align-items:stretch}
+.tag{position:relative;overflow:hidden;display:grid;align-content:start}
+.tag-top{background:var(--accent);color:#fff;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-display);font-weight:600;letter-spacing:.04em}
+:root[data-theme="dark"] .tag-top{color:#1d1503}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tag-top{color:#1d1503}}
+.tag-body{padding:18px 20px 20px;display:grid;gap:14px}
+.tag-ar{font-family:var(--font-display);font-size:30px;font-weight:700;line-height:1.1}
+.tag-en{color:var(--muted);font-size:15px;margin-top:2px}
+.price-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price-big{font-family:var(--font-display);font-size:76px;font-weight:700;line-height:.95;letter-spacing:-.01em}
+.price-cur{font-family:var(--font-display);font-size:22px;color:var(--muted);font-weight:600}
+.tag-sub{font-size:13px;color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip-up{background:var(--bad-soft);color:var(--bad)}
+.chip-down{background:var(--good-soft);color:var(--good)}
+.chip-flat{background:var(--bg);color:var(--muted)}
+.perf{border:0;border-top:2px dashed var(--line);margin:4px -20px}
+.tag-list{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.tag-list li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
+.tag-list li:last-child{border-bottom:0}
+.tag-list .lbl{display:grid}
+.tag-list .lbl small{color:var(--muted);font-size:12.5px}
+.tag-list .val{font-weight:600;white-space:nowrap}
+
+.chart-card{padding:18px 20px 16px;display:grid;gap:10px;grid-template-rows:auto 1fr}
+.chart-card h3{font-size:18px}
+.chart-box{position:relative;height:300px;min-height:240px}
+
+/* Basket */
+.basket{display:grid;grid-template-columns:minmax(260px,1fr) 1.3fr;gap:20px}
+.pick{padding:8px 0}
+.pick-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:9px 18px;border-bottom:1px solid var(--line)}
+.pick-row:last-child{border-bottom:0}
+.pick-row label{cursor:pointer;display:grid}
+.pick-row label small{color:var(--muted);font-size:12.5px}
+.pick-row input[type="checkbox"]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.qty{width:62px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);text-align:center}
+.qty:disabled{opacity:.45}
+.totals{padding:20px;display:grid;gap:16px;align-content:start}
+.total-row{display:grid;gap:6px}
+.total-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.total-name{font-weight:600;display:flex;gap:8px;align-items:center}
+.total-val{font-weight:700;font-size:18px}
+.bar{height:12px;background:var(--bg);border-radius:999px;overflow:hidden}
+.bar span{display:block;height:100%;border-radius:999px;background:var(--muted);transition:width .35s ease}
+.total-row.best .bar span{background:var(--good)}
+.pill-good{background:var(--good-soft);color:var(--good)}
+.save-line{padding:12px 14px;border-radius:10px;background:var(--good-soft);color:var(--good);font-weight:500}
+.empty{color:var(--muted)}
+
+/* Board */
+.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.search{flex:1 1 240px;max-width:340px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.cats{display:flex;gap:6px;flex-wrap:wrap}
+.cat{border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:14px}
+.cat[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{padding:12px 14px;text-align:start;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600;white-space:nowrap}
+td.p,th.p{text-align:end}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--bg)}
+tbody tr[aria-selected="true"]{background:var(--accent-soft)}
+tbody tr[aria-selected="true"] td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+[dir="rtl"] tbody tr[aria-selected="true"] td:first-child{box-shadow:inset -3px 0 0 var(--accent)}
+.it-name{font-weight:600}
+.it-size{font-size:12.5px;color:var(--muted)}
+td.low span{background:var(--good-soft);color:var(--good);font-weight:700;padding:3px 8px;border-radius:7px}
+.no-res{padding:28px;text-align:center;color:var(--muted)}
+
+.history{padding:18px 20px 16px;display:grid;gap:12px}
+.history-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.history-head h3{font-size:20px}
+.ranges{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.ranges button{border:0;background:var(--surface);padding:6px 12px;cursor:pointer;font-size:14px}
+.ranges button+button{border-inline-start:1px solid var(--line)}
+.ranges button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+/* Submit */
+.submit{display:grid;grid-template-columns:1fr 1.4fr;gap:20px;align-items:start}
+form{padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:grid;gap:5px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13.5px;font-weight:600}
+.field input,.field select{padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--bg);width:100%}
+.btn{grid-column:1/-1;justify-self:start;background:var(--accent);color:#fff;border:0;padding:11px 20px;border-radius:10px;font-weight:600;cursor:pointer}
+:root[data-theme="dark"] .btn{color:#1d1503}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn{color:#1d1503}}
+.btn:hover{filter:brightness(1.06)}
+.msg{grid-column:1/-1;font-size:14.5px;min-height:1.4em}
+.msg.ok{color:var(--good)} .msg.err{color:var(--bad)}
+
+.method{padding:20px;display:grid;gap:10px}
+.method ol{margin:0;padding-inline-start:20px;display:grid;gap:8px;max-width:65ch}
+
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:13.5px}
+
+@media (max-width:860px){
+  .hero,.basket,.submit{grid-template-columns:1fr}
+  .price-big{font-size:64px}
+}
+@media (max-width:480px){
+  form{grid-template-columns:1fr}
+  .sec-head h2{font-size:24px}
+  .pick-row{padding:9px 14px}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important}
+}
+
+.pill-live{background:var(--good);color:#fff}
+:root[data-theme="dark"] .pill-live{color:#0b1a20}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pill-live{color:#0b1a20}}
+.total-row.incomplete .total-name,.total-row.incomplete .total-val{color:var(--muted)}
+.miss-note{color:var(--muted);font-size:13px}
+</style>
+
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">د.ك</div>
+      <div>
+        <div class="brand-name" id="brandName">Machboos Index</div>
+        <div class="brand-tag" data-i18n="tagline">Compare supermarket prices and see how they change.</div>
+      </div>
+    </div>
+    <button class="lang-btn" id="langBtn" type="button">العربية</button>
+  </div>
+</header>
+
+<div class="demo" role="note" id="banner">
+  <div class="wrap"><span class="pill pill-demo" id="bannerPill"></span><span id="bannerText" data-i18n="loading">Loading prices…</span></div>
+</div>
+
+<main class="wrap">
+
+  <!-- Machboos Index -->
+  <section aria-labelledby="idxTitle">
+    <div class="hero">
+      <article class="card tag">
+        <div class="tag-top"><span id="idxTitle" data-i18n="idxEyebrow">The Machboos Index</span><span class="num" id="idxMonth"></span></div>
+        <div class="tag-body">
+          <div>
+            <div class="tag-ar">مجبوس دجاج</div>
+            <div class="tag-en" data-i18n="idxItem">Chicken machboos, one plate</div>
+          </div>
+          <div>
+            <div class="price-row"><span class="price-big num" id="idxPrice">–</span><span class="price-cur" data-i18n="cur">KD</span></div>
+            <p class="tag-sub" id="idxSub"></p>
+          </div>
+          <div class="chips" id="idxChips"></div>
+          <hr class="perf">
+          <ul class="tag-list" id="tierList"></ul>
+        </div>
+      </article>
+      <article class="card chart-card">
+        <h3 data-i18n="chartIdx">Machboos Index by month, restaurant vs. home-cooked</h3>
+        <div class="chart-box"><canvas id="idxChart" aria-label="Machboos Index chart" role="img"></canvas></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Basket -->
+  <section aria-labelledby="basketTitle">
+    <div class="sec-head">
+      <h2 id="basketTitle" data-i18n="basketTitle">Build your weekly basket</h2>
+      <p data-i18n="basketLead">Tick what you usually buy and set how many. We add it up at each store using the latest prices.</p>
+    </div>
+    <div class="basket">
+      <div class="card pick" id="pickList"></div>
+      <div class="card totals" id="totals" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Board -->
+  <section aria-labelledby="boardTitle">
+    <div class="sec-head">
+      <h2 id="boardTitle" data-i18n="boardTitle">Price board</h2>
+      <p data-i18n="boardLead">The lowest price in each row is highlighted. Select an item to see how its price changed.</p>
+    </div>
+    <div class="tools">
+      <input class="search" id="search" type="search" data-i18n-ph="search" placeholder="Search items">
+      <div class="cats" id="cats" role="group" aria-label="Categories"></div>
+    </div>
+    <div class="card table-wrap">
+      <table>
+        <thead><tr id="theadRow"></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="no-res" id="noRes" hidden data-i18n="noResults">No items match. Try another word or category.</div>
+    </div>
+    <article class="card history">
+      <div class="history-head">
+        <h3 id="histTitle"></h3>
+        <div class="ranges" id="ranges" role="group" aria-label="Time range"></div>
+      </div>
+      <div class="chart-box"><canvas id="histChart" role="img" aria-label="Price history chart"></canvas></div>
+    </article>
+  </section>
+
+  <!-- Submit + method -->
+  <section aria-labelledby="submitTitle">
+    <div class="sec-head">
+      <h2 id="submitTitle" data-i18n="submitTitle">Saw a price? Add it</h2>
+      <p data-i18n="submitLead">Shoppers keep the board current. Add a receipt or shelf photo so the price can be checked.</p>
+    </div>
+    <div class="submit">
+      <div class="card method">
+        <h3 data-i18n="methodTitle">How the numbers work</h3>
+        <ol>
+          <li data-i18n="m1">Products are matched by exact brand and size at every store, so each comparison is like for like.</li>
+          <li data-i18n="m2">The Machboos Index is the median price of one chicken machboos plate at a fixed list of restaurants, checked every month.</li>
+          <li data-i18n="m3">The home-cooked plate uses co-op prices for 250 g rice, 300 g chicken, onion, tomato, loomi, oil and spices.</li>
+          <li data-i18n="m4">Price changes compare the latest month with the same month last year.</li>
+        </ol>
+      </div>
+      <form class="card" id="priceForm" novalidate>
+        <div class="field"><label for="fItem" data-i18n="fItem">Item</label><select id="fItem"></select></div>
+        <div class="field"><label for="fStore" data-i18n="fStore">Store</label><select id="fStore"></select></div>
+        <div class="field"><label for="fPrice" data-i18n="fPrice">Price (KD)</label><input id="fPrice" type="number" inputmode="decimal" step="0.005" min="0.005" placeholder="1.250"></div>
+        <div class="field"><label for="fDate" data-i18n="fDate">Date seen</label><input id="fDate" type="date"></div>
+        <div class="field full"><label for="fPhoto" data-i18n="fPhoto">Receipt or shelf photo (optional)</label><input id="fPhoto" type="file" accept="image/*"></div>
+        <button class="btn" type="submit" data-i18n="fSubmit">Submit price</button>
+        <div class="msg" id="formMsg" role="status"></div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap" id="footerText"></div>
+</footer>
+
+<script>
+/* =====================================================================
+   SETTINGS: the only part you need to edit
+   ===================================================================== */
+const SETTINGS = {
+  // Your site's name, in English and Arabic.
+  SITE_NAME_EN: "Machboos Index",
+  SITE_NAME_AR: "مؤشر المجبوس",
+
+  // Your Google Sheet ID: the long code between /d/ and /edit in the sheet's address.
+  // Example address: https://docs.google.com/spreadsheets/d/1AbC...xYz/edit
+  // Leave it empty ("") to show made-up sample data instead.
+  SHEET_ID: "",
+
+  // The store whose prices are used for the "cook it at home" machboos plate.
+  HOME_STORE: "coop",
+  // One home-cooked plate: item id → how much of that item's pack one plate uses.
+  // rice 1/20 of a 5 kg bag = 250 g; chick 0.3 of 1 kg = 300 g; and so on.
+  HOME_RECIPE: { rice: 1/20, chick: 0.3, onion: 0.1, tomato: 0.1, loomi: 1/25, oil: 1/60 },
+  // Spices and anything else per plate, in KD.
+  HOME_EXTRA: 0.040
+};
+/* ===================================================================== */
+
+(function(){
+"use strict";
+
+/* ---------- Text ---------- */
+const T = {
+  en:{
+    tagline:"Compare supermarket prices and see how they change.",
+    demoPill:"Demo", demo:"Sample version. Every price on this page is made-up data for illustration, not real store or restaurant prices.",
+    livePill:"Updated", live:"Prices last updated {m}. Spotted a different price? Send it to us below.",
+    errPill:"Problem", loadErr:"Couldn't load the price sheet, so made-up sample prices are shown. Check that the Google Sheet is shared as \"Anyone with the link can view\" and has tabs named items, stores, prices and machboos.",
+    loading:"Loading prices…",
+    langBtn:"العربية", cur:"KD",
+    idxEyebrow:"The Machboos Index", idxItem:"Chicken machboos, one plate", idxSub:"Median price across the restaurants we check",
+    idxSubN:"Median price across {n} restaurants", noMach:"No machboos prices yet.",
+    yoy:"{p} vs. a year ago", since:"{p} since {m}",
+    tBudget:"Budget restaurants", tMid:"Mid-range restaurants", tPremium:"Premium restaurants",
+    home:"Cook it at home", homeNote:"per plate, at co-op prices",
+    falafel:"Falafel sandwich", falafelNote:"fixed at 100 fils since 1984",
+    chartIdx:"Machboos Index by month, restaurant vs. home-cooked",
+    sRest:"Restaurant plate (median)", sHome:"Home-cooked plate",
+    basketTitle:"Build your weekly basket",
+    basketLead:"Tick what you usually buy and set how many. We add it up at each store using the latest prices.",
+    qty:"Quantity", cheapest:"Cheapest",
+    save:"Shopping at {best} saves you {x} a week compared with {worst}.",
+    emptyBasket:"Pick at least one item to compare totals.",
+    itemsCount:"{n} items in your basket",
+    missing:"No price yet for {n} of your items, so this total isn't compared.",
+    boardTitle:"Price board", boardLead:"The lowest price in each row is highlighted. Select an item to see how its price changed.",
+    search:"Search items", noResults:"No items match. Try another word or category.",
+    noPrices:"No prices yet. Add rows to the prices tab of your Google Sheet.",
+    cAll:"All", staples:"Staples", dairy:"Dairy & eggs", meat:"Meat & poultry", produce:"Produce & spices", drinks:"Drinks",
+    colItem:"Item", colChange:"12-month change",
+    hist:"{item}: price history", r1:"1 year", r3:"3 years", rAll:"All",
+    submitTitle:"Saw a price? Add it", submitLead:"Shoppers keep the board current. Add a receipt or shelf photo so the price can be checked.",
+    methodTitle:"How the numbers work",
+    m1:"Products are matched by exact brand and size at every store, so each comparison is like for like.",
+    m2:"The Machboos Index is the median price of one chicken machboos plate at a fixed list of restaurants, checked every month.",
+    m3:"The home-cooked plate uses co-op prices for 250 g rice, 300 g chicken, onion, tomato, loomi, oil and spices.",
+    m4:"Price changes compare the latest month with the same month last year.",
+    fItem:"Item", fStore:"Store", fPrice:"Price (KD)", fDate:"Date seen", fPhoto:"Receipt or shelf photo (optional)", fSubmit:"Submit price",
+    ok:"Thanks! Saving shopper prices isn't switched on yet, so this price wasn't saved.",
+    errPrice:"Enter a price between 0.005 and 100 KD.",
+    footer:"{name}. Prices are shown in Kuwaiti dinars (1 KD = 1,000 fils).",
+    months:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+  },
+  ar:{
+    tagline:"قارن أسعار الجمعيات والأسواق وتابع تغيّرها.",
+    demoPill:"تجريبي", demo:"نسخة تجريبية. جميع الأسعار في هذه الصفحة بيانات افتراضية للعرض فقط، وليست أسعاراً حقيقية لأي متجر أو مطعم.",
+    livePill:"محدّث", live:"آخر تحديث للأسعار: {m}. شفت سعر مختلف؟ أرسله لنا بالأسفل.",
+    errPill:"خلل", loadErr:"تعذّر تحميل جدول الأسعار، لذلك تظهر أسعار افتراضية. تأكد أن جدول Google مشارك لـ\"أي شخص لديه الرابط\" وأن أسماء الأوراق items وstores وprices وmachboos.",
+    loading:"جارٍ تحميل الأسعار…",
+    langBtn:"English", cur:"د.ك",
+    idxEyebrow:"مؤشر المجبوس", idxItem:"صحن واحد", idxSub:"السعر الوسيط في المطاعم التي نتابعها",
+    idxSubN:"السعر الوسيط في {n} مطعماً", noMach:"لا توجد أسعار مجبوس بعد.",
+    yoy:"{p} مقارنة بالعام الماضي", since:"{p} منذ {m}",
+    tBudget:"مطاعم اقتصادية", tMid:"مطاعم متوسطة", tPremium:"مطاعم راقية",
+    home:"طبخه في البيت", homeNote:"للصحن الواحد بأسعار الجمعيات",
+    falafel:"سندويشة فلافل", falafelNote:"سعرها ثابت 100 فلس منذ 1984",
+    chartIdx:"مؤشر المجبوس شهرياً: المطعم مقابل البيت",
+    sRest:"صحن المطعم (الوسيط)", sHome:"صحن مطبوخ في البيت",
+    basketTitle:"جهّز سلّتك الأسبوعية",
+    basketLead:"اختر ما تشتريه عادةً وحدّد الكمية، ونحسب المجموع في كل متجر بأحدث الأسعار.",
+    qty:"الكمية", cheapest:"الأرخص",
+    save:"الشراء من {best} يوفّر عليك {x} أسبوعياً مقارنة بـ{worst}.",
+    emptyBasket:"اختر صنفاً واحداً على الأقل لمقارنة المجموع.",
+    itemsCount:"عدد الأصناف في سلّتك: {n}",
+    missing:"لا يوجد سعر بعد لـ{n} من أصنافك، لذلك لم يُقارن هذا المجموع.",
+    boardTitle:"لوحة الأسعار", boardLead:"أقل سعر في كل صف مظلّل. اختر صنفاً لترى كيف تغيّر سعره.",
+    search:"ابحث عن صنف", noResults:"لا توجد نتائج. جرّب كلمة أو فئة أخرى.",
+    noPrices:"لا توجد أسعار بعد. أضف صفوفاً في ورقة prices في جدول Google.",
+    cAll:"الكل", staples:"مواد أساسية", dairy:"ألبان وبيض", meat:"لحوم ودواجن", produce:"خضار وبهارات", drinks:"مشروبات",
+    colItem:"الصنف", colChange:"التغيّر خلال 12 شهراً",
+    hist:"تاريخ سعر {item}", r1:"سنة", r3:"3 سنوات", rAll:"الكل",
+    submitTitle:"شفت سعر؟ أضفه", submitLead:"المتسوّقون يحدّثون اللوحة. أرفق صورة الفاتورة أو الرف للتحقق من السعر.",
+    methodTitle:"كيف نحسب الأرقام",
+    m1:"نطابق كل منتج بالعلامة التجارية والحجم نفسه في كل متجر، لتكون المقارنة عادلة.",
+    m2:"مؤشر المجبوس هو السعر الوسيط لصحن مجبوس دجاج في قائمة ثابتة من المطاعم، ويُحدَّث شهرياً.",
+    m3:"صحن البيت محسوب بأسعار الجمعيات لـ250 غ أرز و300 غ دجاج وبصل وطماطم ولومي وزيت وبهارات.",
+    m4:"نسبة التغيّر تقارن آخر شهر بالشهر نفسه من العام الماضي.",
+    fItem:"الصنف", fStore:"المتجر", fPrice:"السعر (د.ك)", fDate:"تاريخ المشاهدة", fPhoto:"صورة الفاتورة أو الرف (اختياري)", fSubmit:"أرسل السعر",
+    ok:"شكراً! حفظ أسعار المتسوّقين غير مفعّل بعد، لذلك لم يُحفظ هذا السعر.",
+    errPrice:"أدخل سعراً بين 0.005 و100 د.ك.",
+    footer:"{name}. الأسعار بالدينار الكويتي (1 د.ك = 1000 فلس).",
+    months:["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"]
+  }
+};
+
+let lang = "en";
+try { const s = localStorage.getItem("kpw-lang"); if (s === "ar" || s === "en") lang = s; } catch(e){}
+const t = (k, vars) => { let s = (T[lang][k] ?? T.en[k] ?? k); if (vars) for (const v in vars) s = s.replace("{"+v+"}", vars[v]); return s; };
+
+/* ---------- Data (filled by loadSheet or makeSample) ---------- */
+let D = null;      // { mode, months[], stores[], items[], mach{med,bud,pre,n}, home[] }
+let mode = "loading";
+let loadError = "";
+
+/* ---------- Helpers ---------- */
+const $ = id => document.getElementById(id);
+const fmt = v => v.toFixed(3);
+const money = v => lang === "ar" ? fmt(v) + " د.ك" : "KD " + fmt(v);
+const pct = (a, b) => (a / b - 1) * 100;
+const pctStr = p => (p > 0 ? "+" : p < 0 ? "−" : "") + Math.abs(p).toFixed(1) + "%";
+const chipClass = p => p > 0.05 ? "chip-up" : p < -0.05 ? "chip-down" : "chip-flat";
+const name = o => o[lang];
+const L = pair => pair[lang === "ar" ? 1 : 0];
+const sub = it => [L(it.brand), L(it.size)].filter(Boolean).join(" · ");
+const tok = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+const monthLabel = i => { const [y, m] = D.months[i].split("-"); return T[lang].months[+m - 1] + " " + y; };
+const r5 = v => Math.round(v * 200) / 200;
+// last known value at or before index i
+function lastAt(arr, i){ for (let k = Math.min(i, arr.length - 1); k >= 0; k--) if (arr[k] != null) return arr[k]; return null; }
+function lastIdx(arr){ for (let k = arr.length - 1; k >= 0; k--) if (arr[k] != null) return k; return -1; }
+
+/* ---------- Google Sheet loading ---------- */
+function parseCSV(text){
+  const rows = []; let row = [], f = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i+1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ",") { row.push(f); f = ""; }
+    else if (c === "\n") { row.push(f); rows.push(row); row = []; f = ""; }
+    else if (c !== "\r") f += c;
+  }
+  if (f !== "" || row.length) { row.push(f); rows.push(row); }
+  const head = (rows.shift() || []).map(h => h.trim().toLowerCase());
+  const data = rows.filter(r => r.some(v => v.trim() !== ""))
+                   .map(r => Object.fromEntries(head.map((h, i) => [h, (r[i] ?? "").trim()])));
+  return { head, rows: data };
+}
+function toMonth(s){
+  s = String(s || "").trim(); let m;
+  if ((m = s.match(/^(\d{4})-(\d{1,2})/))) return m[1] + "-" + m[2].padStart(2, "0");
+  if ((m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/))) return m[3] + "-" + m[1].padStart(2, "0");
+  const d = new Date(s);
+  return isNaN(d) ? null : d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+}
+const num = s => { const v = parseFloat(String(s || "").replace(/[^\d.\-]/g, "")); return isNaN(v) ? null : v; };
+function monthRange(a, b){
+  const out = []; let [y, m] = a.split("-").map(Number); const [yb, mb] = b.split("-").map(Number);
+  while (y < yb || (y === yb && m <= mb)) { out.push(y + "-" + String(m).padStart(2, "0")); m++; if (m > 12) { m = 1; y++; } }
+  return out;
+}
+
+async function loadSheet(){
+  const getTab = async (tab, cols) => {
+    const url = "https://docs.google.com/spreadsheets/d/" + encodeURIComponent(SETTINGS.SHEET_ID) +
+                "/gviz/tq?tqx=out:csv&sheet=" + encodeURIComponent(tab);
+    const r = await fetch(url, { cache:"no-store" });
+    if (!r.ok) throw new Error("Could not read the " + tab + " tab");
+    const csv = parseCSV(await r.text());
+    // Google returns the first tab if a tab name is wrong, so check the columns
+    const miss = cols.filter(c => !csv.head.includes(c));
+    if (miss.length) throw new Error("The " + tab + " tab is missing columns: " + miss.join(", "));
+    return csv.rows;
+  };
+  const [itemsT, storesT, pricesT, machT] = await Promise.all([
+    getTab("items", ["id", "name_en"]),
+    getTab("stores", ["id", "name_en"]),
+    getTab("prices", ["month", "item_id", "store_id", "price"]),
+    getTab("machboos", ["month", "median"])
+  ]);
+
+  const stores = storesT.filter(r => r.id).map(r => ({ id:r.id, en:r.name_en || r.id, ar:r.name_ar || r.name_en || r.id }));
+  const items = itemsT.filter(r => r.id).map(r => ({
+    id:r.id, cat:(r.category || "").toLowerCase(),
+    en:r.name_en || r.id, ar:r.name_ar || r.name_en || r.id,
+    brand:[r.brand_en || "", r.brand_ar || r.brand_en || ""],
+    size:[r.size_en || "", r.size_ar || r.size_en || ""]
+  }));
+  // rows whose note starts with "example" are ignored
+  const real = r => !/^\s*example/i.test(r.note || "");
+  const itemIds = new Set(items.map(i => i.id)), storeIds = new Set(stores.map(s => s.id));
+  const prices = pricesT.filter(real).map(r => ({ m:toMonth(r.month), item:r.item_id, store:r.store_id, p:num(r.price) }))
+                        .filter(x => x.m && x.p != null && x.p > 0 && itemIds.has(x.item) && storeIds.has(x.store));
+  const machRows = machT.filter(real).map(r => ({ m:toMonth(r.month), med:num(r.median), bud:num(r.budget), pre:num(r.premium), n:num(r.restaurants_checked) }))
+                        .filter(x => x.m && x.med != null);
+
+  const all = prices.map(x => x.m).concat(machRows.map(x => x.m)).sort();
+  if (!all.length) { const now = new Date(); all.push(now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0")); }
+  const months = monthRange(all[0], all[all.length - 1]);
+  const at = Object.fromEntries(months.map((m, i) => [m, i]));
+  const N = months.length, blank = () => new Array(N).fill(null);
+
+  // average several entries for the same item, store and month
+  const acc = {};
+  prices.forEach(x => {
+    const k = x.item + "|" + x.store + "|" + x.m;
+    (acc[k] = acc[k] || []).push(x.p);
+  });
+  items.forEach(it => {
+    it.s = {};
+    stores.forEach(s => {
+      const arr = blank();
+      months.forEach((m, i) => { const v = acc[it.id + "|" + s.id + "|" + m]; if (v) arr[i] = r5(v.reduce((a, b) => a + b, 0) / v.length); });
+      it.s[s.id] = arr;
+    });
+  });
+  const mach = { med:blank(), bud:blank(), pre:blank(), n:blank() };
+  machRows.forEach(x => { const i = at[x.m]; mach.med[i] = x.med; mach.bud[i] = x.bud; mach.pre[i] = x.pre; mach.n[i] = x.n; });
+  return finish({ mode:"live", months, stores, items, mach });
+}
+
+/* ---------- Made-up sample data (used when SHEET_ID is empty) ---------- */
+function makeSample(){
+  function rngFrom(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; let x = Math.imul(seed ^ seed >>> 15, 1 | seed); x = x + Math.imul(x ^ x >>> 7, 61 | x) ^ x; return ((x ^ x >>> 14) >>> 0) / 4294967296; }; }
+  const rng = rngFrom(20261122);
+  const months = monthRange("2019-01", "2026-11"), N = months.length, NOW = N - 1, SPIKE = 38;
+  const stores = [
+    { id:"coop", en:"Co-op (avg.)", ar:"الجمعيات (متوسط)", m:0.97 },
+    { id:"lulu", en:"Lulu", ar:"لولو", m:0.99 },
+    { id:"tsc",  en:"Sultan Center", ar:"مركز سلطان", m:1.10 },
+    { id:"crf",  en:"Carrefour", ar:"كارفور", m:1.02 }
+  ];
+  const sz = (en, ar) => [en, ar];
+  const items = [
+    { id:"rice",   cat:"staples", en:"Basmati rice",         ar:"أرز بسمتي",      size:sz("5 kg bag","كيس 5 كغ"),     base:2.950, spike:true },
+    { id:"sugar",  cat:"staples", en:"White sugar",          ar:"سكر أبيض",       size:sz("2 kg","2 كغ"),             base:0.650, spike:true },
+    { id:"oil",    cat:"staples", en:"Sunflower oil",        ar:"زيت دوار الشمس", size:sz("1.8 L","1.8 لتر"),         base:1.450, spike:true },
+    { id:"bread",  cat:"staples", en:"Arabic bread",         ar:"خبز عربي",       size:sz("pack of 5","كيس 5 حبات"),  base:0.100, flat:true },
+    { id:"eggs",   cat:"dairy",   en:"Eggs",                 ar:"بيض",            size:sz("tray of 30","طبق 30 حبة"), base:1.650 },
+    { id:"milk",   cat:"dairy",   en:"Fresh milk",           ar:"حليب طازج",      size:sz("1 L","1 لتر"),             base:0.450 },
+    { id:"laban",  cat:"dairy",   en:"Laban",                ar:"لبن",            size:sz("1 L","1 لتر"),             base:0.400 },
+    { id:"chick",  cat:"meat",    en:"Fresh chicken",        ar:"دجاج طازج",      size:sz("1 kg","1 كغ"),             base:1.350, spike:true },
+    { id:"frozen", cat:"meat",    en:"Frozen whole chicken", ar:"دجاج مجمد",      size:sz("1.2 kg","1.2 كغ"),         base:1.150, spike:true },
+    { id:"lamb",   cat:"meat",    en:"Lamb, bone-in",        ar:"لحم غنم",        size:sz("1 kg","1 كغ"),             base:3.950 },
+    { id:"tomato", cat:"produce", en:"Tomatoes",             ar:"طماطم",          size:sz("1 kg","1 كغ"),             base:0.450 },
+    { id:"onion",  cat:"produce", en:"Onions",               ar:"بصل",            size:sz("1 kg","1 كغ"),             base:0.300 },
+    { id:"loomi",  cat:"produce", en:"Dried lime (loomi)",   ar:"لومي",           size:sz("250 g","250 غ"),           base:0.850 },
+    { id:"water",  cat:"drinks",  en:"Bottled water",        ar:"مياه معبأة",     size:sz("6 × 1.5 L","6 × 1.5 لتر"), base:0.650 },
+    { id:"tea",    cat:"drinks",  en:"Black tea, loose",     ar:"شاي أسود",       size:sz("450 g","450 غ"),           base:1.950 }
+  ];
+  items.forEach(it => {
+    it.brand = ["", ""];
+    const g = it.flat ? 0 : 0.02 + rng() * 0.045, jump = it.spike ? 0.08 : 0.025;
+    const trend = months.map((_, i) => { let v = it.base / Math.pow(1 + g, (NOW - i) / 12); if (i < SPIKE) v *= (1 - jump); return v; });
+    it.s = {};
+    stores.forEach(s => {
+      const j = 0.96 + rng() * 0.08;
+      it.s[s.id] = trend.map(v => {
+        if (it.flat) return it.base;
+        let p = v * s.m * j * (1 + (rng() - 0.5) * 0.03);
+        if (rng() < 0.05) p *= 0.88;
+        return Math.max(0.005, r5(p));
+      });
+    });
+  });
+  const mach = { med:[], bud:[], pre:[], n:[] };
+  months.forEach((_, i) => {
+    let v = 1.65 * Math.pow(2.25 / 1.65, i / NOW); if (i < SPIKE) v *= 0.97;
+    const med = Math.round(v * 40) / 40;
+    mach.med.push(med); mach.bud.push(Math.round(med * 0.7 * 20) / 20); mach.pre.push(Math.round(med * 1.9 * 4) / 4); mach.n.push(40);
+  });
+  return finish({ mode:"sample", months, stores, items, mach });
+}
+
+/* ---------- Derived numbers ---------- */
+function finish(d){
+  const byId = Object.fromEntries(d.items.map(i => [i.id, i]));
+  d.byId = byId;
+  const recipe = Object.entries(SETTINGS.HOME_RECIPE);
+  const homeOk = recipe.every(([id]) => byId[id] && byId[id].s[SETTINGS.HOME_STORE]);
+  d.home = d.months.map((_, i) => {
+    if (!homeOk) return null;
+    let sum = SETTINGS.HOME_EXTRA;
+    for (const [id, share] of recipe) { const p = lastAt(byId[id].s[SETTINGS.HOME_STORE], i); if (p == null) return null; sum += p * share; }
+    return +sum.toFixed(3);
+  });
+  return d;
+}
+
+/* ---------- State ---------- */
+let basket = {};
+let cat = "cAll", query = "", selected = null, range = 36;
+
+/* ---------- Static text ---------- */
+function applyText(){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  const site = lang === "ar" ? SETTINGS.SITE_NAME_AR : SETTINGS.SITE_NAME_EN;
+  document.title = site;
+  $("brandName").textContent = site;
+  $("footerText").textContent = t("footer", { name: site });
+  document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = t(el.dataset.i18n));
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => el.placeholder = t(el.dataset.i18nPh));
+  $("langBtn").textContent = t("langBtn");
+  const pill = $("bannerPill"), txt = $("bannerText");
+  pill.className = "pill " + (mode === "live" ? "pill-live" : "pill-demo");
+  if (mode === "live") { pill.textContent = t("livePill"); txt.textContent = t("live", { m: latestMonthLabel() }); }
+  else if (mode === "error") { pill.textContent = t("errPill"); txt.textContent = t("loadErr") + (loadError ? " [" + loadError + "]" : ""); }
+  else if (mode === "sample") { pill.textContent = t("demoPill"); txt.textContent = t("demo"); }
+  else { pill.textContent = "…"; txt.textContent = t("loading"); }
+}
+function latestMonthLabel(){
+  let k = -1;
+  D.items.forEach(it => D.stores.forEach(s => { k = Math.max(k, lastIdx(it.s[s.id])); }));
+  k = Math.max(k, lastIdx(D.mach.med));
+  return k >= 0 ? monthLabel(k) : "–";
+}
+
+/* ---------- Machboos Index ---------- */
+function renderIndex(){
+  const k = lastIdx(D.mach.med);
+  if (k < 0) {
+    $("idxMonth").textContent = ""; $("idxPrice").textContent = "–";
+    $("idxSub").textContent = t("noMach"); $("idxChips").innerHTML = "";
+  } else {
+    const cur = D.mach.med[k];
+    $("idxMonth").textContent = monthLabel(k);
+    $("idxPrice").textContent = fmt(cur);
+    $("idxSub").textContent = D.mach.n[k] ? t("idxSubN", { n: D.mach.n[k] }) : t("idxSub");
+    const chips = [];
+    if (k >= 12 && D.mach.med[k - 12] != null) { const p = pct(cur, D.mach.med[k - 12]); chips.push(`<span class="pill ${chipClass(p)} num">${t("yoy", { p: pctStr(p) })}</span>`); }
+    const f = D.mach.med.findIndex(v => v != null);
+    if (f >= 0 && f < k - 12) { const p = pct(cur, D.mach.med[f]); chips.push(`<span class="pill ${chipClass(p)} num">${t("since", { p: pctStr(p), m: monthLabel(f) })}</span>`); }
+    $("idxChips").innerHTML = chips.join("");
+  }
+  const rows = [];
+  if (k >= 0) {
+    if (D.mach.bud[k] != null) rows.push([t("tBudget"), "", D.mach.bud[k]]);
+    rows.push([t("tMid"), "", D.mach.med[k]]);
+    if (D.mach.pre[k] != null) rows.push([t("tPremium"), "", D.mach.pre[k]]);
+  }
+  const h = lastAt(D.home, D.home.length - 1);
+  if (h != null) rows.push([t("home"), t("homeNote"), h]);
+  rows.push([t("falafel"), t("falafelNote"), 0.100]);
+  $("tierList").innerHTML = rows.map(([l, s, v]) =>
+    `<li><span class="lbl">${esc(l)}${s ? `<small>${esc(s)}</small>` : ""}</span><span class="val num">${money(v)}</span></li>`).join("");
+}
+
+/* ---------- Charts ---------- */
+let idxChart, histChart;
+function baseOptions(){
+  const muted = tok("--muted"), line = tok("--line"), rtl = lang === "ar";
+  return {
+    responsive:true, maintainAspectRatio:false, spanGaps:true,
+    animation: reduceMotion ? false : { duration:350 },
+    interaction:{ mode:"index", intersect:false },
+    plugins:{
+      legend:{ rtl, position:"bottom", labels:{ color:muted, boxWidth:14, boxHeight:3, padding:16 } },
+      tooltip:{ rtl, callbacks:{ label: c => " " + c.dataset.label + ": " + money(c.parsed.y) } }
+    },
+    scales:{
+      x:{ ticks:{ color:muted, maxTicksLimit:7, maxRotation:0, autoSkip:true }, grid:{ display:false }, border:{ color:line } },
+      y:{ ticks:{ color:muted, callback: v => (+v).toFixed(2) }, grid:{ color:line }, border:{ display:false } }
+    }
+  };
+}
+const endDot = data => { const k = lastIdx(data); return c => c.dataIndex === k ? 4 : (data.length < 24 ? 2 : 0); };
+
+function renderIdxChart(){
+  if (!window.Chart || !D) return;
+  idxChart && idxChart.destroy();
+  const labels = D.months.map((_, i) => monthLabel(i));
+  const sets = [{ label:t("sRest"), data:D.mach.med, borderColor:tok("--accent"), backgroundColor:tok("--accent"), borderWidth:2.5, stepped:true, pointRadius:endDot(D.mach.med), pointHoverRadius:4 }];
+  if (D.home.some(v => v != null)) sets.push({ label:t("sHome"), data:D.home, borderColor:tok("--sea"), backgroundColor:tok("--sea"), borderWidth:2, borderDash:[5,4], tension:.25, pointRadius:endDot(D.home), pointHoverRadius:4 });
+  const o = baseOptions(); o.scales.y.min = 0;
+  idxChart = new Chart($("idxChart"), { type:"line", data:{ labels, datasets:sets }, options:o });
+}
+
+function renderHistChart(){
+  const it = D.byId[selected];
+  if (!it) { $("histTitle").textContent = ""; histChart && histChart.destroy(); return; }
+  $("histTitle").textContent = t("hist", { item: name(it) + (sub(it) ? " (" + sub(it) + ")" : "") });
+  if (!window.Chart) return;
+  histChart && histChart.destroy();
+  const N = D.months.length, from = range ? Math.max(0, N - range - 1) : 0;
+  const labels = []; for (let i = from; i < N; i++) labels.push(monthLabel(i));
+  const colors = ["--c1","--c2","--c3","--c4","--c5","--c6"].map(tok);
+  histChart = new Chart($("histChart"), {
+    type:"line",
+    data:{ labels, datasets: D.stores.map((s, k) => {
+      const data = it.s[s.id].slice(from);
+      const c = colors[k % colors.length];
+      return { label:name(s), data, borderColor:c, backgroundColor:c, borderWidth:2, tension:.2, pointRadius:endDot(data), pointHoverRadius:4 };
+    })},
+    options: baseOptions()
+  });
+}
+
+/* ---------- Basket ---------- */
+const latest = (it, s) => lastAt(it.s[s.id], D.months.length - 1);
+function renderPick(){
+  $("pickList").innerHTML = D.items.map(it => {
+    const on = basket[it.id] > 0;
+    return `<div class="pick-row">
+      <input type="checkbox" id="b-${esc(it.id)}" data-id="${esc(it.id)}" ${on ? "checked" : ""}>
+      <label for="b-${esc(it.id)}"><span>${esc(name(it))}</span><small>${esc(sub(it))}</small></label>
+      <input class="qty num" type="number" min="1" max="20" id="q-${esc(it.id)}" data-id="${esc(it.id)}" value="${on ? basket[it.id] : 1}" ${on ? "" : "disabled"} aria-label="${esc(t("qty") + ": " + name(it))}">
+    </div>`;
+  }).join("");
+}
+function renderTotals(){
+  const ids = Object.keys(basket).filter(k => basket[k] > 0 && D.byId[k]);
+  if (!ids.length) { $("totals").innerHTML = `<p class="empty">${esc(t("emptyBasket"))}</p>`; return; }
+  const tot = D.stores.map(s => {
+    let v = 0, miss = 0;
+    ids.forEach(id => { const p = latest(D.byId[id], s); if (p == null) miss++; else v += p * basket[id]; });
+    return { s, v, miss };
+  });
+  const full = tot.filter(x => !x.miss);
+  const min = full.length ? Math.min(...full.map(x => x.v)) : 0, max = full.length ? Math.max(...full.map(x => x.v)) : 0;
+  const scale = Math.max(...tot.map(x => x.v), 0.001);
+  const best = full.find(x => x.v === min), worst = full.find(x => x.v === max);
+  const count = ids.reduce((a, id) => a + basket[id], 0);
+  const order = full.slice().sort((a, b) => a.v - b.v).concat(tot.filter(x => x.miss));
+  $("totals").innerHTML =
+    `<p class="empty">${esc(t("itemsCount", { n: count }))}</p>` +
+    order.map(x => `
+      <div class="total-row ${x === best && full.length > 1 ? "best" : ""} ${x.miss ? "incomplete" : ""}">
+        <div class="total-top">
+          <span class="total-name">${esc(name(x.s))}${x === best && full.length > 1 ? `<span class="pill pill-good">${esc(t("cheapest"))}</span>` : ""}</span>
+          <span class="total-val num">${x.miss ? "–" : money(x.v)}</span>
+        </div>
+        ${x.miss ? `<small class="miss-note">${esc(t("missing", { n: x.miss }))}</small>` : `<div class="bar"><span style="width:${(x.v / scale * 100).toFixed(1)}%"></span></div>`}
+      </div>`).join("") +
+    (best && worst && max - min > 0.0005 ? `<p class="save-line">${esc(t("save", { best: name(best.s), worst: name(worst.s), x: money(max - min) }))}</p>` : "");
+}
+
+/* ---------- Board ---------- */
+function catList(){
+  const known = ["staples","dairy","meat","produce","drinks"];
+  const used = [...new Set(D.items.map(i => i.cat).filter(Boolean))];
+  return ["cAll"].concat(known.filter(c => used.includes(c)), used.filter(c => !known.includes(c)));
+}
+function renderCats(){
+  $("cats").innerHTML = catList().map(c => `<button type="button" class="cat" data-cat="${esc(c)}" aria-pressed="${c === cat}">${esc(t(c))}</button>`).join("");
+}
+function renderBoard(){
+  $("theadRow").innerHTML = `<th>${esc(t("colItem"))}</th>` + D.stores.map(s => `<th class="p">${esc(name(s))}</th>`).join("") + `<th class="p">${esc(t("colChange"))}</th>`;
+  const q = query.trim().toLowerCase();
+  const rows = D.items.filter(it => (cat === "cAll" || it.cat === cat) && (!q || it.en.toLowerCase().includes(q) || it.ar.includes(q) || sub(it).toLowerCase().includes(q)));
+  const anyPrice = D.items.some(it => D.stores.some(s => latest(it, s) != null));
+  $("noRes").hidden = rows.length > 0 && anyPrice;
+  $("noRes").textContent = anyPrice ? t("noResults") : t("noPrices");
+  const N = D.months.length;
+  $("tbody").innerHTML = rows.map(it => {
+    const now = D.stores.map(s => latest(it, s));
+    const have = now.filter(v => v != null);
+    const lo = have.length > 1 ? Math.min(...have) : null;
+    const pairs = D.stores.map(s => [lastAt(it.s[s.id], N - 1), N > 12 ? lastAt(it.s[s.id], N - 13) : null]).filter(([a, b]) => a != null && b != null);
+    const ch = pairs.length ? pct(pairs.reduce((a, [x]) => a + x, 0), pairs.reduce((a, [, y]) => a + y, 0)) : null;
+    return `<tr tabindex="0" data-id="${esc(it.id)}" aria-selected="${it.id === selected}">
+      <td><div class="it-name">${esc(name(it))}</div><div class="it-size">${esc(sub(it))}</div></td>
+      ${now.map(v => v == null ? `<td class="p num">–</td>` : `<td class="p num ${v === lo ? "low" : ""}"><span>${fmt(v)}</span></td>`).join("")}
+      <td class="p">${ch == null ? "–" : `<span class="pill ${chipClass(ch)} num">${pctStr(ch)}</span>`}</td>
+    </tr>`;
+  }).join("");
+}
+function renderRanges(){
+  const opts = [[12, "r1"], [36, "r3"], [0, "rAll"]];
+  $("ranges").innerHTML = opts.map(([v, k]) => `<button type="button" data-r="${v}" aria-pressed="${v === range}">${esc(t(k))}</button>`).join("");
+}
+
+/* ---------- Form ---------- */
+function renderForm(){
+  const keepI = $("fItem").value || selected, keepS = $("fStore").value;
+  $("fItem").innerHTML = D.items.map(it => `<option value="${esc(it.id)}">${esc(name(it) + (sub(it) ? " · " + sub(it) : ""))}</option>`).join("");
+  $("fStore").innerHTML = D.stores.map(s => `<option value="${esc(s.id)}">${esc(name(s))}</option>`).join("");
+  if (keepI) $("fItem").value = keepI;
+  if (keepS) $("fStore").value = keepS;
+  if (!$("fDate").value) { const d = new Date(); $("fDate").value = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+}
+
+/* ---------- Render all ---------- */
+function renderAll(){
+  applyText();
+  if (!D) return;
+  renderIndex(); renderIdxChart();
+  renderPick(); renderTotals();
+  renderCats(); renderBoard(); renderRanges(); renderHistChart();
+  renderForm();
+  $("formMsg").textContent = ""; $("formMsg").className = "msg";
+}
+
+/* ---------- Events ---------- */
+$("langBtn").addEventListener("click", () => {
+  lang = lang === "en" ? "ar" : "en";
+  try { localStorage.setItem("kpw-lang", lang); } catch(e){}
+  renderAll();
+});
+$("pickList").addEventListener("change", e => {
+  const id = e.target.dataset.id; if (!id) return;
+  const box = document.getElementById("b-" + id), q = document.getElementById("q-" + id);
+  if (e.target.type === "checkbox") {
+    q.disabled = !e.target.checked;
+    basket[id] = e.target.checked ? Math.max(1, +q.value || 1) : 0;
+  } else {
+    const v = Math.min(20, Math.max(1, Math.round(+e.target.value) || 1));
+    e.target.value = v;
+    if (box.checked) basket[id] = v;
+  }
+  renderTotals();
+});
+$("pickList").addEventListener("input", e => {
+  if (e.target.classList.contains("qty") && +e.target.value >= 1) {
+    const id = e.target.dataset.id;
+    if (document.getElementById("b-" + id).checked) { basket[id] = Math.min(20, Math.round(+e.target.value)); renderTotals(); }
+  }
+});
+$("search").addEventListener("input", e => { query = e.target.value; renderBoard(); });
+$("cats").addEventListener("click", e => {
+  const b = e.target.closest("[data-cat]"); if (!b) return;
+  cat = b.dataset.cat; renderCats(); renderBoard();
+});
+function pickRow(tr){
+  if (!tr) return;
+  selected = tr.dataset.id;
+  document.querySelectorAll("#tbody tr").forEach(r => r.setAttribute("aria-selected", r === tr));
+  renderHistChart();
+}
+$("tbody").addEventListener("click", e => pickRow(e.target.closest("tr")));
+$("tbody").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pickRow(e.target.closest("tr")); } });
+$("ranges").addEventListener("click", e => {
+  const b = e.target.closest("[data-r]"); if (!b) return;
+  range = +b.dataset.r; renderRanges(); renderHistChart();
+});
+$("priceForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const v = parseFloat($("fPrice").value), m = $("formMsg");
+  if (!(v >= 0.005 && v <= 100)) { m.textContent = t("errPrice"); m.className = "msg err"; $("fPrice").focus(); return; }
+  m.textContent = t("ok"); m.className = "msg ok";
+  $("fPrice").value = ""; $("fPhoto").value = "";
+});
+
+// Redraw charts in the viewer's light or dark theme
+const redraw = () => { renderIdxChart(); renderHistChart(); };
+new MutationObserver(redraw).observe(document.documentElement, { attributes:true, attributeFilter:["data-theme"] });
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redraw);
+
+if (window.Chart) {
+  Chart.defaults.font.family = '"IBM Plex Sans Arabic", system-ui, sans-serif';
+  Chart.defaults.font.size = 12;
+}
+
+/* ---------- Start ---------- */
+function start(data, m){
+  D = data; mode = m;
+  // Default basket: a typical family shop, using whichever of these items exist
+  const def = { rice:1, eggs:1, milk:2, chick:2, tomato:1, onion:1, bread:2, water:1 };
+  basket = {};
+  Object.keys(def).forEach(k => { if (D.byId[k]) basket[k] = def[k]; });
+  if (!Object.keys(basket).length) D.items.slice(0, 5).forEach(it => basket[it.id] = 1);
+  selected = D.byId.rice ? "rice" : (D.items[0] && D.items[0].id);
+  renderAll();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+}
+applyText();
+if (SETTINGS.SHEET_ID.trim()) {
+  loadSheet().then(d => start(d, "live")).catch(err => { console.error(err); loadError = err.message; start(makeSample(), "error"); });
+} else {
+  start(makeSample(), "sample");
+}
+
+})();
+</script>
+</body>
+</html>
