@@ -111,8 +111,21 @@ section{display:grid;gap:20px}
 .tag-list .lbl small{color:var(--muted);font-size:12.5px}
 .tag-list .val{font-weight:600;white-space:nowrap}
 
-.chart-card{padding:18px 20px 16px;display:grid;gap:10px;grid-template-rows:auto 1fr auto}
+.chart-card{padding:20px 22px 18px;display:grid;gap:12px;grid-template-rows:auto auto auto 1fr auto;background:#12171d;border-color:#12171d;color:#eef2f5}
+.chart-card h3{color:#eef2f5}
+.chart-card .tag-sub{color:#93a0ac}
 .chart-card .chart-box{height:auto;min-height:300px}.chart-card .chart-box canvas{position:absolute;inset:0}
+.ix-head{display:flex;gap:28px 56px;flex-wrap:wrap;align-items:flex-end}
+.ix-asof,.ix-lbl{font-size:11.5px;letter-spacing:.04em;color:#93a0ac}
+.ix-level{font-size:26px;font-weight:600;line-height:1.25}
+.ix-pct{font-size:22px;font-weight:600;line-height:1.3}
+[dir="rtl"] .ix-pct{direction:ltr;unicode-bidi:isolate;text-align:right}
+.ix-pct.up{color:#ff9d8a}.ix-pct.down{color:#7fd58b}.ix-pct.flat{color:#eef2f5}
+.ix-tabs{display:flex;gap:4px 18px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.1)}
+.ix-tabs button{background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:6px 0 7px;color:#93a0ac;font:inherit;font-size:12.5px;letter-spacing:.04em;cursor:pointer}
+.ix-tabs button:hover{color:#eef2f5}
+.ix-tabs button[aria-pressed="true"]{color:#f2b544;border-bottom-color:#f2b544}
+.ix-tabs button:focus-visible{outline:2px solid #f2b544;outline-offset:2px}
 .chart-card h3{font-size:18px}
 .chart-box{position:relative;height:300px;min-height:240px}
 
@@ -684,6 +697,11 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-s
       </article>
       <article class="card chart-card">
         <h3 data-i18n="chartIdx">Machboos Index by month, restaurant vs. home-cooked</h3>
+        <div class="ix-head">
+          <div><div class="ix-asof" id="ixAsOf"></div><div class="ix-level num" id="ixLevel"></div></div>
+          <div class="ix-ret"><div class="ix-pct num" id="ixPct"></div><div class="ix-lbl" id="ixLbl"></div></div>
+        </div>
+        <div class="ix-tabs" id="ixTabs" role="group" aria-label="Time range"></div>
         <div class="chart-box"><canvas id="idxChart" aria-label="Machboos Index chart" role="img"></canvas></div>
         <p class="tag-sub" id="idxNote" style="margin-top:10px" hidden></p>
       </article>
@@ -819,7 +837,8 @@ const T = {
     home:"Cook it at home", homeNote:"per plate, at co-op prices",
     falafel:"Falafel sandwich", falafelNote:"fixed at 100 fils since 1984",
     chartIdx:"Machboos Index by month, restaurant vs. home-cooked",
-    chartIdxOnly:"Machboos Index: a restaurant plate, 2016 to today",
+    chartIdxOnly:"Machboos Index: price of a restaurant plate",
+    ixAsOf:"As of {m}", ixR1:"1 YEAR", ixRn:"{n} YEAR", ixC1:"1 YR CHANGE", ixCn:"{n} YR CHANGE",
     taglineIdx:"What a plate of machboos costs in Kuwait, tracked over time.",
     heroLeadIdx:"We track what a plate of machboos costs at restaurants across Kuwait, and how that price has changed since 2016.",
     ctaMethod:"How it works",
@@ -828,7 +847,7 @@ const T = {
     soonTitle:"Supermarket prices are coming soon",
     soonLead:"We are collecting shelf prices from the co-ops, Lulu, City Centre, Sultan Center and Carrefour, so you can compare a weekly basket store by store.",
     m2Idx:"The Machboos Index is the median price of one plate of machboos, chicken or lamb, across restaurant menus. For each restaurant we take its standard single-person plate and leave out family trays, combos and rice-only orders.",
-    m5:"Budget and premium are the prices that a quarter of restaurants fall below and above.",
+    m5:"Budget and premium are the typical prices at the cheapest tenth and the most expensive tenth of restaurants.",
     m6:"Menu prices were collected on {d} from restaurants that deliver to Dasma on Talabat. Delivery-app prices can be a little higher than dine-in prices.",
     m7:"Earlier years are estimates: today's price scaled back by Kuwait's official Restaurants & Hotels price index.",
     dataLink:"Download the price data (CSV)",
@@ -875,7 +894,8 @@ const T = {
     home:"طبخه في البيت", homeNote:"للصحن الواحد بأسعار الجمعيات",
     falafel:"سندويشة فلافل", falafelNote:"سعرها ثابت 100 فلس منذ 1984",
     chartIdx:"مؤشر المجبوس شهرياً: المطعم مقابل البيت",
-    chartIdxOnly:"مؤشر المجبوس: صحن المطعم من 2016 إلى اليوم",
+    chartIdxOnly:"مؤشر المجبوس: سعر صحن المطعم",
+    ixAsOf:"حتى {m}", ixR1:"سنة", ixRn:"{n} سنوات", ixC1:"التغيّر خلال سنة", ixCn:"التغيّر خلال {n} سنوات",
     taglineIdx:"سعر صحن المجبوس في الكويت وكيف يتغيّر مع الوقت.",
     heroLeadIdx:"نتابع سعر صحن المجبوس في مطاعم الكويت وكيف تغيّر منذ 2016.",
     ctaMethod:"كيف نحسب المؤشر",
@@ -884,7 +904,7 @@ const T = {
     soonTitle:"أسعار الأسواق قريباً",
     soonLead:"نجمع حالياً أسعار الرفوف من الجمعيات ولولو وسيتي سنتر ومركز سلطان وكارفور، لتقارن سلّتك الأسبوعية بين المتاجر.",
     m2Idx:"مؤشر المجبوس هو السعر الوسيط لصحن مجبوس واحد، دجاج أو لحم، في قوائم المطاعم. نأخذ من كل مطعم صحنه العادي لشخص واحد، ونستبعد الصواني العائلية والعروض وطلبات العيش فقط.",
-    m5:"«الاقتصادية» و«الراقية» هما السعران اللذان يقع ربع المطاعم تحتهما وفوقهما.",
+    m5:"«الاقتصادية» و«الراقية» هما السعر المعتاد في أرخص عُشر من المطاعم وفي أغلى عُشر منها.",
     m6:"جُمعت أسعار القوائم في {d} من المطاعم التي توصّل إلى الدسمة عبر طلبات. أسعار تطبيقات التوصيل قد تكون أعلى قليلاً من أسعار المطعم.",
     m7:"السنوات السابقة تقديرية: سعر اليوم محسوباً رجوعاً بالرقم القياسي الرسمي لأسعار المطاعم والفنادق في الكويت.",
     dataLink:"حمّل بيانات الأسعار (CSV)",
@@ -1040,25 +1060,27 @@ async function loadSheet(){
 /* ---------- Machboos prices and history ----------
    Latest prices come from data/machboos_prices_talabat_dasma_2026-11-24.csv in this repository:
    single-plate menu prices at restaurants delivering to Dasma on Talabat, one price per kitchen
-   (its lowest-priced standard plate). med = median, bud / pre = lower / upper quartile,
+   (its lowest-priced standard plate). med = median, bud / pre = median of the cheapest /
+   most expensive tenth of restaurants,
    n = number of restaurants. For lamb, the medians by meat origin are listed too.
    index: Restaurants & Hotels consumer price index, 2013 = 100 (Central Statistical Bureau,
    republished by the Central Bank of Kuwait). 2016-2022 are official yearly values;
    2023-2025 are approximated from published monthly figures; 2026 is the mid-year value.
-   Each earlier year's price = latest price x (that year's index / latest index).
+   Yearly index values sit at mid-year and months in between are interpolated.
+   Each earlier month's price = latest price x (that month's index / latest index).
    To update: collect new prices, change the numbers below, and set lastMonth / collected. */
 const MACH_HISTORY = {
   lastMonth:"2026-11", collected:"2026-11-24",
   index:{ 2016:115.4, 2017:119.0, 2018:121.0, 2019:121.8, 2020:122.5, 2021:123.5, 2022:126.8, 2023:131.0, 2024:134.2, 2025:136.5, 2026:137.0 },
-  chicken:{ med:3.000, bud:2.750, pre:3.300, n:80 },
-  lamb:   { med:5.000, bud:4.500, pre:5.535, n:64, extra:[ { label:"tAus", v:4.750, n:22 }, { label:"tArab", v:6.375, n:24 } ] }
+  chicken:{ med:3.000, bud:2.500, pre:4.350, n:80 },
+  lamb:   { med:5.000, bud:4.000, pre:6.800, n:64, extra:[ { label:"tAus", v:4.750, n:22 }, { label:"tArab", v:6.375, n:24 } ] }
 };
 
 /* ---------- Made-up sample data (used when SHEET_ID is empty) ---------- */
 function makeSample(){
   function rngFrom(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; let x = Math.imul(seed ^ seed >>> 15, 1 | seed); x = x + Math.imul(x ^ x >>> 7, 61 | x) ^ x; return ((x ^ x >>> 14) >>> 0) / 4294967296; }; }
   const rng = rngFrom(20261122);
-  const months = monthRange("2016-01", "2026-11"), N = months.length, NOW = N - 1, SPIKE = 74;
+  const months = monthRange("2016-07", "2026-11"), N = months.length, NOW = N - 1, SPIKE = 68;
   const stores = [
     { id:"coop", en:"Co-op (avg.)", ar:"الجمعيات (متوسط)", m:0.97 },
     { id:"lulu", en:"Lulu", ar:"لولو", m:0.99 },
@@ -1101,12 +1123,21 @@ function makeSample(){
   });
   // Machboos history: today's menu medians scaled back by the official price index (see MACH_HISTORY).
   const H = MACH_HISTORY, top = H.index[+H.lastMonth.slice(0, 4)];
+  const mi = m => +m.slice(0, 4) * 12 + (+m.slice(5) - 1);                  // month number
+  const pts = Object.keys(H.index).map(y => [+y * 12 + 6, H.index[y]]);     // yearly value at July
+  if (mi(H.lastMonth) > pts[pts.length - 1][0]) pts.push([mi(H.lastMonth), top]);
+  const idxAt = x => {
+    if (x <= pts[0][0]) return pts[0][1];
+    for (let i = 1; i < pts.length; i++) if (x <= pts[i][0]) { const [x0, v0] = pts[i - 1], [x1, v1] = pts[i]; return v0 + (v1 - v0) * (x - x0) / (x1 - x0); }
+    return top;
+  };
+  const r3 = v => Math.round(v * 1000) / 1000;
   const series = a => {
     const o = { med:[], bud:[], pre:[], n:[] };
     months.forEach(m => {
-      const y = +m.slice(0, 4), f = H.index[y] / top, on = m <= H.lastMonth && H.index[y];
-      o.med.push(on ? r5(a.med * f) : null); o.bud.push(on ? r5(a.bud * f) : null); o.pre.push(on ? r5(a.pre * f) : null);
-      o.n.push(on && y === +H.lastMonth.slice(0, 4) ? a.n : 0);
+      const on = m <= H.lastMonth, f = idxAt(mi(m)) / top;
+      o.med.push(on ? r3(a.med * f) : null); o.bud.push(on ? r3(a.bud * f) : null); o.pre.push(on ? r3(a.pre * f) : null);
+      o.n.push(m === H.lastMonth ? a.n : 0);
     });
     return o;
   };
@@ -1230,25 +1261,56 @@ function baseOptions(){
 }
 const endDot = data => { const k = lastIdx(data); return c => c.dataIndex === k ? 4 : (data.length < 24 ? 2 : 0); };
 
+let idxRange = 10;   // years shown on the index chart
 function renderIdxChart(){
-  if (!window.Chart || !D) return;
-  idxChart && idxChart.destroy();
-  const labels = D.months.map((_, i) => monthLabel(i));
+  if (!D) return;
   const M = D.mach[dish].med, H = D.home[dish];
-  const sets = [{ label:t("sRest"), data:M, borderColor:tok("--accent"), backgroundColor:tok("--accent"), borderWidth:2.5, stepped:true, pointRadius:endDot(M), pointHoverRadius:4 }];
-  if (H.some(v => v != null)) sets.push({ label:t("sHome"), data:H, borderColor:tok("--sea"), backgroundColor:tok("--sea"), borderWidth:2, borderDash:[5,4], tension:.25, pointRadius:endDot(H), pointHoverRadius:4 });
-  const o = baseOptions(); o.scales.y.min = 0;
-  const top = Math.max(0, ...M.filter(v => v != null), ...H.filter(v => v != null));
-  o.scales.y.max = Math.ceil(top * 1.25);                              // headroom so the line never hugs the top edge
-  o.layout = { padding:{ top:8, right:14 } };
-  sets.forEach(d => { d.clip = false; });
-  if (D.months.length > 36) {                                            // long history: label the years only
-    o.scales.x.ticks.autoSkip = false;
-    const step = D.months.length > 96 && window.innerWidth < 640 ? 2 : 1;
-    o.scales.x.ticks.callback = (v, i) => { const [y, m] = D.months[i].split("-"); return m === "01" && (+y % step === 0) ? y : null; };
-  }
-  idxChart = new Chart($("idxChart"), { type:"line", data:{ labels, datasets:sets }, options:o });
+  const k = lastIdx(M);
+  if (k < 0) { idxChart && idxChart.destroy(); return; }
+  const span = k - M.findIndex(v => v != null);                           // months of history
+  const opts = [1, 3, 5, 10].filter(y => y === 1 || span >= y * 12);
+  if (!opts.includes(idxRange)) idxRange = opts[opts.length - 1];
+  $("ixTabs").innerHTML = opts.map(y => `<button type="button" data-yrs="${y}" aria-pressed="${y === idxRange}">${esc(y === 1 ? t("ixR1") : t("ixRn", { n: y }))}</button>`).join("");
+  const from = Math.max(M.findIndex(v => v != null), k - idxRange * 12);
+  const idx = []; for (let i = from; i <= k; i++) idx.push(i);
+  const data = idx.map(i => M[i]), home = idx.map(i => H[i]);
+  // header: level and change over the chosen range
+  const asOf = D.mode === "sample" ? new Date(MACH_HISTORY.collected + "T12:00:00").toLocaleDateString(lang === "ar" ? "ar-u-nu-latn" : "en-GB", { day:"numeric", month:"short", year:"numeric" }) : monthLabel(k);
+  $("ixAsOf").textContent = t("ixAsOf", { m: asOf });
+  $("ixLevel").textContent = money(M[k]);
+  const p = pct(M[k], M[from]);
+  $("ixPct").textContent = pctStr(p);
+  $("ixPct").className = "ix-pct num " + (p > 0.05 ? "up" : p < -0.05 ? "down" : "flat");
+  $("ixLbl").textContent = idxRange === 1 ? t("ixC1") : t("ixCn", { n: idxRange });
+  if (!window.Chart) return;
+  idxChart && idxChart.destroy();
+  const cv = $("idxChart"), g = cv.getContext("2d").createLinearGradient(0, 0, 0, cv.parentElement.clientHeight || 300);
+  g.addColorStop(0, "rgba(255,255,255,.26)"); g.addColorStop(1, "rgba(255,255,255,0)");
+  const sets = [{ label:t("sRest"), data, borderColor:"#fff", backgroundColor:g, fill:true, borderWidth:2, tension:.25, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:"#f2b544", pointHoverBorderColor:"#fff" }];
+  const hasHome = home.some(v => v != null);
+  if (hasHome) sets.push({ label:t("sHome"), data:home, borderColor:"#7cc7d9", backgroundColor:"#7cc7d9", borderWidth:2, borderDash:[5,4], tension:.25, pointRadius:0, pointHoverRadius:4 });
+  const all = data.concat(home).filter(v => v != null), lo = Math.min(...all), hi = Math.max(...all);
+  const pad = Math.max((hi - lo) * 0.18, M[k] * 0.03);
+  const o = baseOptions(), grid = "rgba(255,255,255,.09)", ink = "#93a0ac";
+  o.layout = { padding:{ top:6, right:6 } };
+  o.plugins.legend.display = hasHome; o.plugins.legend.labels.color = ink;
+  o.plugins.tooltip.displayColors = hasHome;
+  o.plugins.tooltip.callbacks.title = c => monthLabel(idx[c[0].dataIndex]);
+  const st = hi - lo + 2 * pad > 0.5 ? 10 : 20;                           // round the axis ends to 0.1 or 0.05
+  o.scales.y.min = Math.max(0, Math.floor((lo - pad) * st) / st); o.scales.y.max = Math.ceil((hi + pad) * st) / st;
+  o.scales.y.ticks.color = ink; o.scales.y.ticks.maxTicksLimit = 6; o.scales.y.grid.color = grid;
+  o.scales.x.ticks.color = ink; o.scales.x.border.color = "rgba(255,255,255,.25)";
+  o.scales.x.ticks.autoSkip = false; o.scales.x.ticks.maxRotation = 0;
+  const narrow = window.innerWidth < 640;
+  o.scales.x.ticks.callback = (v, j) => {
+    const [y, m] = D.months[idx[j]].split("-");
+    if (idxRange === 1) return (+m % (narrow ? 3 : 2) === 1) ? T[lang].months[+m - 1].slice(0, lang === "ar" ? 99 : 3).toUpperCase() + " " + y : null;
+    if (m !== "01") return null;
+    return (idxRange >= 10 && narrow && +y % 2) ? null : y;
+  };
+  idxChart = new Chart(cv, { type:"line", data:{ labels: idx.map(i => monthLabel(i)), datasets:sets }, options:o });
 }
+$("ixTabs").addEventListener("click", e => { const b = e.target.closest("button[data-yrs]"); if (!b) return; idxRange = +b.dataset.yrs; renderIdxChart(); });
 
 function renderHistChart(){
   const it = D.byId[selected];
