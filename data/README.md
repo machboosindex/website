@@ -25,27 +25,29 @@ Delivery-app menu prices can be higher than dine-in prices at the same restauran
 1. One price per kitchen and dish: its lowest-priced standard plate (`used_in_index = yes`).
 2. Restaurants that share the same menu and prices are counted once (`kitchen_group`).
 3. If a dish was discounted on the day, the regular price is used (`list_price_kd`).
-4. The index is the median of those prices. Budget and premium are the lower and upper quartiles.
+4. The index is the median of those prices. Budget and premium are the medians of the cheapest tenth and the most expensive tenth of restaurants.
 
-| Dish | Restaurants | Lower quartile | Median | Upper quartile |
+| Dish | Restaurants | Budget (cheapest tenth) | Median | Premium (most expensive tenth) |
 |---|---|---|---|---|
-| Chicken machboos | 80 | 2.750 | 3.000 | 3.300 |
-| Lamb machboos | 64 | 4.500 | 5.000 | 5.535 |
-| Lamb machboos, Australian lamb | 22 | 4.500 | 4.750 | 5.225 |
-| Lamb machboos, Arabic (Naimi) lamb | 24 | 5.950 | 6.375 | 7.125 |
+| Chicken machboos | 80 | 2.500 | 3.000 | 4.350 |
+| Lamb machboos | 64 | 4.000 | 5.000 | 6.800 |
+| Lamb machboos, Australian lamb | 22 | | 4.750 | |
+| Lamb machboos, Arabic (Naimi) lamb | 24 | | 6.375 | |
 
 Prices are in Kuwaiti dinars.
 
 ## History before 2026
 
 Old menu prices could not be recovered, so earlier years are estimates:
-the 2026 median multiplied by (that year's index / the 2026 index), using the
+the 2026 median multiplied by (that period's index / the 2026 index), using the
 Restaurants and Hotels consumer price index (2013 = 100) published by Kuwait's
 Central Statistical Bureau and republished by the Central Bank of Kuwait.
 
 - 2016 to 2022: official yearly values.
 - 2023 to 2025: approximated from published monthly figures.
 - 2026: the official mid-year value (137.0).
+
+On the website's chart, each yearly value sits at mid-year and the months in between are interpolated.
 
 This index covers all restaurants and hotels, not machboos alone, so the estimated history is a guide, not a record.
 
