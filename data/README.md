@@ -1,6 +1,6 @@
 # Machboos Index data
 
-Open data behind the Machboos Index (https://machboosindex.pages.dev).
+Open data behind the Machboos Index (https://machboosindex.pages.dev): restaurant machboos prices and supermarket prices in Kuwait.
 
 ## Files
 
@@ -8,6 +8,8 @@ Open data behind the Machboos Index (https://machboosindex.pages.dev).
 |---|---|
 | machboos_prices_talabat_dasma_2026-11-24.csv | Every single-plate chicken and lamb machboos found on restaurant menus, with its price |
 | machboos_index_history.csv | The yearly index, 2016 to 2026, with the official price index used to estimate past years |
+| grocery_prices_talabat_dasma_2026-11-25.csv | The 30 everyday products compared on the website, with the price at each store |
+| grocery_matched_products_talabat_dasma_2026-11-25.csv | Every product found at five or more of the nine stores (768 products), one column per store |
 
 ## How the prices were collected
 
@@ -67,3 +69,48 @@ This index covers all restaurants and hotels, not machboos alone, so the estimat
 | used_in_index | yes if this is the price counted for the restaurant and dish |
 | used_in_origin_median | yes if counted in the Australian or Arabic lamb median |
 | note | Why a row was not counted, where that applies |
+
+## Supermarket prices
+
+- Date: 25 November 2026.
+- Source: each store's grocery listing on Talabat, with Dasma chosen as the delivery area.
+- Stores (9): LuLu Hypermarket, Sultan Center, City Hypermarket, Grand Hyper, Monoprix, Talabat Mart, Adailiya Co-op, Rumaithiya Co-op, Surra Co-op.
+- Read: the everyday food and drink shelves of each store (dairy, eggs, rice, sugar, oil, flour, bread, canned food, chicken, water, tea and similar), 11,735 product listings in total.
+
+### How products are matched
+
+Two listings count as the same product only when they carry the same barcode. Names are not used for matching, so a 1 L carton is never compared with a 2 L carton, or one brand with another.
+
+The website compares 30 everyday products (milk, eggs, rice, sugar, oil, flour, bread, chicken, water, tea and similar). They were chosen by hand from the products that most stores list. A store with no price for a product does not list that barcode.
+
+### Things to know
+
+- `price_kd` is the price shown on the day. `regular_price_kd` is the price before any offer. 23 of the 225 prices were on offer that day, and the website uses the price shown.
+- These are delivery-listing prices. Prices inside the store can differ.
+- A few prices look unusual (for example one store lists the 5 kg Tilda rice at 6.195 KD while others list 3.660). They are kept as listed.
+- Other large chains that do not deliver groceries to Dasma on Talabat are not covered.
+
+### Columns in grocery_prices_talabat_dasma_2026-11-25.csv
+
+| Column | Meaning |
+|---|---|
+| date_collected | Day the listing was read |
+| source, delivery_area | Where the listing was read and the delivery area chosen |
+| barcode | The product barcode used for matching |
+| product, brand, size, category | The product as named on the website |
+| store | Store name |
+| price_kd | Price shown on the day, in KD |
+| regular_price_kd | Price before any offer, in KD |
+| in_stock | yes if the store showed the product as available |
+| title_on_listing | The product name as the store wrote it |
+
+### Columns in grocery_matched_products_talabat_dasma_2026-11-25.csv
+
+| Column | Meaning |
+|---|---|
+| date_collected | Day the listing was read |
+| barcode | The product barcode used for matching |
+| subcategory | The shelf the product was listed under |
+| title | The product name on one of the listings |
+| stores_listing | How many of the nine stores list this barcode |
+| lulu_kd ... surra_kd | Price shown at each store, in KD. Empty means the store does not list it |
