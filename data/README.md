@@ -8,8 +8,8 @@ Open data behind the Machboos Index (https://machboosindex.pages.dev): restauran
 |---|---|
 | machboos_prices_talabat_dasma_2026-11-24.csv | Every single-plate chicken and lamb machboos found on restaurant menus, with its price |
 | machboos_index_history.csv | The yearly index, 2016 to 2026, with the official price index used to estimate past years |
-| grocery_prices_talabat_dasma_2026-11-25.csv | The 30 everyday products compared on the website, with the price at each store |
-| grocery_matched_products_talabat_dasma_2026-11-25.csv | Every product found at five or more of the nine stores (768 products), one column per store |
+| grocery_prices_talabat_dasma_2026-11-25.csv | The 40 products compared on the website (13 machboos ingredients and 27 other everyday products), with the price at each store |
+| grocery_matched_products_talabat_dasma_2026-11-25.csv | Every product found at five or more of the nine stores (983 products), one column per store |
 
 ## How the prices were collected
 
@@ -75,17 +75,25 @@ This index covers all restaurants and hotels, not machboos alone, so the estimat
 - Date: 25 November 2026.
 - Source: each store's grocery listing on Talabat, with Dasma chosen as the delivery area.
 - Stores (9): LuLu Hypermarket, Sultan Center, City Hypermarket, Grand Hyper, Monoprix, Talabat Mart, Adailiya Co-op, Rumaithiya Co-op, Surra Co-op.
-- Read: the everyday food and drink shelves of each store (dairy, eggs, rice, sugar, oil, flour, bread, canned food, chicken, water, tea and similar), 11,735 product listings in total.
+- Read: the everyday food and drink shelves of each store (dairy, eggs, rice, sugar, oil, flour, bread, canned food, chicken, water, tea, spices, cooking sauces, dried fruit, fresh vegetables and similar), 16,847 product listings in total.
 
 ### How products are matched
 
 Two listings count as the same product only when they carry the same barcode. Names are not used for matching, so a 1 L carton is never compared with a 2 L carton, or one brand with another.
 
-The website compares 30 everyday products (milk, eggs, rice, sugar, oil, flour, bread, chicken, water, tea and similar). They were chosen by hand from the products that most stores list. A store with no price for a product does not list that barcode.
+The website compares 40 products: 13 ingredients for a chicken machboos (category `machboos`) and 27 other everyday products (milk, eggs, rice, sugar, flour, bread, water, tea and similar). They were chosen by hand from the products that most stores list. A store with no price for a product does not list that barcode.
+
+### Machboos ingredients
+
+The basket on the website starts with 13 ingredients for a chicken machboos: whole chicken, basmati rice, tomato paste, sunflower oil, salt, dried lime (loomi) powder, black pepper, turmeric, cardamom, cinnamon, cloves, mixed chicken spices and coriander seeds.
+
+- For each ingredient, one brand and pack size was chosen so that as many stores as possible list every item. Four stores list all 13: LuLu Hypermarket, City Hypermarket, Monoprix and Talabat Mart. The other five are missing at least three of them, so their basket total is not compared.
+- A store that sells a different brand or pack size of an ingredient is treated as not listing it.
+- Fresh onions, garlic and tomatoes are left out. Stores sell them loose under their own codes, so no barcode is shared between stores.
 
 ### Things to know
 
-- `price_kd` is the price shown on the day. `regular_price_kd` is the price before any offer. 23 of the 225 prices were on offer that day, and the website uses the price shown.
+- `price_kd` is the price shown on the day. `regular_price_kd` is the price before any offer. 25 of the 290 prices were on offer that day, and the website uses the price shown.
 - These are delivery-listing prices. Prices inside the store can differ.
 - A few prices look unusual (for example one store lists the 5 kg Tilda rice at 6.195 KD while others list 3.660). They are kept as listed.
 - Other large chains that do not deliver groceries to Dasma on Talabat are not covered.
