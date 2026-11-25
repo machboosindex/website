@@ -1,4 +1,91 @@
 date_collected,source,delivery_area,barcode,product,brand,size,category,store,price_kd,regular_price_kd,in_stock,title_on_listing
+2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,machboos,LuLu Hypermarket,0.810,0.810,yes,"Dalal Sunflower Oil, 1L"
+2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,machboos,Sultan Center,0.795,0.795,yes,"Dalal Sunflower Oil, 1L"
+2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,machboos,City Hypermarket,0.795,0.795,yes,"Dalal Sunflower Oil, 1L"
+2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,machboos,Grand Hyper,0.795,0.795,yes,"Dalal Sunflower Oil, 1L"
+2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,machboos,Monoprix,0.850,0.850,yes,"Dalal Sunflower Oil, 1L"
+2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,machboos,Talabat Mart,0.840,0.840,yes,Dalal Sunflower Oil 1 Ltr
+2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,machboos,Adailiya Co-op,0.795,0.910,yes,"Dalal Sunflower Oil, 1L"
+2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,machboos,Rumaithiya Co-op,0.795,0.795,yes,"Dalal Sunflower Oil, 1L"
+2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,machboos,LuLu Hypermarket,0.150,0.150,yes,"Al Wazzan Table Salt, 700g"
+2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,machboos,Sultan Center,0.160,0.160,yes,"Al Wazzan Table Salt, 700g"
+2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,machboos,City Hypermarket,0.150,0.150,yes,"Al Wazzan Table Salt, 700g"
+2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,machboos,Grand Hyper,0.170,0.170,yes,"Al Wazzan Table Salt, 700g"
+2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,machboos,Monoprix,0.150,0.150,yes,Al Wazzan Iodized Salt 700 g
+2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,machboos,Talabat Mart,0.160,0.160,yes,"Al Wazzan Table Salt, 700g"
+2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,machboos,Adailiya Co-op,0.150,0.170,yes,"Al Wazzan Table Salt, 700g"
+2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,machboos,LuLu Hypermarket,1.740,1.740,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
+2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,machboos,Sultan Center,1.740,1.740,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
+2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,machboos,City Hypermarket,1.740,1.740,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
+2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,machboos,Monoprix,2.080,2.080,yes,Alyoum Fresh Premium Whole Chicken Sealed Pack Tray 900 g
+2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,machboos,Talabat Mart,1.720,1.720,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
+2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,machboos,Rumaithiya Co-op,1.740,2.000,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
+2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,machboos,Surra Co-op,1.740,2.000,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
+2026-11-25,Talabat,Dasma,8901537024083,Traditional basmati rice,Daawat,2 kg,machboos,LuLu Hypermarket,2.300,2.300,yes,"Daawat Traditional White Indian Basmati Rice, 2kg"
+2026-11-25,Talabat,Dasma,8901537024083,Traditional basmati rice,Daawat,2 kg,machboos,City Hypermarket,2.300,2.300,yes,"Daawat Traditional White Indian Basmati Rice, 2kg"
+2026-11-25,Talabat,Dasma,8901537024083,Traditional basmati rice,Daawat,2 kg,machboos,Grand Hyper,2.190,2.190,yes,"Daawat Traditional White Indian Basmati Rice, 2kg"
+2026-11-25,Talabat,Dasma,8901537024083,Traditional basmati rice,Daawat,2 kg,machboos,Monoprix,2.270,2.270,yes,"Daawat Traditional White Indian Basmati Rice, 2kg"
+2026-11-25,Talabat,Dasma,8901537024083,Traditional basmati rice,Daawat,2 kg,machboos,Talabat Mart,2.415,2.415,yes,Daawat Traditional White Indian Basmati Rice 2 kg
+2026-11-25,Talabat,Dasma,8901537024083,Traditional basmati rice,Daawat,2 kg,machboos,Surra Co-op,2.090,2.090,yes,"Daawat Traditional White Indian Basmati Rice, 2kg"
+2026-11-25,Talabat,Dasma,1241000010135,Tomato paste,Al Wazzan,8 × 135 g,machboos,LuLu Hypermarket,0.880,0.880,yes,"Al Wazzan Tomato Paste, 8x135g"
+2026-11-25,Talabat,Dasma,1241000010135,Tomato paste,Al Wazzan,8 × 135 g,machboos,Sultan Center,0.650,0.760,yes,"Al Wazzan Tomato Paste, 8x135g"
+2026-11-25,Talabat,Dasma,1241000010135,Tomato paste,Al Wazzan,8 × 135 g,machboos,City Hypermarket,0.880,0.880,yes,"Al Wazzan Tomato Paste, 8x135g"
+2026-11-25,Talabat,Dasma,1241000010135,Tomato paste,Al Wazzan,8 × 135 g,machboos,Grand Hyper,0.795,0.795,yes,"Al Wazzan Tomato Paste, 8x135g"
+2026-11-25,Talabat,Dasma,1241000010135,Tomato paste,Al Wazzan,8 × 135 g,machboos,Monoprix,0.780,0.780,yes,"Al Wazzan Tomato Paste, 8x135g"
+2026-11-25,Talabat,Dasma,1241000010135,Tomato paste,Al Wazzan,8 × 135 g,machboos,Talabat Mart,0.770,0.770,yes,"Al Wazzan Tomato Paste, 8x135g"
+2026-11-25,Talabat,Dasma,1241000010135,Tomato paste,Al Wazzan,8 × 135 g,machboos,Rumaithiya Co-op,0.880,0.880,yes,"Al Wazzan Tomato Paste, 8x135g"
+2026-11-25,Talabat,Dasma,1241000010135,Tomato paste,Al Wazzan,8 × 135 g,machboos,Surra Co-op,0.790,0.790,yes,"Al Wazzan Tomato Paste, 8x135g"
+2026-11-25,Talabat,Dasma,681250022815,Dried lime (loomi) powder,Majdi,100 g,machboos,LuLu Hypermarket,0.260,0.260,yes,Majdi Dry Lemon Powder 100 g
+2026-11-25,Talabat,Dasma,681250022815,Dried lime (loomi) powder,Majdi,100 g,machboos,City Hypermarket,0.260,0.260,yes,Majdi Dry Lemon Powder 100 g
+2026-11-25,Talabat,Dasma,681250022815,Dried lime (loomi) powder,Majdi,100 g,machboos,Monoprix,0.280,0.280,yes,Majdi Dry Lemon Powder 100 g
+2026-11-25,Talabat,Dasma,681250022815,Dried lime (loomi) powder,Majdi,100 g,machboos,Talabat Mart,0.285,0.285,yes,Majdi Dry Lemon Powder 100 g
+2026-11-25,Talabat,Dasma,681250022815,Dried lime (loomi) powder,Majdi,100 g,machboos,Adailiya Co-op,0.235,0.235,yes,Majdi Dry Lemon Powder 100 g
+2026-11-25,Talabat,Dasma,681250022815,Dried lime (loomi) powder,Majdi,100 g,machboos,Surra Co-op,0.235,0.235,yes,Majdi Dry Lemon Powder 100 g
+2026-11-25,Talabat,Dasma,681250010478,Whole black pepper,Majdi,80 g,machboos,LuLu Hypermarket,0.795,0.795,yes,"Majdi Black Pepper Whole Pack, 80g"
+2026-11-25,Talabat,Dasma,681250010478,Whole black pepper,Majdi,80 g,machboos,Sultan Center,0.790,0.790,yes,"Majdi Black Pepper Whole Pack, 80g"
+2026-11-25,Talabat,Dasma,681250010478,Whole black pepper,Majdi,80 g,machboos,City Hypermarket,0.720,0.720,yes,"Majdi Black Pepper Whole Pack, 80g"
+2026-11-25,Talabat,Dasma,681250010478,Whole black pepper,Majdi,80 g,machboos,Grand Hyper,0.810,0.810,yes,"Majdi Black Pepper Whole Pack, 80g"
+2026-11-25,Talabat,Dasma,681250010478,Whole black pepper,Majdi,80 g,machboos,Monoprix,0.850,0.850,yes,"Majdi Black Pepper Whole Pack, 80g"
+2026-11-25,Talabat,Dasma,681250010478,Whole black pepper,Majdi,80 g,machboos,Talabat Mart,0.830,0.830,yes,"Majdi Black Pepper Whole Pack, 80g"
+2026-11-25,Talabat,Dasma,681250010478,Whole black pepper,Majdi,80 g,machboos,Surra Co-op,0.720,0.720,yes,"Majdi Black Pepper Whole Pack, 80g"
+2026-11-25,Talabat,Dasma,681250010645,Turmeric powder,Majdi,90 g,machboos,LuLu Hypermarket,0.275,0.275,yes,Majdi Turmeric Powder 90 g
+2026-11-25,Talabat,Dasma,681250010645,Turmeric powder,Majdi,90 g,machboos,City Hypermarket,0.250,0.250,yes,Majdi Turmeric Powder 90 g
+2026-11-25,Talabat,Dasma,681250010645,Turmeric powder,Majdi,90 g,machboos,Grand Hyper,0.280,0.280,yes,Majdi Turmeric Powder 90 g
+2026-11-25,Talabat,Dasma,681250010645,Turmeric powder,Majdi,90 g,machboos,Monoprix,0.300,0.300,yes,Majdi Turmeric Powder 90 g
+2026-11-25,Talabat,Dasma,681250010645,Turmeric powder,Majdi,90 g,machboos,Talabat Mart,0.280,0.280,yes,Majdi Turmeric Powder 90 g
+2026-11-25,Talabat,Dasma,681250028114,Cardamom powder,Majdi,80 g,machboos,LuLu Hypermarket,1.720,1.720,yes,Majdi Cardamom Powder 80 g
+2026-11-25,Talabat,Dasma,681250028114,Cardamom powder,Majdi,80 g,machboos,City Hypermarket,1.720,1.720,yes,Majdi Cardamom Powder 80 g
+2026-11-25,Talabat,Dasma,681250028114,Cardamom powder,Majdi,80 g,machboos,Monoprix,1.840,1.840,yes,Majdi Cardamom Powder 80 g
+2026-11-25,Talabat,Dasma,681250028114,Cardamom powder,Majdi,80 g,machboos,Talabat Mart,1.770,1.770,yes,Majdi Cardamom Powder 80 g
+2026-11-25,Talabat,Dasma,681250028114,Cardamom powder,Majdi,80 g,machboos,Adailiya Co-op,1.565,1.565,yes,Majdi Cardamom Powder 80 g
+2026-11-25,Talabat,Dasma,681250028114,Cardamom powder,Majdi,80 g,machboos,Surra Co-op,1.565,1.565,yes,Majdi Cardamom Powder 80 g
+2026-11-25,Talabat,Dasma,681250028916,Cinnamon powder,Majdi,80 g,machboos,LuLu Hypermarket,0.205,0.205,yes,"Majdi Cassia CinnamonÂ Powder, 80g"
+2026-11-25,Talabat,Dasma,681250028916,Cinnamon powder,Majdi,80 g,machboos,City Hypermarket,0.205,0.205,yes,"Majdi Cassia CinnamonÂ Powder, 80g"
+2026-11-25,Talabat,Dasma,681250028916,Cinnamon powder,Majdi,80 g,machboos,Grand Hyper,0.205,0.205,yes,"Majdi Cassia CinnamonÂ Powder, 80g"
+2026-11-25,Talabat,Dasma,681250028916,Cinnamon powder,Majdi,80 g,machboos,Monoprix,0.220,0.220,yes,"Majdi Cassia CinnamonÂ Powder, 80g"
+2026-11-25,Talabat,Dasma,681250028916,Cinnamon powder,Majdi,80 g,machboos,Talabat Mart,0.210,0.210,yes,"Majdi Cassia CinnamonÂ Powder, 80g"
+2026-11-25,Talabat,Dasma,681250028916,Cinnamon powder,Majdi,80 g,machboos,Adailiya Co-op,0.185,0.185,yes,"Majdi Cassia CinnamonÂ Powder, 80g"
+2026-11-25,Talabat,Dasma,681250028916,Cinnamon powder,Majdi,80 g,machboos,Surra Co-op,0.185,0.210,yes,"Majdi Cassia CinnamonÂ Powder, 80g"
+2026-11-25,Talabat,Dasma,681250010522,Whole cloves,Majdi,70 g,machboos,LuLu Hypermarket,0.735,0.735,yes,"Majdi Cloves Whole Pack, 70g"
+2026-11-25,Talabat,Dasma,681250010522,Whole cloves,Majdi,70 g,machboos,City Hypermarket,0.735,0.735,yes,"Majdi Cloves Whole Pack, 70g"
+2026-11-25,Talabat,Dasma,681250010522,Whole cloves,Majdi,70 g,machboos,Grand Hyper,0.750,0.750,yes,"Majdi Cloves Whole Pack, 70g"
+2026-11-25,Talabat,Dasma,681250010522,Whole cloves,Majdi,70 g,machboos,Monoprix,0.790,0.790,yes,"Majdi Cloves Whole Pack, 70g"
+2026-11-25,Talabat,Dasma,681250010522,Whole cloves,Majdi,70 g,machboos,Talabat Mart,0.760,0.760,yes,"Majdi Cloves Whole Pack, 70g"
+2026-11-25,Talabat,Dasma,681250028213,Mixed spices for chicken,Majdi,85 g,machboos,LuLu Hypermarket,0.405,0.405,yes,Majdi Mixed Chicken Seasoning 85 g
+2026-11-25,Talabat,Dasma,681250028213,Mixed spices for chicken,Majdi,85 g,machboos,City Hypermarket,0.405,0.405,yes,Majdi Mixed Chicken Seasoning 85 g
+2026-11-25,Talabat,Dasma,681250028213,Mixed spices for chicken,Majdi,85 g,machboos,Grand Hyper,0.410,0.410,yes,Majdi Mixed Chicken Seasoning 85 g
+2026-11-25,Talabat,Dasma,681250028213,Mixed spices for chicken,Majdi,85 g,machboos,Monoprix,0.440,0.440,yes,Majdi Mixed Chicken Seasoning 85 g
+2026-11-25,Talabat,Dasma,681250028213,Mixed spices for chicken,Majdi,85 g,machboos,Talabat Mart,0.420,0.420,yes,Majdi Mixed Chicken Seasoning 85 g
+2026-11-25,Talabat,Dasma,681250028213,Mixed spices for chicken,Majdi,85 g,machboos,Adailiya Co-op,0.365,0.365,yes,Majdi Mixed Chicken Seasoning 85 g
+2026-11-25,Talabat,Dasma,681250028213,Mixed spices for chicken,Majdi,85 g,machboos,Surra Co-op,0.370,0.370,yes,Majdi Mixed Chicken Seasoning 85 g
+2026-11-25,Talabat,Dasma,681250024918,Coriander seeds,Majdi,60 g,machboos,LuLu Hypermarket,0.170,0.170,yes,Majdi Coriander Seeds 60 g
+2026-11-25,Talabat,Dasma,681250024918,Coriander seeds,Majdi,60 g,machboos,Sultan Center,0.160,0.160,yes,Majdi Coriander Seeds 60 g
+2026-11-25,Talabat,Dasma,681250024918,Coriander seeds,Majdi,60 g,machboos,City Hypermarket,0.170,0.170,yes,Majdi Coriander Seeds 60 g
+2026-11-25,Talabat,Dasma,681250024918,Coriander seeds,Majdi,60 g,machboos,Grand Hyper,0.185,0.185,yes,Majdi Coriander Seeds 60 g
+2026-11-25,Talabat,Dasma,681250024918,Coriander seeds,Majdi,60 g,machboos,Monoprix,0.190,0.190,yes,Majdi Coriander Seeds 60 g
+2026-11-25,Talabat,Dasma,681250024918,Coriander seeds,Majdi,60 g,machboos,Talabat Mart,0.180,0.180,yes,Majdi Coriander Seeds 60 g
+2026-11-25,Talabat,Dasma,681250024918,Coriander seeds,Majdi,60 g,machboos,Adailiya Co-op,0.155,0.155,yes,Majdi Coriander Seeds 60 g
+2026-11-25,Talabat,Dasma,681250024918,Coriander seeds,Majdi,60 g,machboos,Surra Co-op,0.155,0.155,yes,Majdi Coriander Seeds 60 g
 2026-11-25,Talabat,Dasma,6281007120807,"Fresh milk, full fat",Almarai,1 L,dairy,LuLu Hypermarket,0.515,0.515,yes,"Almarai Fresh Full Fat Milk, 1L"
 2026-11-25,Talabat,Dasma,6281007120807,"Fresh milk, full fat",Almarai,1 L,dairy,Sultan Center,0.515,0.515,yes,"Almarai Fresh Full Fat Milk, 1L"
 2026-11-25,Talabat,Dasma,6281007120807,"Fresh milk, full fat",Almarai,1 L,dairy,City Hypermarket,0.520,0.520,yes,"Almarai Fresh Full Fat Milk, 1L"
@@ -112,14 +199,6 @@ date_collected,source,delivery_area,barcode,product,brand,size,category,store,pr
 2026-11-25,Talabat,Dasma,8888167023023,"White sugar, fine",SIS,2 kg,staples,Talabat Mart,0.950,0.950,yes,"SIS Fine Granulated White Sugar, 2kg"
 2026-11-25,Talabat,Dasma,8888167023023,"White sugar, fine",SIS,2 kg,staples,Rumaithiya Co-op,0.825,0.825,yes,"SIS Fine Granulated White Sugar, 2kg"
 2026-11-25,Talabat,Dasma,8888167023023,"White sugar, fine",SIS,2 kg,staples,Surra Co-op,0.825,0.825,yes,"SIS Fine Granulated White Sugar, 2kg"
-2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,staples,LuLu Hypermarket,0.810,0.810,yes,"Dalal Sunflower Oil, 1L"
-2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,staples,Sultan Center,0.795,0.795,yes,"Dalal Sunflower Oil, 1L"
-2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,staples,City Hypermarket,0.795,0.795,yes,"Dalal Sunflower Oil, 1L"
-2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,staples,Grand Hyper,0.795,0.795,yes,"Dalal Sunflower Oil, 1L"
-2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,staples,Monoprix,0.850,0.850,yes,"Dalal Sunflower Oil, 1L"
-2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,staples,Talabat Mart,0.840,0.840,yes,Dalal Sunflower Oil 1 Ltr
-2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,staples,Adailiya Co-op,0.795,0.910,yes,"Dalal Sunflower Oil, 1L"
-2026-11-25,Talabat,Dasma,6271003024049,Sunflower oil,Dalal,1 L,staples,Rumaithiya Co-op,0.795,0.795,yes,"Dalal Sunflower Oil, 1L"
 2026-11-25,Talabat,Dasma,6271003024209,Corn oil,Al Joud,1.8 L,staples,LuLu Hypermarket,1.510,1.510,yes,Al Joud Corn Oil 1.8 Ltr
 2026-11-25,Talabat,Dasma,6271003024209,Corn oil,Al Joud,1.8 L,staples,Sultan Center,1.475,1.475,yes,Al Joud Corn Oil 1.8 Ltr
 2026-11-25,Talabat,Dasma,6271003024209,Corn oil,Al Joud,1.8 L,staples,City Hypermarket,1.475,1.475,yes,Al Joud Corn Oil 1.8 Ltr
@@ -136,13 +215,6 @@ date_collected,source,delivery_area,barcode,product,brand,size,category,store,pr
 2026-11-25,Talabat,Dasma,6271003014019,Patent flour,KFM,1 kg,staples,Adailiya Co-op,0.165,0.165,yes,"KFMB Patent All Purpose Flour, 1kg"
 2026-11-25,Talabat,Dasma,6271003014019,Patent flour,KFM,1 kg,staples,Rumaithiya Co-op,0.145,0.145,yes,"KFMB Patent All Purpose Flour, 1kg"
 2026-11-25,Talabat,Dasma,6271003014019,Patent flour,KFM,1 kg,staples,Surra Co-op,0.145,0.145,yes,"KFMB Patent All Purpose Flour, 1kg"
-2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,staples,LuLu Hypermarket,0.150,0.150,yes,"Al Wazzan Table Salt, 700g"
-2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,staples,Sultan Center,0.160,0.160,yes,"Al Wazzan Table Salt, 700g"
-2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,staples,City Hypermarket,0.150,0.150,yes,"Al Wazzan Table Salt, 700g"
-2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,staples,Grand Hyper,0.170,0.170,yes,"Al Wazzan Table Salt, 700g"
-2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,staples,Monoprix,0.150,0.150,yes,Al Wazzan Iodized Salt 700 g
-2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,staples,Talabat Mart,0.160,0.160,yes,"Al Wazzan Table Salt, 700g"
-2026-11-25,Talabat,Dasma,6271006710147,Table salt,Al Wazzan,700 g,staples,Adailiya Co-op,0.150,0.170,yes,"Al Wazzan Table Salt, 700g"
 2026-11-25,Talabat,Dasma,6271003041220,White toast,KFM,400 g,staples,LuLu Hypermarket,0.275,0.275,yes,"KFMB White Square Toast with Vitamin D3, 400g"
 2026-11-25,Talabat,Dasma,6271003041220,White toast,KFM,400 g,staples,Sultan Center,0.275,0.275,yes,"KFMB White Square Toast with Vitamin D3, 400g"
 2026-11-25,Talabat,Dasma,6271003041220,White toast,KFM,400 g,staples,City Hypermarket,0.275,0.275,yes,"KFMB White Square Toast with Vitamin D3, 400g"
@@ -180,13 +252,6 @@ date_collected,source,delivery_area,barcode,product,brand,size,category,store,pr
 2026-11-25,Talabat,Dasma,684500709245,"Foul medammas, canned",California Garden,450 g,staples,Adailiya Co-op,0.265,0.265,yes,California Garden Foul Medammas 450g
 2026-11-25,Talabat,Dasma,684500709245,"Foul medammas, canned",California Garden,450 g,staples,Rumaithiya Co-op,0.265,0.265,yes,California Garden Foul Medammas 450g
 2026-11-25,Talabat,Dasma,684500709245,"Foul medammas, canned",California Garden,450 g,staples,Surra Co-op,0.265,0.265,yes,California Garden Foul Medammas 450g
-2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,meat,LuLu Hypermarket,1.740,1.740,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
-2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,meat,Sultan Center,1.740,1.740,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
-2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,meat,City Hypermarket,1.740,1.740,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
-2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,meat,Monoprix,2.080,2.080,yes,Alyoum Fresh Premium Whole Chicken Sealed Pack Tray 900 g
-2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,meat,Talabat Mart,1.720,1.720,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
-2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,meat,Rumaithiya Co-op,1.740,2.000,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
-2026-11-25,Talabat,Dasma,6281007025263,Fresh whole chicken,Alyoum,900 g,meat,Surra Co-op,1.740,2.000,yes,"Alyoum Fresh Premium Whole Chicken Sealed Pack Tray, 900g"
 2026-11-25,Talabat,Dasma,6281007045544,Fresh chicken breast fillet,Alyoum,450 g,meat,LuLu Hypermarket,2.090,2.090,yes,"Alyoum Fresh Chicken Breast Fillet, 450g"
 2026-11-25,Talabat,Dasma,6281007045544,Fresh chicken breast fillet,Alyoum,450 g,meat,Sultan Center,2.090,2.090,yes,"Alyoum Fresh Chicken Breast Fillet, 450g"
 2026-11-25,Talabat,Dasma,6281007045544,Fresh chicken breast fillet,Alyoum,450 g,meat,City Hypermarket,2.090,2.090,yes,"Alyoum Fresh Chicken Breast Fillet, 450g"
