@@ -134,6 +134,8 @@ section{display:grid;gap:20px}
 .pick{padding:0 0 8px;max-height:620px;overflow-y:auto;overscroll-behavior:contain}
 .pick-cat{position:sticky;top:0;z-index:1;background:var(--surface);padding:10px 18px 6px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
 .totals{align-self:start}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.fresh-note{margin:0;color:var(--muted);font-size:14px;max-width:70ch}
 .pick-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:9px 18px;border-bottom:1px solid var(--line)}
 .pick-row:last-child{border-bottom:0}
 .pick-row label{cursor:pointer;display:grid}
@@ -151,6 +153,7 @@ section{display:grid;gap:20px}
 .total-row.best .bar span{background:var(--good)}
 .pill-good{background:var(--good-soft);color:var(--good)}
 .save-line{padding:12px 14px;border-radius:10px;background:var(--good-soft);color:var(--good);font-weight:500}
+.save-line.same{background:var(--bg);color:var(--ink)}
 .empty{color:var(--muted)}
 
 /* Board */
@@ -776,10 +779,15 @@ section[id]{scroll-margin-top:96px}
       <h2 id="basketTitle" data-i18n="basketTitle">Build your weekly basket</h2>
       <p data-i18n="basketLead">Tick what you usually buy and set how many. We add it up at each store using the latest prices.</p>
     </div>
+    <div class="presets" id="presets" hidden>
+      <button type="button" class="cat" id="presetM" data-i18n="presetM">Machboos ingredients</button>
+      <button type="button" class="cat" id="presetClear" data-i18n="presetClear">Clear basket</button>
+    </div>
     <div class="basket">
       <div class="card pick" id="pickList"></div>
       <div class="card totals" id="totals" aria-live="polite"></div>
     </div>
+    <p class="fresh-note" id="freshNote" hidden data-i18n="freshNote"></p>
   </section>
 
   <!-- Board -->
@@ -901,8 +909,8 @@ const T = {
     ctaMethod:"How it works",
     idxBannerG:"Machboos prices: {d}, from {n} restaurant menus. Supermarket prices: {gd}, {gi} products at {gs} stores.",
     boardLeadNow:"Every row is the exact same product, matched by barcode. The lowest price in each row is highlighted, and a dash means the store does not list it.",
-    m8:"Supermarket prices were read on {gd} from each store's listing on Talabat, for delivery to Dasma. Products are matched by barcode, so every row compares the exact same item. These are the prices listed for delivery that day: some are temporary offers, and prices inside the store can differ.",
-    lowMost:"{s} had the lowest price most often: on {a} of the {b} products it lists.",
+    m8:"Supermarket prices were read on {gd} from each store's listing on Talabat, for delivery to Dasma. Products are matched by barcode, so every row compares the exact same item. These are the prices listed for delivery that day: some are temporary offers, and prices inside the store can differ. Fresh vegetables are not compared, because stores sell them without a shared barcode.",
+    lowMost:"{s} had the lowest price, alone or tied, most often: on {a} of the {b} products it lists.",
     fact1:"restaurants priced", fact2:"menus read", fact3:"years of history", fact4:"dishes: chicken and lamb", fact4g:"identical products compared at {gs} stores",
     idxBanner:"Machboos prices were last collected on {d}, from {n} restaurant menus.",
     tAus:"With Australian lamb", tArab:"With Arabic (Naimi) lamb", tAcross:"median of {n} restaurants",
@@ -917,16 +925,25 @@ const T = {
     idxNote:"The latest price is the median menu price on {d}. Earlier years are estimates, scaled by the official Restaurants & Hotels price index (Central Statistical Bureau); 2023 to 2025 are approximated from published monthly figures.",
     sRest:"Restaurant plate (median)", sHome:"Home-cooked plate",
     basketTitle:"Build your weekly basket",
+    basketTitleM:"Cook a machboos: what the ingredients cost",
+    basketLeadM:"The basket starts with the ingredients for a chicken machboos, the same brand and pack at every store. Untick what you already have, or add anything else.",
+    presetM:"Machboos ingredients", presetClear:"Clear basket",
+    freshNote:"Fresh onions, garlic and tomatoes are left out: stores sell them loose, so they can't be matched exactly.",
+    missingList:"Not compared. It does not list: {list}.", andMore:"{n} more",
     basketLead:"Tick what you usually buy and set how many. We add it up at each store using the latest prices.",
     qty:"Quantity", cheapest:"Cheapest",
-    save:"Shopping at {best} saves you {x} a week compared with {worst}.",
+    save:"This basket costs {x} less at {best} than at {worst}.",
+    saveTie:"{n} stores share the lowest total: {best}. That is {x} less than {worst}.",
+    samePrice:"Same total at all {n} stores that list everything in your basket.",
+    cheapestTie:"Lowest, tied",
     emptyBasket:"Pick at least one item to compare totals.",
     itemsCount:"{n} items in your basket",
+    itemsCount1:"1 item in your basket",
     missing:"Does not list {n} of your items, so this total isn't compared.",
     boardTitle:"Price board", boardLead:"The lowest price in each row is highlighted. Select an item to see how its price changed.",
     search:"Search items", noResults:"No items match. Try another word or category.",
     noPrices:"No prices yet. Add rows to the prices tab of your Google Sheet.",
-    cAll:"All", staples:"Staples", dairy:"Dairy & eggs", meat:"Meat & poultry", produce:"Produce & spices", drinks:"Drinks",
+    cAll:"All", machboos:"Machboos ingredients", staples:"Staples", dairy:"Dairy & eggs", meat:"Meat & poultry", produce:"Produce & spices", drinks:"Drinks",
     colItem:"Item", colChange:"12-month change",
     hist:"{item}: price history", r1:"1 year", r3:"3 years", rAll:"All",
     submitTitle:"Saw a price? Add it", submitLead:"Shoppers keep the board current. Add a receipt or shelf photo so the price can be checked.",
@@ -963,8 +980,8 @@ const T = {
     ctaMethod:"كيف نحسب المؤشر",
     idxBannerG:"أسعار المجبوس: {d} من قوائم {n} مطعماً. أسعار الأسواق: {gd}، {gi} منتجاً في {gs} متاجر.",
     boardLeadNow:"كل صف هو المنتج نفسه تماماً، مطابَق بالباركود. أقل سعر في كل صف مظلّل، والشرطة تعني أن المتجر لا يعرض المنتج.",
-    m8:"قُرئت أسعار الأسواق في {gd} من صفحة كل متجر على طلبات للتوصيل إلى الدسمة. المنتجات مطابَقة بالباركود، فكل صف يقارن الصنف نفسه تماماً. هذه أسعار التوصيل المعروضة في ذلك اليوم: بعضها عروض مؤقتة، وقد تختلف الأسعار داخل المتجر.",
-    lowMost:"الأقل سعراً في أغلب الأحيان: {s}، في {a} من أصل {b} منتجاً يعرضها.",
+    m8:"قُرئت أسعار الأسواق في {gd} من صفحة كل متجر على طلبات للتوصيل إلى الدسمة. المنتجات مطابَقة بالباركود، فكل صف يقارن الصنف نفسه تماماً. هذه أسعار التوصيل المعروضة في ذلك اليوم: بعضها عروض مؤقتة، وقد تختلف الأسعار داخل المتجر. لا نقارن الخضار الطازجة لأنها تُباع بلا باركود موحّد.",
+    lowMost:"الأقل سعراً (منفرداً أو بالتساوي) في أغلب الأحيان: {s}، في {a} من أصل {b} منتجاً يعرضها.",
     fact1:"مطعماً بأسعاره", fact2:"قائمة طعام قرأناها", fact3:"سنوات من التاريخ", fact4:"طبقان: دجاج ولحم", fact4g:"منتجاً متطابقاً نقارنه في {gs} متاجر",
     idxBanner:"آخر تحديث لأسعار المجبوس كان في {d} من قوائم {n} مطعماً.",
     tAus:"بلحم أسترالي", tArab:"بلحم عربي (نعيمي)", tAcross:"الوسيط في {n} مطعماً",
@@ -979,16 +996,24 @@ const T = {
     idxNote:"آخر سعر هو الوسيط لأسعار القوائم في {d}. السنوات السابقة تقديرية، محسوبة بالرقم القياسي الرسمي لأسعار المطاعم والفنادق (الإدارة المركزية للإحصاء)، وقيم 2023 إلى 2025 تقريبية من الأرقام الشهرية المنشورة.",
     sRest:"صحن المطعم (الوسيط)", sHome:"صحن مطبوخ في البيت",
     basketTitle:"جهّز سلّتك الأسبوعية",
+    basketTitleM:"اطبخ مجبوس: كم تكلّف المقادير؟",
+    basketLeadM:"تبدأ السلّة بمقادير مجبوس الدجاج، بالماركة والعبوة نفسها في كل متجر. أزل ما هو موجود عندك أو أضف ما تشاء.",
+    presetM:"مقادير المجبوس", presetClear:"تفريغ السلّة",
+    freshNote:"لم نُدرج البصل والثوم والطماطم الطازجة: تُباع سائبة ولا يمكن مطابقتها تماماً بين المتاجر.",
+    missingList:"لم يُقارن. لا يعرض: {list}.", andMore:"{n} أخرى",
     basketLead:"اختر ما تشتريه عادةً وحدّد الكمية، ونحسب المجموع في كل متجر بأحدث الأسعار.",
     qty:"الكمية", cheapest:"الأرخص",
-    save:"الشراء من {best} يوفّر عليك {x} أسبوعياً مقارنة بـ{worst}.",
+    save:"هذه السلّة أرخص بـ {x} في {best} مقارنة بـ {worst}.",
+    saveTie:"{n} متاجر تتساوى في أقل مجموع: {best}. وهو أقل بـ {x} من {worst}.",
+    samePrice:"المجموع نفسه في المتاجر الـ{n} التي تعرض كل ما في سلّتك.",
+    cheapestTie:"الأقل، بالتساوي",
     emptyBasket:"اختر صنفاً واحداً على الأقل لمقارنة المجموع.",
     itemsCount:"عدد الأصناف في سلّتك: {n}",
     missing:"لا يعرض {n} من أصنافك، لذلك لم يُقارن هذا المجموع.",
     boardTitle:"لوحة الأسعار", boardLead:"أقل سعر في كل صف مظلّل. اختر صنفاً لترى كيف تغيّر سعره.",
     search:"ابحث عن صنف", noResults:"لا توجد نتائج. جرّب كلمة أو فئة أخرى.",
     noPrices:"لا توجد أسعار بعد. أضف صفوفاً في ورقة prices في جدول Google.",
-    cAll:"الكل", staples:"مواد أساسية", dairy:"ألبان وبيض", meat:"لحوم ودواجن", produce:"خضار وبهارات", drinks:"مشروبات",
+    cAll:"الكل", machboos:"مقادير المجبوس", staples:"مواد أساسية", dairy:"ألبان وبيض", meat:"لحوم ودواجن", produce:"خضار وبهارات", drinks:"مشروبات",
     colItem:"الصنف", colChange:"التغيّر خلال 12 شهراً",
     hist:"تاريخ سعر {item}", r1:"سنة", r3:"3 سنوات", rAll:"الكل",
     submitTitle:"شفت سعر؟ أضفه", submitLead:"المتسوّقون يحدّثون اللوحة. أرفق صورة الفاتورة أو الرف للتحقق من السعر.",
@@ -1154,6 +1179,19 @@ const GROCERY = { collected:"2026-11-25",
   { id:"grand", en:"Grand Hyper", ar:"جراند هايبر" }, { id:"mono", en:"Monoprix", ar:"مونوبري" }, { id:"tmart", en:"Talabat Mart", ar:"طلبات مارت" },
   { id:"adl", en:"Adailiya Co-op", ar:"جمعية العديلية" }, { id:"rum", en:"Rumaithiya Co-op", ar:"جمعية الرميثية" }, { id:"surra", en:"Surra Co-op", ar:"جمعية السرة" } ],
  items:[
+ { id:"chk", cat:"machboos", en:"Fresh whole chicken", ar:"دجاج طازج كامل", brand:["Alyoum","اليوم"], size:["900 g","900 غ"], p:{ lulu:1.74, tsc:1.74, city:1.74, mono:2.08, tmart:1.72, rum:1.74, surra:1.74 } },
+ { id:"rice3", cat:"machboos", en:"Traditional basmati rice", ar:"أرز بسمتي تقليدي", brand:["Daawat","دعوات"], size:["2 kg","2 كغ"], p:{ lulu:2.3, city:2.3, grand:2.19, mono:2.27, tmart:2.415, surra:2.09 } },
+ { id:"paste", cat:"machboos", en:"Tomato paste", ar:"معجون طماطم", brand:["Al Wazzan","الوزان"], size:["8 × 135 g","8 × 135 غ"], p:{ lulu:0.88, tsc:0.65, city:0.88, grand:0.795, mono:0.78, tmart:0.77, rum:0.88, surra:0.79 } },
+ { id:"oil1", cat:"machboos", en:"Sunflower oil", ar:"زيت دوار الشمس", brand:["Dalal","دلال"], size:["1 L","1 لتر"], p:{ lulu:0.81, tsc:0.795, city:0.795, grand:0.795, mono:0.85, tmart:0.84, adl:0.795, rum:0.795 } },
+ { id:"salt", cat:"machboos", en:"Table salt", ar:"ملح طعام", brand:["Al Wazzan","الوزان"], size:["700 g","700 غ"], p:{ lulu:0.15, tsc:0.16, city:0.15, grand:0.17, mono:0.15, tmart:0.16, adl:0.15 } },
+ { id:"lime", cat:"machboos", en:"Dried lime (loomi) powder", ar:"لومي مطحون", brand:["Majdi","مجدي"], size:["100 g","100 غ"], p:{ lulu:0.26, city:0.26, mono:0.28, tmart:0.285, adl:0.235, surra:0.235 } },
+ { id:"pepper", cat:"machboos", en:"Whole black pepper", ar:"فلفل أسود حب", brand:["Majdi","مجدي"], size:["80 g","80 غ"], p:{ lulu:0.795, tsc:0.79, city:0.72, grand:0.81, mono:0.85, tmart:0.83, surra:0.72 } },
+ { id:"turmeric", cat:"machboos", en:"Turmeric powder", ar:"كركم مطحون", brand:["Majdi","مجدي"], size:["90 g","90 غ"], p:{ lulu:0.275, city:0.25, grand:0.28, mono:0.3, tmart:0.28 } },
+ { id:"cardamom", cat:"machboos", en:"Cardamom powder", ar:"هيل مطحون", brand:["Majdi","مجدي"], size:["80 g","80 غ"], p:{ lulu:1.72, city:1.72, mono:1.84, tmart:1.77, adl:1.565, surra:1.565 } },
+ { id:"cinnamon", cat:"machboos", en:"Cinnamon powder", ar:"دارسين مطحون", brand:["Majdi","مجدي"], size:["80 g","80 غ"], p:{ lulu:0.205, city:0.205, grand:0.205, mono:0.22, tmart:0.21, adl:0.185, surra:0.185 } },
+ { id:"cloves", cat:"machboos", en:"Whole cloves", ar:"قرنفل حب", brand:["Majdi","مجدي"], size:["70 g","70 غ"], p:{ lulu:0.735, city:0.735, grand:0.75, mono:0.79, tmart:0.76 } },
+ { id:"mixed", cat:"machboos", en:"Mixed spices for chicken", ar:"بهارات دجاج مشكلة", brand:["Majdi","مجدي"], size:["85 g","85 غ"], p:{ lulu:0.405, city:0.405, grand:0.41, mono:0.44, tmart:0.42, adl:0.365, surra:0.37 } },
+ { id:"coriander", cat:"machboos", en:"Coriander seeds", ar:"كزبرة حب", brand:["Majdi","مجدي"], size:["60 g","60 غ"], p:{ lulu:0.17, tsc:0.16, city:0.17, grand:0.185, mono:0.19, tmart:0.18, adl:0.155, surra:0.155 } },
  { id:"milk1", cat:"dairy", en:"Fresh milk, full fat", ar:"حليب طازج كامل الدسم", brand:["Almarai","المراعي"], size:["1 L","1 لتر"], p:{ lulu:0.515, tsc:0.515, city:0.52, grand:0.525, mono:0.53, tmart:0.51, rum:0.515, surra:0.47 } },
  { id:"milk2", cat:"dairy", en:"Fresh milk, full fat", ar:"حليب طازج كامل الدسم", brand:["Almarai","المراعي"], size:["2 L","2 لتر"], p:{ lulu:1.035, tsc:1.035, city:1.035, mono:1.05, tmart:1.05, adl:1.035, rum:1.035, surra:0.94 } },
  { id:"uht", cat:"dairy", en:"Long-life milk, full cream", ar:"حليب طويل الأجل كامل الدسم", brand:["KDD","كي دي دي"], size:["1 L","1 لتر"], p:{ lulu:0.52, tsc:0.52, city:0.52, grand:0.475, mono:0.52, tmart:0.44, rum:0.52, surra:0.475 } },
@@ -1169,16 +1207,13 @@ const GROCERY = { collected:"2026-11-25",
  { id:"rice2", cat:"staples", en:"Basmati rice, XL grain", ar:"أرز بسمتي حبة طويلة", brand:["Mottamad","معتمد"], size:["5 kg","5 كغ"], p:{ lulu:2.615, tsc:2.615, city:2.615, grand:2.69, mono:2.39, adl:3.285 } },
  { id:"sugar5", cat:"staples", en:"White sugar", ar:"سكر أبيض", brand:["Al Wazzan","الوزان"], size:["5 kg","5 كغ"], p:{ lulu:1.785, tsc:1.515, city:1.785, mono:1.57, tmart:1.84, rum:1.925, surra:2.6 } },
  { id:"sugar2", cat:"staples", en:"White sugar, fine", ar:"سكر أبيض ناعم", brand:["SIS","إس آي إس"], size:["2 kg","2 كغ"], p:{ lulu:0.925, tsc:0.99, city:0.925, grand:0.93, tmart:0.95, rum:0.825, surra:0.825 } },
- { id:"oil1", cat:"staples", en:"Sunflower oil", ar:"زيت دوار الشمس", brand:["Dalal","دلال"], size:["1 L","1 لتر"], p:{ lulu:0.81, tsc:0.795, city:0.795, grand:0.795, mono:0.85, tmart:0.84, adl:0.795, rum:0.795 } },
  { id:"oil2", cat:"staples", en:"Corn oil", ar:"زيت ذرة", brand:["Al Joud","الجود"], size:["1.8 L","1.8 لتر"], p:{ lulu:1.51, tsc:1.475, city:1.475, mono:1.53, tmart:1.74, adl:1.475, rum:1.475 } },
  { id:"flour", cat:"staples", en:"Patent flour", ar:"طحين فاخر", brand:["KFM","مطاحن الدقيق الكويتية"], size:["1 kg","1 كغ"], p:{ lulu:0.155, tsc:0.15, city:0.16, grand:0.14, mono:0.16, tmart:0.16, adl:0.165, rum:0.145, surra:0.145 } },
- { id:"salt", cat:"staples", en:"Table salt", ar:"ملح طعام", brand:["Al Wazzan","الوزان"], size:["700 g","700 غ"], p:{ lulu:0.15, tsc:0.16, city:0.15, grand:0.17, mono:0.15, tmart:0.16, adl:0.15 } },
  { id:"toast", cat:"staples", en:"White toast", ar:"توست أبيض", brand:["KFM","مطاحن الدقيق الكويتية"], size:["400 g","400 غ"], p:{ lulu:0.275, tsc:0.275, city:0.275, grand:0.25, mono:0.275, surra:0.25 } },
  { id:"bread", cat:"staples", en:"Sliced brown bread", ar:"خبز أسمر شرائح", brand:["L'usine","لوزين"], size:["600 g","600 غ"], p:{ lulu:0.495, tsc:0.495, city:0.495, grand:0.495, mono:0.53, tmart:0.49, rum:0.495, surra:0.45 } },
  { id:"pasta", cat:"staples", en:"Macaroni no. 41", ar:"معكرونة رقم 41", brand:["KFM","مطاحن الدقيق الكويتية"], size:["500 g","500 غ"], p:{ lulu:0.185, tsc:0.175, grand:0.175, mono:0.185, tmart:0.19, adl:0.2, rum:0.175, surra:0.16 } },
  { id:"chick", cat:"staples", en:"Chickpeas, canned", ar:"حمص معلب", brand:["California Garden","كاليفورنيا جاردن"], size:["400 g","400 غ"], p:{ lulu:0.265, city:0.265, mono:0.26, tmart:0.27, adl:0.24, rum:0.24, surra:0.24 } },
  { id:"foul", cat:"staples", en:"Foul medammas, canned", ar:"فول مدمس معلب", brand:["California Garden","كاليفورنيا جاردن"], size:["450 g","450 غ"], p:{ lulu:0.295, tsc:0.295, city:0.295, mono:0.295, tmart:0.3, adl:0.265, rum:0.265, surra:0.265 } },
- { id:"chk", cat:"meat", en:"Fresh whole chicken", ar:"دجاج طازج كامل", brand:["Alyoum","اليوم"], size:["900 g","900 غ"], p:{ lulu:1.74, tsc:1.74, city:1.74, mono:2.08, tmart:1.72, rum:1.74, surra:1.74 } },
  { id:"breast", cat:"meat", en:"Fresh chicken breast fillet", ar:"صدور دجاج طازجة", brand:["Alyoum","اليوم"], size:["450 g","450 غ"], p:{ lulu:2.09, tsc:2.09, city:2.09, mono:2.12, tmart:2.1, adl:2.09, rum:2.09, surra:2.2 } },
  { id:"griller", cat:"meat", en:"Frozen whole chicken", ar:"دجاج مجمد كامل", brand:["Sadia","ساديا"], size:["1.1 kg","1.1 كغ"], p:{ city:1.15, grand:1.29, tmart:1.015, rum:1.14, surra:1.14 } },
  { id:"water", cat:"drinks", en:"Drinking water", ar:"مياه شرب", brand:["Aquafina","أكوافينا"], size:["6 × 1.5 L","6 × 1.5 لتر"], p:{ lulu:0.55, tsc:0.54, city:0.55, grand:0.375, mono:0.71, tmart:0.6, adl:0.3, rum:0.55 } },
@@ -1302,6 +1337,9 @@ function applyText(){
   $("factN").textContent = MACH_HISTORY.chicken.n; $("factM").textContent = MACH_HISTORY.menusRead;
   document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = t(idxOnly && el.dataset.i18nIdx ? el.dataset.i18nIdx : el.dataset.i18n, tv));
   if (hasG) { $("factG").textContent = GROCERY.items.length; $("factGt").textContent = t("fact4g", tv); }
+  const hasM = hasG && machIds().length > 0;
+  $("presets").hidden = !hasM; $("freshNote").hidden = !hasM;
+  if (hasM) { $("basketTitle").textContent = t("basketTitleM"); document.querySelector("#basket .sec-head p").textContent = t("basketLeadM"); }
   document.querySelectorAll("[data-i18n-ph]").forEach(el => el.placeholder = t(el.dataset.i18nPh));
   $("langBtn").textContent = t("langBtn");
   const pill = $("bannerPill"), txt = $("bannerText");
@@ -1457,6 +1495,8 @@ function renderHistChart(){
 
 /* ---------- Basket ---------- */
 const latest = (it, s) => lastAt(it.s[s.id], D.months.length - 1);
+function machIds(){ return D ? D.items.filter(it => it.cat === "machboos").map(it => it.id) : []; }
+function setBasket(ids){ basket = {}; ids.forEach(id => basket[id] = 1); renderPick(); renderTotals(); }
 function renderPick(){
   const grouped = !!D.grocery; let lastCat = null;
   $("pickList").innerHTML = D.items.map(it => {
@@ -1474,32 +1514,38 @@ function renderTotals(){
   const ids = Object.keys(basket).filter(k => basket[k] > 0 && D.byId[k]);
   if (!ids.length) { $("totals").innerHTML = `<p class="empty">${esc(t("emptyBasket"))}</p>`; return; }
   const tot = D.stores.map(s => {
-    let v = 0, miss = 0;
-    ids.forEach(id => { const p = latest(D.byId[id], s); if (p == null) miss++; else v += p * basket[id]; });
-    return { s, v, miss };
+    let v = 0, miss = 0; const lack = [];
+    ids.forEach(id => { const p = latest(D.byId[id], s); if (p == null) { miss++; lack.push(name(D.byId[id]).split(/[,،(]/)[0].trim()); } else v += p * basket[id]; });
+    return { s, v, miss, lack };
   });
+  tot.forEach(x => x.v = Math.round(x.v * 1000) / 1000);          // whole fils, so equal totals compare as equal
   const full = tot.filter(x => !x.miss);
   const min = full.length ? Math.min(...full.map(x => x.v)) : 0, max = full.length ? Math.max(...full.map(x => x.v)) : 0;
   const scale = Math.max(...tot.map(x => x.v), 0.001);
-  const best = full.find(x => x.v === min), worst = full.find(x => x.v === max);
+  const bests = full.filter(x => x.v === min), worsts = full.filter(x => x.v === max);
+  const spread = max - min > 0.0005;                                // false when every store charges the same
+  const isBest = x => spread && bests.includes(x);
+  const list = a => { try { return new Intl.ListFormat(lang, { style:"long", type:"conjunction" }).format(a); } catch (e) { return a.join(", "); } };
   const count = ids.reduce((a, id) => a + basket[id], 0);
-  const order = full.slice().sort((a, b) => a.v - b.v).concat(tot.filter(x => x.miss));
+  const order = full.slice().sort((a, b) => a.v - b.v).concat(tot.filter(x => x.miss).sort((a, b) => a.miss - b.miss));
+  const lackText = x => t("missingList", { list: list(x.lack.length > 4 ? x.lack.slice(0, 3).concat(t("andMore", { n: x.lack.length - 3 })) : x.lack) });
   $("totals").innerHTML =
-    `<p class="empty">${esc(t("itemsCount", { n: count }))}</p>` +
+    `<p class="empty">${esc(t(count === 1 && lang === "en" ? "itemsCount1" : "itemsCount", { n: count }))}</p>` +
     order.map(x => `
-      <div class="total-row ${x === best && full.length > 1 ? "best" : ""} ${x.miss ? "incomplete" : ""}">
+      <div class="total-row ${isBest(x) ? "best" : ""} ${x.miss ? "incomplete" : ""}">
         <div class="total-top">
-          <span class="total-name">${esc(name(x.s))}${x === best && full.length > 1 ? `<span class="pill pill-good">${esc(t("cheapest"))}</span>` : ""}</span>
+          <span class="total-name">${esc(name(x.s))}${isBest(x) ? `<span class="pill pill-good">${esc(t(bests.length > 1 ? "cheapestTie" : "cheapest"))}</span>` : ""}</span>
           <span class="total-val num">${x.miss ? "–" : money(x.v)}</span>
         </div>
-        ${x.miss ? `<small class="miss-note">${esc(t("missing", { n: x.miss }))}</small>` : `<div class="bar"><span style="width:${(x.v / scale * 100).toFixed(1)}%"></span></div>`}
+        ${x.miss ? `<small class="miss-note">${esc(lackText(x))}</small>` : `<div class="bar"><span style="width:${(x.v / scale * 100).toFixed(1)}%"></span></div>`}
       </div>`).join("") +
-    (best && worst && max - min > 0.0005 ? `<p class="save-line">${esc(t("save", { best: name(best.s), worst: name(worst.s), x: money(max - min) }))}</p>` : "");
+    (spread ? `<p class="save-line">${esc(t(bests.length > 1 ? "saveTie" : "save", { best: list(bests.map(x => name(x.s))), worst: list(worsts.map(x => name(x.s))), x: money(max - min), n: bests.length }))}</p>`
+      : full.length > 1 ? `<p class="save-line same">${esc(t("samePrice", { n: full.length }))}</p>` : "");
 }
 
 /* ---------- Board ---------- */
 function catList(){
-  const known = ["staples","dairy","meat","produce","drinks"];
+  const known = ["machboos","staples","dairy","meat","produce","drinks"];
   const used = [...new Set(D.items.map(i => i.cat).filter(Boolean))];
   return ["cAll"].concat(known.filter(c => used.includes(c)), used.filter(c => !known.includes(c)));
 }
@@ -1587,6 +1633,8 @@ $("pickList").addEventListener("input", e => {
     if (document.getElementById("b-" + id).checked) { basket[id] = Math.min(20, Math.round(+e.target.value)); renderTotals(); }
   }
 });
+$("presetM").addEventListener("click", () => setBasket(machIds()));
+$("presetClear").addEventListener("click", () => setBasket([]));
 $("dishToggle").addEventListener("click", e => {
   const b = e.target.closest("[data-dish]"); if (!b) return;
   dish = b.dataset.dish; renderDishToggle(); renderIndex(); renderIdxChart();
@@ -1630,7 +1678,9 @@ if (window.Chart) {
 function start(data, m){
   D = data; mode = m;
   // Default basket: a typical family shop, using whichever of these items exist
-  const def = D.grocery ? { cheese:1, butter:1, feta:1, flour:1 } : { rice:1, eggs:1, milk:2, chick:2, tomato:1, onion:1, bread:2, water:1 };
+  const mIds = D.grocery ? D.items.filter(it => it.cat === "machboos").map(it => it.id) : [];
+  const def = mIds.length ? Object.fromEntries(mIds.map(id => [id, 1])) : D.grocery ? { cheese:1, butter:1, feta:1, flour:1 } : { rice:1, eggs:1, milk:2, chick:2, tomato:1, onion:1, bread:2, water:1 };
+  if (mIds.length) cat = "machboos";
   basket = {};
   Object.keys(def).forEach(k => { if (D.byId[k]) basket[k] = def[k]; });
   if (!Object.keys(basket).length) D.items.slice(0, 5).forEach(it => basket[it.id] = 1);
