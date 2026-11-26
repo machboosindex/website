@@ -1004,7 +1004,7 @@ const T = {
     soonTitle:"Supermarket prices are coming soon",
     soonLead:"We are collecting shelf prices from the co-ops, Lulu, City Centre, Sultan Center and Carrefour, so you can compare a weekly basket store by store.",
     m2Idx:"The Machboos Index is the median price of one plate of machboos, chicken or lamb, across restaurant menus. For each restaurant we take its standard single-person plate and leave out family trays, combos and rice-only orders.",
-    m5:"Budget and premium are the typical prices at the cheapest tenth and the most expensive tenth of restaurants.",
+    m5:"Budget is the typical price at the cheapest tenth of restaurants. Premium is the average of the five most expensive restaurants.",
     m6:"Menu prices were collected on {d} from restaurants that deliver to Dasma on Talabat. Delivery-app prices can be a little higher than dine-in prices.",
     m7:"Earlier years are estimates: today's price scaled back by Kuwait's official Restaurants & Hotels price index.",
     dataLink:"Download the price data (CSV)",
@@ -1093,7 +1093,7 @@ const T = {
     soonTitle:"أسعار الأسواق قريباً",
     soonLead:"نجمع حالياً أسعار الرفوف من الجمعيات ولولو وسيتي سنتر ومركز سلطان وكارفور، لتقارن سلّتك الأسبوعية بين المتاجر.",
     m2Idx:"مؤشر المجبوس هو السعر الوسيط لصحن مجبوس واحد، دجاج أو لحم، في قوائم المطاعم. نأخذ من كل مطعم صحنه العادي لشخص واحد، ونستبعد الصواني العائلية والعروض وطلبات العيش فقط.",
-    m5:"«الاقتصادية» و«الراقية» هما السعر المعتاد في أرخص عُشر من المطاعم وفي أغلى عُشر منها.",
+    m5:"«الاقتصادية» هي السعر المعتاد في أرخص عُشر من المطاعم، و«الراقية» هي متوسط أسعار أغلى خمسة مطاعم.",
     m6:"جُمعت أسعار القوائم في {d} من المطاعم التي توصّل إلى الدسمة عبر طلبات. أسعار تطبيقات التوصيل قد تكون أعلى قليلاً من أسعار المطعم.",
     m7:"السنوات السابقة تقديرية: سعر اليوم محسوباً رجوعاً بالرقم القياسي الرسمي لأسعار المطاعم والفنادق في الكويت.",
     dataLink:"حمّل بيانات الأسعار (CSV)",
@@ -1275,8 +1275,8 @@ async function loadSheet(){
 /* ---------- Machboos prices and history ----------
    Latest prices come from data/machboos_prices_talabat_dasma_2026-11-24.csv in this repository:
    single-plate menu prices at restaurants delivering to Dasma on Talabat, one price per kitchen
-   (its lowest-priced standard plate). med = median, bud / pre = median of the cheapest /
-   most expensive tenth of restaurants,
+   (its lowest-priced standard plate). med = median, bud = median of the cheapest tenth of
+   restaurants, pre = average of the five most expensive restaurants,
    n = number of restaurants. For lamb, the medians by meat origin are listed too.
    index: Restaurants & Hotels consumer price index, 2013 = 100 (Central Statistical Bureau,
    republished by the Central Bank of Kuwait). 2016-2022 are official yearly values;
@@ -1287,8 +1287,8 @@ async function loadSheet(){
 const MACH_HISTORY = {
   lastMonth:"2026-11", collected:"2026-11-24", menusRead:173,
   index:{ 2016:115.4, 2017:119.0, 2018:121.0, 2019:121.8, 2020:122.5, 2021:123.5, 2022:126.8, 2023:131.0, 2024:134.2, 2025:136.5, 2026:137.0 },
-  chicken:{ med:3.000, bud:2.500, pre:4.350, n:80 },
-  lamb:   { med:5.000, bud:4.000, pre:6.800, n:64, extra:[ { label:"tAus", v:4.750, n:22 }, { label:"tArab", v:6.375, n:24 } ] }
+  chicken:{ med:3.000, bud:2.500, pre:4.830, n:80 },
+  lamb:   { med:5.000, bud:4.000, pre:7.110, n:64, extra:[ { label:"tAus", v:4.750, n:22 }, { label:"tArab", v:6.375, n:24 } ] }
 };
 
 /* ---------- Supermarket prices (real) ----------
