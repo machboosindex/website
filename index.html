@@ -262,6 +262,41 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-s
 }
 section[id]{scroll-margin-top:96px}
 /* ---- facts strip ---- */
+.hero-by{font-size:14.5px!important;font-weight:600;color:var(--sea)!important;letter-spacing:.01em}
+.head-actions{display:flex;align-items:center;gap:8px}
+.head-link{padding:7px 12px;border-radius:999px;font-weight:500;color:var(--ink);text-decoration:none;font-size:15px}
+.head-link:hover{color:var(--accent)}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.vs-tile{padding:20px 22px;display:grid;gap:6px;align-content:start}
+.vs-tile .lbl{font-size:13.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.vs-tile b{font-family:var(--font-display);font-size:clamp(32px,5vw,44px);line-height:1.1}
+.vs-tile.home b{color:var(--good)}
+.vs-tile small{color:var(--muted);font-size:14px}
+.vs-bar{height:10px;border-radius:999px;background:var(--bg);overflow:hidden;margin-top:6px}
+.vs-bar i{display:block;height:100%;border-radius:999px;background:var(--sea)}
+.vs-tile.home .vs-bar i{background:var(--good)}
+.vs-diff{padding:14px 18px;border-radius:12px;background:var(--good-soft);color:var(--good);font-weight:600;font-size:17px}
+.vs-note{margin:0;color:var(--muted);font-size:14.5px;max-width:75ch}
+.recipe{padding:4px 18px}
+.recipe summary{cursor:pointer;padding:12px 0;font-weight:600}
+.recipe table{min-width:0;margin-bottom:14px}
+.recipe td,.recipe th{padding:8px 8px}
+.recipe tbody tr{cursor:default}.recipe tbody tr:hover{background:none}
+.recipe tfoot td{font-weight:700;border-top:2px solid var(--line)}
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:20px;align-items:start}
+.about{padding:20px;display:grid;gap:10px}
+.about h3,.cform h3{font-size:20px}
+.about p{margin:0;max-width:60ch}
+.about .mail{font-weight:600;color:var(--sea);overflow-wrap:anywhere;display:inline-block;direction:ltr}
+.cform{padding:20px;display:grid;gap:12px;grid-template-columns:1fr}
+.cform textarea{padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--bg);width:100%;min-height:120px;font:inherit;color:inherit;resize:vertical}
+.cform .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.cform .btn{grid-column:auto}
+.cform .hint{color:var(--muted);font-size:13.5px;margin:0}
+footer a{color:inherit}
+@media (max-width:860px){.vs,.contact{grid-template-columns:1fr}}
+@media (max-width:600px){.brand-tag{display:none}.site-head .wrap{flex-wrap:nowrap;gap:8px}.brand{gap:9px}.brand-name{font-size:18px;white-space:nowrap}.head-link{padding:7px 4px;font-size:14px}.lang-btn{padding:7px 11px}}
+@media (max-width:359px){.head-link{display:none}}
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .fact{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:2px}
 .fact b{font-size:26px;line-height:1.2;color:var(--accent)}
@@ -287,7 +322,7 @@ section[id]{scroll-margin-top:96px}
 .hs-trend{stroke-dasharray:1;animation:trend 6s ease-in-out infinite}
 @keyframes trend{0%{stroke-dashoffset:1}28%,86%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
 .hero-copy>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
-.hero-copy>*:nth-child(2){animation-delay:.08s}.hero-copy>*:nth-child(3){animation-delay:.16s}
+.hero-copy>*:nth-child(2){animation-delay:.08s}.hero-copy>*:nth-child(3){animation-delay:.16s}.hero-copy>*:nth-child(4){animation-delay:.24s}
 .hero-svg{animation:rise .9s cubic-bezier(.2,.7,.2,1) .1s both}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 /* ---- reveal on scroll ---- */
@@ -317,7 +352,10 @@ section[id]{scroll-margin-top:96px}
         <div class="brand-tag" data-i18n="tagline" data-i18n-idx="taglineIdx">Compare supermarket prices and see how they change.</div>
       </div>
     </div>
-    <button class="lang-btn" id="langBtn" type="button">العربية</button>
+    <div class="head-actions">
+      <a class="head-link" href="#contact" data-i18n="navContact">Contact</a>
+      <button class="lang-btn" id="langBtn" type="button">العربية</button>
+    </div>
   </div>
 </header>
 
@@ -330,6 +368,7 @@ section[id]{scroll-margin-top:96px}
   <!-- Hero -->
   <section class="card hero-art" aria-labelledby="heroTitle">
     <div class="hero-copy">
+      <p class="hero-by" data-i18n="heroBy">Run by Kuwaiti students to show part of price inflation and help shoppers compare prices.</p>
       <h1 id="heroTitle" data-i18n="heroTitle">How much is a plate of machboos today?</h1>
       <p data-i18n="heroLead" data-i18n-idx="heroLeadIdx">We track what people in Kuwait pay for machboos and for the groceries to cook it, month by month.</p>
       <div class="hero-cta">
@@ -774,6 +813,23 @@ section[id]{scroll-margin-top:96px}
     </div>
   </section>
 
+  <section id="homecost" class="needs-store" aria-labelledby="homeTitle" hidden>
+    <div class="sec-head">
+      <h2 id="homeTitle" data-i18n="homeTitle">Cook it or order it?</h2>
+      <p data-i18n="homeLead">What one plate of chicken machboos costs to cook at home, next to the restaurant price.</p>
+    </div>
+    <div class="vs">
+      <div class="card vs-tile home"><span class="lbl" data-i18n="homeA">Cooked at home</span><b class="num" id="homeA"></b><div class="vs-bar"><i id="homeABar"></i></div><small id="homeASub"></small></div>
+      <div class="card vs-tile"><span class="lbl" data-i18n="homeB">Ordered from a restaurant</span><b class="num" id="homeB"></b><div class="vs-bar"><i style="width:100%"></i></div><small id="homeBSub"></small></div>
+    </div>
+    <p class="vs-diff" id="homeDiff"></p>
+    <p class="vs-note" id="homeNote"></p>
+    <details class="card recipe">
+      <summary data-i18n="homeRecipe">See the recipe amounts (one chicken makes two plates)</summary>
+      <table><thead><tr><th data-i18n="rcItem">Ingredient</th><th data-i18n="rcUse">Amount used</th><th class="p" id="rcCostH"></th></tr></thead><tbody id="rcBody"></tbody><tfoot id="rcFoot"></tfoot></table>
+    </details>
+  </section>
+
   <section id="basket" class="needs-store" aria-labelledby="basketTitle">
     <div class="sec-head">
       <h2 id="basketTitle" data-i18n="basketTitle">Build your weekly basket</h2>
@@ -835,6 +891,7 @@ section[id]{scroll-margin-top:96px}
           <li data-i18n="m4"></li>
           <li class="only-nolive" data-i18n="m7"></li>
           <li class="only-nolive needs-store" data-i18n="m8"></li>
+          <li class="only-nolive needs-store" data-i18n="m9"></li>
         </ol>
         <p class="data-link only-nolive"><a href="https://github.com/machboosindex/website/tree/main/data" target="_blank" rel="noopener" data-i18n="dataLink">Download the price data</a></p>
       </div>
@@ -850,10 +907,37 @@ section[id]{scroll-margin-top:96px}
     </div>
   </section>
 
+  <!-- About + contact -->
+  <section id="contact" aria-labelledby="contactTitle">
+    <div class="sec-head">
+      <h2 id="contactTitle" data-i18n="contactTitle">About and contact</h2>
+      <p data-i18n="contactLead">Found a wrong price, or have an idea? Write to us.</p>
+    </div>
+    <div class="contact">
+      <div class="card about">
+        <h3 data-i18n="aboutTitle">Who runs this</h3>
+        <p data-i18n="aboutText"></p>
+        <p data-i18n="aboutText2"></p>
+        <p><span data-i18n="aboutMail">Email:</span> <a class="mail" id="mailLink" href="mailto:machboosindex@gmail.com">machboosindex@gmail.com</a></p>
+      </div>
+      <form class="card cform" id="contactForm" novalidate>
+        <h3 data-i18n="cTitle">Leave a comment</h3>
+        <div class="field"><label for="cName" data-i18n="cName">Your name (optional)</label><input id="cName" type="text" autocomplete="name" maxlength="80"></div>
+        <div class="field"><label for="cMsg" data-i18n="cMsg">Your message</label><textarea id="cMsg" maxlength="2000" required></textarea></div>
+        <div class="row">
+          <button class="btn" type="submit" data-i18n="cSend">Send message</button>
+          <button class="btn-ghost" type="button" id="cCopy" data-i18n="cCopy">Copy email address</button>
+        </div>
+        <p class="hint" data-i18n="cHint"></p>
+        <div class="msg" id="cMsgOut" role="status"></div>
+      </form>
+    </div>
+  </section>
+
 </main>
 
 <footer>
-  <div class="wrap" id="footerText"></div>
+  <div class="wrap"><span id="footerText"></span> <a href="mailto:machboosindex@gmail.com">machboosindex@gmail.com</a></div>
 </footer>
 
 <script>
@@ -925,6 +1009,21 @@ const T = {
     idxNote:"The latest price is the median menu price on {d}. Earlier years are estimates, scaled by the official Restaurants & Hotels price index (Central Statistical Bureau); 2023 to 2025 are approximated from published monthly figures.",
     sRest:"Restaurant plate (median)", sHome:"Home-cooked plate",
     basketTitle:"Build your weekly basket",
+    heroBy:"Run by Kuwaiti students to show part of price inflation and help shoppers compare prices.",
+    navContact:"Contact",
+    homeTitle:"Cook it or order it?", homeLead:"What one plate of chicken machboos costs to cook at home, next to the restaurant price.",
+    homeA:"Cooked at home", homeB:"Ordered from a restaurant",
+    homeASub:"Ingredients from {s}, the cheapest store that lists them all", homeBSub:"Median of {n} restaurant menus",
+    homeDiff:"Ordering costs {x} times as much: {d} more for each plate.",
+    homeNote:"One plate is half a chicken with about a cup of rice. We count only what the recipe uses from each pack, so rice, oil and spices are left over for next time. Fresh onions, garlic and tomatoes, cooking gas and your time are not counted.",
+    homeRange:" At the other stores that list everything, the plate costs up to {hi}.",
+    homeRecipe:"See the recipe amounts (one chicken makes two plates)", rcItem:"Ingredient", rcUse:"Amount used", rcCost:"Cost at {s}", rcTotal:"Two plates", rcPlate:"One plate",
+    m9:"The home-cooked plate uses a standard recipe: one 900 g chicken and 400 g of rice make two plates, with small amounts of the other ingredients. Only the amount used from each pack is counted.",
+    contactTitle:"About and contact", contactLead:"Found a wrong price, or have an idea? Write to us.",
+    aboutTitle:"Who runs this", aboutText:"The Machboos Index is run by Kuwaiti students. It shows one part of price inflation in Kuwait, raises shoppers' awareness, and helps them compare prices.", aboutText2:"It is not affiliated with any restaurant, store or delivery app.", aboutMail:"Email:",
+    cTitle:"Leave a comment", cName:"Your name (optional)", cMsg:"Your message", cSend:"Send message", cCopy:"Copy email address", cCopied:"Email address copied.",
+    cHint:"Sending opens your email app with the message ready to go to machboosindex@gmail.com.", cEmpty:"Please write a message first.", cOpened:"Your email app should now be open. Press send there to finish.",
+    cSubject:"Machboos Index: message from a visitor", cFrom:"From: {n}",
     basketTitleM:"Cook a machboos: what the ingredients cost",
     basketLeadM:"The basket starts with the ingredients for a chicken machboos, the same brand and pack at every store. Untick what you already have, or add anything else.",
     presetM:"Machboos ingredients", presetClear:"Clear basket",
@@ -996,6 +1095,21 @@ const T = {
     idxNote:"آخر سعر هو الوسيط لأسعار القوائم في {d}. السنوات السابقة تقديرية، محسوبة بالرقم القياسي الرسمي لأسعار المطاعم والفنادق (الإدارة المركزية للإحصاء)، وقيم 2023 إلى 2025 تقريبية من الأرقام الشهرية المنشورة.",
     sRest:"صحن المطعم (الوسيط)", sHome:"صحن مطبوخ في البيت",
     basketTitle:"جهّز سلّتك الأسبوعية",
+    heroBy:"يديره طلبة كويتيون لإظهار جانب من تضخّم الأسعار ومساعدة المستهلك على مقارنة الأسعار.",
+    navContact:"تواصل",
+    homeTitle:"تطبخه أو تطلبه؟", homeLead:"كم يكلّف صحن مجبوس الدجاج إذا طبخته في البيت، مقابل سعره في المطعم.",
+    homeA:"مطبوخ في البيت", homeB:"من المطعم",
+    homeASub:"المقادير من {s}، أرخص متجر يعرضها كلها", homeBSub:"وسيط {n} قائمة مطعم",
+    homeDiff:"سعر المطعم يساوي {x} مرة تكلفة البيت: يزيد {d} على الصحن الواحد.",
+    homeNote:"الصحن الواحد نصف دجاجة مع كوب أرز تقريباً. نحسب فقط الكمية التي تستخدمها الطبخة من كل عبوة، فيبقى عندك أرز وزيت وبهارات للمرات القادمة. لا نحسب البصل والثوم والطماطم الطازجة ولا الغاز ولا وقتك.",
+    homeRange:" وفي المتاجر الأخرى التي تعرض كل المقادير يصل الصحن إلى {hi}.",
+    homeRecipe:"شوف كميات الطبخة (دجاجة واحدة تكفي صحنين)", rcItem:"المكوّن", rcUse:"الكمية المستخدمة", rcCost:"التكلفة في {s}", rcTotal:"صحنان", rcPlate:"صحن واحد",
+    m9:"صحن البيت محسوب بطبخة معتادة: دجاجة 900 غ و400 غ أرز تكفي صحنين، مع كميات صغيرة من باقي المقادير. نحسب فقط الكمية المستخدمة من كل عبوة.",
+    contactTitle:"من نحن وتواصل معنا", contactLead:"شفت سعراً غير صحيح أو عندك اقتراح؟ اكتب لنا.",
+    aboutTitle:"من يدير المؤشر", aboutText:"مؤشر المجبوس يديره طلبة كويتيون. يُظهر جانباً من تضخّم الأسعار في الكويت، ويرفع وعي المستهلك، ويساعده على مقارنة الأسعار.", aboutText2:"المؤشر غير تابع لأي مطعم أو متجر أو تطبيق توصيل.", aboutMail:"البريد الإلكتروني:",
+    cTitle:"اترك تعليقاً", cName:"اسمك (اختياري)", cMsg:"رسالتك", cSend:"إرسال الرسالة", cCopy:"نسخ عنوان البريد", cCopied:"تم نسخ عنوان البريد.",
+    cHint:"عند الإرسال يفتح تطبيق البريد عندك والرسالة جاهزة للإرسال إلى machboosindex@gmail.com.", cEmpty:"اكتب رسالتك أولاً.", cOpened:"يُفترض أن تطبيق البريد فُتح الآن. اضغط إرسال هناك لإتمام الرسالة.",
+    cSubject:"مؤشر المجبوس: رسالة من زائر", cFrom:"من: {n}",
     basketTitleM:"اطبخ مجبوس: كم تكلّف المقادير؟",
     basketLeadM:"تبدأ السلّة بمقادير مجبوس الدجاج، بالماركة والعبوة نفسها في كل متجر. أزل ما هو موجود عندك أو أضف ما تشاء.",
     presetM:"مقادير المجبوس", presetClear:"تفريغ السلّة",
@@ -1495,6 +1609,29 @@ function renderHistChart(){
 
 /* ---------- Basket ---------- */
 const latest = (it, s) => lastAt(it.s[s.id], D.months.length - 1);
+// Recipe for one 900 g chicken = two plates. id: [amount used, pack amount, English, Arabic]
+const RECIPE = { plates:2, use:{
+  chk:[900,900,"1 whole chicken","دجاجة كاملة"], rice3:[400,2000,"400 g (2 cups)","400 غ (كوبان)"], paste:[30,1080,"2 tbsp (30 g)","ملعقتان كبيرتان (30 غ)"],
+  oil1:[45,1000,"3 tbsp (45 ml)","3 ملاعق كبيرة (45 مل)"], salt:[12,700,"2 tsp (12 g)","ملعقتان صغيرتان (12 غ)"], lime:[5,100,"2 tsp (5 g)","ملعقتان صغيرتان (5 غ)"],
+  pepper:[3,80,"1 tsp (3 g)","ملعقة صغيرة (3 غ)"], turmeric:[3,90,"1 tsp (3 g)","ملعقة صغيرة (3 غ)"], cardamom:[2,80,"1 tsp (2 g)","ملعقة صغيرة (2 غ)"],
+  cinnamon:[2,80,"1 tsp (2 g)","ملعقة صغيرة (2 غ)"], cloves:[1,70,"5 cloves (1 g)","5 حبات (1 غ)"], mixed:[5,85,"2 tsp (5 g)","ملعقتان صغيرتان (5 غ)"], coriander:[2,60,"1 tsp (2 g)","ملعقة صغيرة (2 غ)"] } };
+function renderHome(){
+  const sec = $("homecost"); if (!sec) return;
+  const ids = Object.keys(RECIPE.use);
+  const ok = D && D.grocery && ids.every(id => D.byId[id]);
+  const costs = ok ? D.stores.map(s => { let v = 0; for (const id of ids) { const p = latest(D.byId[id], s); if (p == null) return null; v += p * RECIPE.use[id][0] / RECIPE.use[id][1]; } return { s, v }; }).filter(Boolean).sort((a, b) => a.v - b.v) : [];
+  sec.hidden = !costs.length; if (!costs.length) return;
+  const r5 = v => Math.round(v * 200) / 200;                       // nearest 5 fils
+  const best = costs[0], plate = r5(best.v / RECIPE.plates), hi = r5(costs[costs.length - 1].v / RECIPE.plates), rest = MACH_HISTORY.chicken.med;
+  $("homeA").textContent = money(plate); $("homeB").textContent = money(rest);
+  $("homeABar").style.width = Math.max(4, Math.min(100, plate / rest * 100)) + "%";
+  $("homeASub").textContent = t("homeASub", { s: name(best.s) }); $("homeBSub").textContent = t("homeBSub", { n: MACH_HISTORY.chicken.n });
+  $("homeDiff").textContent = t("homeDiff", { x: (rest / plate).toFixed(1), d: money(rest - plate) });
+  $("homeNote").textContent = t("homeNote") + (costs.length > 1 && hi > plate ? t("homeRange", { hi: money(hi) }) : "");
+  $("rcCostH").textContent = t("rcCost", { s: name(best.s) });
+  $("rcBody").innerHTML = ids.map(id => { const it = D.byId[id], u = RECIPE.use[id]; return `<tr><td><div class="it-name">${esc(name(it))}</div><div class="it-size">${esc(sub(it))}</div></td><td>${esc(u[lang === "ar" ? 3 : 2])}</td><td class="p num">${fmt(latest(it, best.s) * u[0] / u[1])}</td></tr>`; }).join("");
+  $("rcFoot").innerHTML = `<tr><td>${esc(t("rcTotal"))}</td><td></td><td class="p num">${fmt(best.v)}</td></tr><tr><td>${esc(t("rcPlate"))}</td><td></td><td class="p num">${fmt(plate)}</td></tr>`;
+}
 function machIds(){ return D ? D.items.filter(it => it.cat === "machboos").map(it => it.id) : []; }
 function setBasket(ids){ basket = {}; ids.forEach(id => basket[id] = 1); renderPick(); renderTotals(); }
 function renderPick(){
@@ -1602,7 +1739,7 @@ function renderAll(){
   applyText();
   if (!D) return;
   renderDishToggle(); renderIndex(); renderIdxChart();
-  renderPick(); renderTotals();
+  renderHome(); renderPick(); renderTotals();
   renderCats(); renderBoard(); renderRanges(); renderHistChart();
   renderForm();
   $("formMsg").textContent = ""; $("formMsg").className = "msg";
@@ -1632,6 +1769,19 @@ $("pickList").addEventListener("input", e => {
     const id = e.target.dataset.id;
     if (document.getElementById("b-" + id).checked) { basket[id] = Math.min(20, Math.round(+e.target.value)); renderTotals(); }
   }
+});
+$("contactForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const out = $("cMsgOut"), msg = $("cMsg").value.trim(), nm = $("cName").value.trim();
+  if (!msg) { out.textContent = t("cEmpty"); out.className = "msg err"; $("cMsg").focus(); return; }
+  const body = (nm ? t("cFrom", { n: nm }) + "\n\n" : "") + msg;
+  location.href = "mailto:machboosindex@gmail.com?subject=" + encodeURIComponent(t("cSubject")) + "&body=" + encodeURIComponent(body);
+  out.textContent = t("cOpened"); out.className = "msg ok";
+});
+$("cCopy").addEventListener("click", async () => {
+  const out = $("cMsgOut");
+  try { await navigator.clipboard.writeText("machboosindex@gmail.com"); out.textContent = t("cCopied"); out.className = "msg ok"; }
+  catch (e) { out.textContent = "machboosindex@gmail.com"; out.className = "msg"; }
 });
 $("presetM").addEventListener("click", () => setBasket(machIds()));
 $("presetClear").addEventListener("click", () => setBasket([]));
