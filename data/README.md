@@ -27,12 +27,12 @@ Delivery-app menu prices can be higher than dine-in prices at the same restauran
 1. One price per kitchen and dish: its lowest-priced standard plate (`used_in_index = yes`).
 2. Restaurants that share the same menu and prices are counted once (`kitchen_group`).
 3. If a dish was discounted on the day, the regular price is used (`list_price_kd`).
-4. The index is the median of those prices. Budget and premium are the medians of the cheapest tenth and the most expensive tenth of restaurants.
+4. The index is the median of those prices. Budget is the median of the cheapest tenth of restaurants. Premium is the average of the five most expensive restaurants.
 
-| Dish | Restaurants | Budget (cheapest tenth) | Median | Premium (most expensive tenth) |
+| Dish | Restaurants | Budget (cheapest tenth) | Median | Premium (five most expensive) |
 |---|---|---|---|---|
-| Chicken machboos | 80 | 2.500 | 3.000 | 4.350 |
-| Lamb machboos | 64 | 4.000 | 5.000 | 6.800 |
+| Chicken machboos | 80 | 2.500 | 3.000 | 4.830 |
+| Lamb machboos | 64 | 4.000 | 5.000 | 7.110 |
 | Lamb machboos, Australian lamb | 22 | | 4.750 | |
 | Lamb machboos, Arabic (Naimi) lamb | 24 | | 6.375 | |
 
