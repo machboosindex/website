@@ -266,6 +266,8 @@ section[id]{scroll-margin-top:96px}
 .head-actions{display:flex;align-items:center;gap:8px}
 .head-link{padding:7px 12px;border-radius:999px;font-weight:500;color:var(--ink);text-decoration:none;font-size:15px}
 .head-link:hover{color:var(--accent)}
+.home-seg{justify-self:start;width:max-content}
+.vs-tile.na b{color:var(--muted)}
 .vs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .vs-tile{padding:20px 22px;display:grid;gap:6px;align-content:start}
 .vs-tile .lbl{font-size:13.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
@@ -816,15 +818,16 @@ footer a{color:inherit}
   <section id="homecost" class="needs-store" aria-labelledby="homeTitle" hidden>
     <div class="sec-head">
       <h2 id="homeTitle" data-i18n="homeTitle">Cook it or order it?</h2>
-      <p data-i18n="homeLead">What one plate of chicken machboos costs to cook at home, next to the restaurant price.</p>
+      <p id="homeLead"></p>
     </div>
+    <div class="seg home-seg" id="dishToggle2" role="group" aria-label="Choose dish"></div>
     <div class="vs">
       <div class="card vs-tile home"><span class="lbl" data-i18n="homeA">Cooked at home</span><b class="num" id="homeA"></b><div class="vs-bar"><i id="homeABar"></i></div><small id="homeASub"></small></div>
       <div class="card vs-tile"><span class="lbl" data-i18n="homeB">Ordered from a restaurant</span><b class="num" id="homeB"></b><div class="vs-bar"><i style="width:100%"></i></div><small id="homeBSub"></small></div>
     </div>
     <p class="vs-diff" id="homeDiff"></p>
     <p class="vs-note" id="homeNote"></p>
-    <details class="card recipe">
+    <details class="card recipe" id="homeRecipe">
       <summary data-i18n="homeRecipe">See the recipe amounts (one chicken makes two plates)</summary>
       <table><thead><tr><th data-i18n="rcItem">Ingredient</th><th data-i18n="rcUse">Amount used</th><th class="p" id="rcCostH"></th></tr></thead><tbody id="rcBody"></tbody><tfoot id="rcFoot"></tfoot></table>
     </details>
@@ -1012,6 +1015,9 @@ const T = {
     heroBy:"Run by Kuwaiti students to show part of price inflation and help shoppers compare prices.",
     navContact:"Contact",
     homeTitle:"Cook it or order it?", homeLead:"What one plate of chicken machboos costs to cook at home, next to the restaurant price.",
+    homeLeadLamb:"What one plate of lamb machboos costs at a restaurant. A home-cooked price for lamb is not available yet.",
+    homeASubLamb:"No lamb cut can be matched exactly between stores",
+    homeNoteLamb:"We only compare identical products. Stores sell lamb shoulder, leg and shank fresh under their own codes, so the same cut cannot be matched from one store to another. Choose chicken to see the home-cooked price.",
     homeA:"Cooked at home", homeB:"Ordered from a restaurant",
     homeASub:"Ingredients from {s}, the cheapest store that lists them all", homeBSub:"Median of {n} restaurant menus",
     homeDiff:"Ordering costs {x} times as much: {d} more for each plate.",
@@ -1098,6 +1104,9 @@ const T = {
     heroBy:"يديره طلبة كويتيون لإظهار جانب من تضخّم الأسعار ومساعدة المستهلك على مقارنة الأسعار.",
     navContact:"تواصل",
     homeTitle:"تطبخه أو تطلبه؟", homeLead:"كم يكلّف صحن مجبوس الدجاج إذا طبخته في البيت، مقابل سعره في المطعم.",
+    homeLeadLamb:"كم يكلّف صحن مجبوس اللحم في المطعم. تكلفة طبخه في البيت غير متوفرة حالياً.",
+    homeASubLamb:"لا توجد قطعة لحم يمكن مطابقتها تماماً بين المتاجر",
+    homeNoteLamb:"نقارن المنتجات المتطابقة فقط. المتاجر تبيع كتف وفخذ وموزات اللحم طازجة بأكواد خاصة بكل متجر، فلا يمكن مطابقة القطعة نفسها بين متجر وآخر. اختر الدجاج لمشاهدة تكلفة البيت.",
     homeA:"مطبوخ في البيت", homeB:"من المطعم",
     homeASub:"المقادير من {s}، أرخص متجر يعرضها كلها", homeBSub:"وسيط {n} قائمة مطعم",
     homeDiff:"سعر المطعم يساوي {x} مرة تكلفة البيت: يزيد {d} على الصحن الواحد.",
@@ -1475,9 +1484,11 @@ const DISHES = { chicken:{ ar:"مجبوس دجاج", label:"dChicken", item:"idx
 const hasDish = k => D.mach[k].med.some(v => v != null);
 function renderDishToggle(){
   const opts = Object.keys(DISHES).filter(hasDish);
-  const box = $("dishToggle");
-  box.hidden = opts.length < 2;
-  box.innerHTML = opts.map(k => `<button type="button" data-dish="${k}" aria-pressed="${k === dish}">${esc(t(DISHES[k].label))}</button>`).join("");
+  ["dishToggle", "dishToggle2"].forEach(id => {
+    const box = $(id); if (!box) return;
+    box.hidden = opts.length < 2;
+    box.innerHTML = opts.map(k => `<button type="button" data-dish="${k}" aria-pressed="${k === dish}">${esc(t(DISHES[k].label))}</button>`).join("");
+  });
 }
 function renderIndex(){
   const M = D.mach[dish], H = D.home[dish];
@@ -1622,10 +1633,21 @@ function renderHome(){
   const costs = ok ? D.stores.map(s => { let v = 0; for (const id of ids) { const p = latest(D.byId[id], s); if (p == null) return null; v += p * RECIPE.use[id][0] / RECIPE.use[id][1]; } return { s, v }; }).filter(Boolean).sort((a, b) => a.v - b.v) : [];
   sec.hidden = !costs.length; if (!costs.length) return;
   const r5 = v => Math.round(v * 200) / 200;                       // nearest 5 fils
-  const best = costs[0], plate = r5(best.v / RECIPE.plates), hi = r5(costs[costs.length - 1].v / RECIPE.plates), rest = MACH_HISTORY.chicken.med;
-  $("homeA").textContent = money(plate); $("homeB").textContent = money(rest);
+  const MH = MACH_HISTORY[dish] || MACH_HISTORY.chicken, homeTile = $("homeA").closest(".vs-tile");
+  $("homeLead").textContent = t(dish === "lamb" ? "homeLeadLamb" : "homeLead");
+  $("homeB").textContent = money(MH.med); $("homeBSub").textContent = t("homeBSub", { n: MH.n });
+  const noHome = dish !== "chicken";                               // no lamb cut is matched between stores yet
+  homeTile.classList.toggle("na", noHome); homeTile.classList.toggle("home", !noHome);
+  $("homeDiff").hidden = noHome; $("homeRecipe").hidden = noHome;
+  if (noHome) {
+    $("homeA").textContent = "–"; $("homeABar").style.width = "0%";
+    $("homeASub").textContent = t("homeASubLamb"); $("homeNote").textContent = t("homeNoteLamb");
+    return;
+  }
+  const best = costs[0], plate = r5(best.v / RECIPE.plates), hi = r5(costs[costs.length - 1].v / RECIPE.plates), rest = MH.med;
+  $("homeA").textContent = money(plate);
   $("homeABar").style.width = Math.max(4, Math.min(100, plate / rest * 100)) + "%";
-  $("homeASub").textContent = t("homeASub", { s: name(best.s) }); $("homeBSub").textContent = t("homeBSub", { n: MACH_HISTORY.chicken.n });
+  $("homeASub").textContent = t("homeASub", { s: name(best.s) });
   $("homeDiff").textContent = t("homeDiff", { x: (rest / plate).toFixed(1), d: money(rest - plate) });
   $("homeNote").textContent = t("homeNote") + (costs.length > 1 && hi > plate ? t("homeRange", { hi: money(hi) }) : "");
   $("rcCostH").textContent = t("rcCost", { s: name(best.s) });
@@ -1785,10 +1807,12 @@ $("cCopy").addEventListener("click", async () => {
 });
 $("presetM").addEventListener("click", () => setBasket(machIds()));
 $("presetClear").addEventListener("click", () => setBasket([]));
-$("dishToggle").addEventListener("click", e => {
+const pickDish = e => {
   const b = e.target.closest("[data-dish]"); if (!b) return;
-  dish = b.dataset.dish; renderDishToggle(); renderIndex(); renderIdxChart();
-});
+  dish = b.dataset.dish; renderDishToggle(); renderIndex(); renderIdxChart(); renderHome();
+};
+$("dishToggle").addEventListener("click", pickDish);
+$("dishToggle2").addEventListener("click", pickDish);
 $("search").addEventListener("input", e => { query = e.target.value; renderBoard(); });
 $("cats").addEventListener("click", e => {
   const b = e.target.closest("[data-cat]"); if (!b) return;
