@@ -4,9 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Machboos Index</title>
-<meta name="description" content="The Machboos Index tracks what a plate of chicken or lamb machboos costs at restaurants in Kuwait, and how the price has changed since 2016.">
+<meta name="description" content="The Machboos Index tracks what a plate of chicken or lamb machboos costs at restaurants in Kuwait since 2016, what it costs to cook at home, and how supermarket prices compare.">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#122830" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F2F3A'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23F2B33A'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://machboosindex.pages.dev/">
 <meta property="og:title" content="Machboos Index | مؤشر المجبوس">
-<meta property="og:description" content="What a plate of machboos costs in Kuwait, and how the price has changed since 2016.">
+<meta property="og:description" content="What a plate of machboos costs in Kuwait, at a restaurant and cooked at home, and how supermarket prices compare.">
+<meta property="og:url" content="https://machboosindex.pages.dev/">
+<meta property="og:site_name" content="Machboos Index">
+<meta property="og:image" content="https://machboosindex.pages.dev/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Machboos Index: a man holding a price notebook beside a plate of chicken machboos, with the Kuwait Towers and a dhow behind.">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +31,10 @@
   --ink:#0F2F3A;
   --muted:#58707A;
   --line:#D9E3E7;
-  --accent:#B97A06;        /* saffron, the colour of machboos rice */
+  --accent:#946100;        /* saffron for text and outlines (passes contrast on white) */
+  --fill:#F2B33A;          /* saffron rice: buttons, tags and selected controls */
+  --on-fill:#2A1B00;       /* text on the saffron fill */
+  --chart:#B97A06;         /* index chart line */
   --accent-soft:#FBF0D8;
   --sea:#0E5C72;           /* Gulf blue */
   --good:#1B7A4B; --good-soft:#E1F3E9;
@@ -34,7 +48,7 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#0B1A20; --surface:#122830; --ink:#E3EDF0; --muted:#97ABB2; --line:#23424C;
-    --accent:#F0B43C; --accent-soft:#3A2D12; --sea:#62B6CC;
+    --accent:#F0B43C; --fill:#F0B43C; --on-fill:#1d1503; --chart:#F0B43C; --accent-soft:#3A2D12; --sea:#62B6CC;
     --good:#5ACB90; --good-soft:#143A28; --bad:#F08A77; --bad-soft:#40201B;
     --c1:#62B6CC; --c2:#F0B43C; --c3:#B793E0; --c4:#F08A77; --c5:#6FD3A0; --c6:#D9B77A;
   --hero-blob:#1A3440;--hero-ink:#2F5566;--hero-sail:#24414D;
@@ -43,7 +57,7 @@
 }
 :root[data-theme="dark"]{
   --bg:#0B1A20; --surface:#122830; --ink:#E3EDF0; --muted:#97ABB2; --line:#23424C;
-  --accent:#F0B43C; --accent-soft:#3A2D12; --sea:#62B6CC;
+  --accent:#F0B43C; --fill:#F0B43C; --on-fill:#1d1503; --chart:#F0B43C; --accent-soft:#3A2D12; --sea:#62B6CC;
   --good:#5ACB90; --good-soft:#143A28; --bad:#F08A77; --bad-soft:#40201B;
   --c1:#62B6CC; --c2:#F0B43C; --c3:#B793E0; --c4:#F08A77; --c5:#6FD3A0; --c6:#D9B77A;
   --hero-blob:#1A3440;--hero-ink:#2F5566;--hero-sail:#24414D;
@@ -66,7 +80,7 @@ button,input,select{font:inherit;color:inherit}
 .site-head.scrolled{box-shadow:0 6px 24px -14px rgba(10,30,40,.45)}
 .site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
-.brand-mark{width:34px;height:34px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:#fff;font-family:var(--font-display);font-size:15px;font-weight:700}
+.brand-mark{width:34px;height:34px;border-radius:8px;background:var(--fill);display:grid;place-items:center;color:var(--on-fill);font-family:var(--font-display);font-size:15px;font-weight:700}
 .brand-name{font-family:var(--font-display);font-size:20px;font-weight:700}
 .brand-tag{font-size:13px;color:var(--muted)}
 .lang-btn{border:1px solid var(--line);background:var(--bg);padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:500}
@@ -76,12 +90,13 @@ button,input,select{font:inherit;color:inherit}
 .demo .wrap{padding-top:9px;padding-bottom:9px;font-size:14px;display:flex;gap:10px;align-items:center}
 .demo b{font-weight:600}
 .pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
-.pill-demo{background:var(--accent);color:#fff}
+.pill-demo{background:var(--fill);color:var(--on-fill)}
 :root[data-theme="dark"] .pill-demo{color:#1d1503}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pill-demo{color:#1d1503}}
 
-main{display:grid;gap:56px;padding:36px 0 64px}
-section{display:grid;gap:20px}
+main.wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:56px;padding-top:28px;padding-bottom:72px}
+[dir="ltr"] h1,[dir="ltr"] h2,[dir="ltr"] h3,[dir="ltr"] .brand-name,[dir="ltr"] .tag-top,[dir="ltr"] .vs-tile b{word-spacing:.16em}
+section{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
 .sec-head{display:grid;gap:6px;max-width:65ch}
 .sec-head h2{font-size:28px}
 .sec-head p{color:var(--muted)}
@@ -91,7 +106,7 @@ section{display:grid;gap:20px}
 /* Hero: shelf tag */
 .hero{display:grid;grid-template-columns:minmax(290px,380px) 1fr;gap:20px;align-items:stretch}
 .tag{position:relative;overflow:hidden;display:grid;align-content:start}
-.tag-top{background:var(--accent);color:#fff;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-display);font-weight:600;letter-spacing:.04em}
+.tag-top{background:var(--fill);color:var(--on-fill);padding:10px 20px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-display);font-weight:600;letter-spacing:.04em}
 :root[data-theme="dark"] .tag-top{color:#1d1503}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tag-top{color:#1d1503}}
 .tag-body{padding:18px 20px 20px;display:grid;gap:14px}
@@ -131,8 +146,10 @@ section{display:grid;gap:20px}
 
 /* Basket */
 .basket{display:grid;grid-template-columns:minmax(260px,1fr) 1.3fr;gap:20px}
-.pick{padding:0 0 8px;max-height:620px;overflow-y:auto;overscroll-behavior:contain}
-.pick-cat{position:sticky;top:0;z-index:1;background:var(--surface);padding:10px 18px 6px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
+.pick{padding:0 0 26px;max-height:620px;overflow-y:auto;overscroll-behavior:contain}
+.pick-more{position:sticky;bottom:-26px;margin-top:-8px;padding:22px 18px 8px;text-align:center;font-size:12.5px;font-weight:600;color:var(--muted);background:linear-gradient(to bottom,transparent,var(--surface) 55%);pointer-events:none;transition:opacity .2s}
+.pick.at-end .pick-more{opacity:0}
+.pick-cat{position:sticky;top:0;z-index:1;background:var(--surface);padding:10px 18px 6px;font-size:13px;font-weight:700;color:var(--muted);border-bottom:1px solid var(--line)}
 .totals{align-self:start}
 .presets{display:flex;gap:8px;flex-wrap:wrap}
 .fresh-note{margin:0;color:var(--muted);font-size:14px;max-width:70ch}
@@ -140,7 +157,7 @@ section{display:grid;gap:20px}
 .pick-row:last-child{border-bottom:0}
 .pick-row label{cursor:pointer;display:grid}
 .pick-row label small{color:var(--muted);font-size:12.5px}
-.pick-row input[type="checkbox"]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.pick-row input[type="checkbox"]{width:18px;height:18px;accent-color:var(--fill);cursor:pointer}
 .qty{width:62px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);text-align:center}
 .qty:disabled{opacity:.45}
 .totals{padding:20px;display:grid;gap:16px;align-content:start}
@@ -158,10 +175,10 @@ section{display:grid;gap:20px}
 
 /* Board */
 .tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
-.search{flex:1 1 240px;max-width:340px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.search{flex:1 1 240px;min-width:0;width:100%;max-width:340px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
 .cats{display:flex;gap:6px;flex-wrap:wrap}
 .cat{border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:999px;cursor:pointer;font-size:14px}
-.cat[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cat[aria-pressed="true"]{background:var(--fill);color:var(--on-fill);border-color:var(--fill);font-weight:600}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;min-width:720px}
 th,td{padding:12px 14px;text-align:start;border-bottom:1px solid var(--line)}
@@ -185,6 +202,11 @@ table.wide tbody tr:hover td:first-child{background:var(--bg)}
 table.wide td.low span{padding:3px 6px}
 body.no-live tbody tr{cursor:default}
 .board-note{margin:0;color:var(--ink);font-weight:500}
+.swipe-hint{display:none;margin:0;color:var(--muted);font-size:13.5px}
+@media (max-width:860px){.swipe-hint{display:block}}
+.miss-group{border-top:1px dashed var(--line);padding-top:12px}
+.miss-group summary{cursor:pointer;color:var(--muted);font-weight:600;font-size:14.5px}
+.miss-group .total-row{margin-top:12px}
 
 .history{padding:18px 20px 16px;display:grid;gap:12px}
 .history-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
@@ -198,7 +220,7 @@ body.no-live tbody tr{cursor:default}
 .hero-copy p{color:var(--muted);max-width:44ch;font-size:17px}
 .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
 .btn-cta,.btn-ghost{display:inline-block;padding:11px 18px;border-radius:999px;font-weight:600;text-decoration:none;font-size:15px}
-.btn-cta{background:var(--accent);color:#fff}
+.btn-cta{background:var(--fill);color:var(--on-fill)}
 .btn-cta:hover{filter:brightness(1.06)}
 .btn-ghost{border:1px solid var(--line);color:var(--ink);background:var(--bg)}
 body.no-store .needs-store{display:none!important}
@@ -225,7 +247,7 @@ html{scroll-behavior:smooth}
 .seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--bg)}
 .seg[hidden]{display:none}
 .seg button{border:0;background:transparent;padding:7px 16px;cursor:pointer;font-weight:600;font-size:14px}
-.seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+.seg button[aria-pressed="true"]{background:var(--fill);color:var(--on-fill)}
 :root[data-theme="dark"] .seg button[aria-pressed="true"]{color:#1d1503}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{color:#1d1503}}
 .ranges button{border:0;background:var(--surface);padding:6px 12px;cursor:pointer;font-size:14px}
@@ -239,15 +261,18 @@ form{padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field.full{grid-column:1/-1}
 .field label{font-size:13.5px;font-weight:600}
 .field input,.field select{padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--bg);width:100%}
-.btn{grid-column:1/-1;justify-self:start;background:var(--accent);color:#fff;border:0;padding:11px 20px;border-radius:10px;font-weight:600;cursor:pointer}
+.btn{grid-column:1/-1;justify-self:start;background:var(--fill);color:var(--on-fill);border:0;padding:11px 20px;border-radius:10px;font-weight:600;cursor:pointer}
 :root[data-theme="dark"] .btn{color:#1d1503}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn{color:#1d1503}}
 .btn:hover{filter:brightness(1.06)}
 .msg{grid-column:1/-1;font-size:14.5px;min-height:1.4em}
+.msg:empty{display:none}
 .msg.ok{color:var(--good)} .msg.err{color:var(--bad)}
 
 .method{padding:20px;display:grid;gap:10px}
-.method ol{margin:0;padding-inline-start:20px;display:grid;gap:8px;max-width:65ch}
+.method ul{margin:0;padding-inline-start:20px;columns:2;column-gap:44px}
+.method li{break-inside:avoid;margin-bottom:9px}
+@media (max-width:860px){.method ul{columns:1}}
 
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:13.5px}
 
@@ -264,13 +289,16 @@ section[id]{scroll-margin-top:96px}
 /* ---- facts strip ---- */
 .hero-by{font-size:14.5px!important;font-weight:600;color:var(--sea)!important;letter-spacing:.01em}
 .head-actions{display:flex;align-items:center;gap:8px}
-.head-link{padding:7px 12px;border-radius:999px;font-weight:500;color:var(--ink);text-decoration:none;font-size:15px}
+.head-nav{display:flex;align-items:center;gap:2px}
+.head-link{padding:7px 10px;border-radius:999px;font-weight:500;color:var(--ink);text-decoration:none;font-size:14.5px;white-space:nowrap}
+@media (max-width:1100px){.brand-tag{display:none}}
+@media (max-width:860px){.head-nav .head-link:not(:last-child){display:none}}
 .head-link:hover{color:var(--accent)}
 .home-seg{justify-self:start;width:max-content}
 .vs-tile.na b{color:var(--muted)}
 .vs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .vs-tile{padding:20px 22px;display:grid;gap:6px;align-content:start}
-.vs-tile .lbl{font-size:13.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.vs-tile .lbl{font-size:14.5px;font-weight:600;color:var(--muted)}
 .vs-tile b{font-family:var(--font-display);font-size:clamp(32px,5vw,44px);line-height:1.1}
 .vs-tile.home b{color:var(--good)}
 .vs-tile small{color:var(--muted);font-size:14px}
@@ -282,7 +310,9 @@ section[id]{scroll-margin-top:96px}
 .recipe{padding:4px 18px}
 .recipe summary{cursor:pointer;padding:12px 0;font-weight:600}
 .recipe table{min-width:0;margin-bottom:14px}
-.recipe td,.recipe th{padding:8px 8px}
+.recipe{overflow-x:auto}
+.recipe table{width:100%}
+.recipe td,.recipe th{padding:8px 8px;white-space:normal}
 .recipe tbody tr{cursor:default}.recipe tbody tr:hover{background:none}
 .recipe tfoot td{font-weight:700;border-top:2px solid var(--line)}
 .contact{display:grid;grid-template-columns:1fr 1.2fr;gap:20px;align-items:start}
@@ -298,10 +328,10 @@ section[id]{scroll-margin-top:96px}
 footer a{color:inherit}
 @media (max-width:860px){.vs,.contact{grid-template-columns:1fr}}
 @media (max-width:600px){.brand-tag{display:none}.site-head .wrap{flex-wrap:nowrap;gap:8px}.brand{gap:9px}.brand-name{font-size:18px;white-space:nowrap}.head-link{padding:7px 4px;font-size:14px}.lang-btn{padding:7px 11px}}
-@media (max-width:359px){.head-link{display:none}}
+@media (max-width:359px){.head-nav{display:none}}
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .fact{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:2px}
-.fact b{font-size:26px;line-height:1.2;color:var(--accent)}
+.fact b{font-family:var(--font-display);font-size:28px;line-height:1.2;color:var(--ink)}
 .fact span{font-size:13.5px;color:var(--muted)}
 @media (max-width:720px){.facts{grid-template-columns:repeat(2,1fr)}}
 /* ---- small touches ---- */
@@ -355,7 +385,13 @@ footer a{color:inherit}
       </div>
     </div>
     <div class="head-actions">
-      <a class="head-link" href="#contact" data-i18n="navContact">Contact</a>
+      <nav class="head-nav" aria-label="Sections">
+        <a class="head-link" href="#index" data-i18n="navIndex">Index</a>
+        <a class="head-link needs-store" href="#homecost" data-i18n="navHome">Cook or order</a>
+        <a class="head-link needs-store" href="#basket" data-i18n="navBasket">Ingredients</a>
+        <a class="head-link needs-store" href="#board" data-i18n="navBoard">Price board</a>
+        <a class="head-link" href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
       <button class="lang-btn" id="langBtn" type="button">العربية</button>
     </div>
   </div>
@@ -850,7 +886,7 @@ footer a{color:inherit}
   </section>
 
   <!-- Board -->
-  <section class="needs-store" aria-labelledby="boardTitle">
+  <section id="board" class="needs-store" aria-labelledby="boardTitle">
     <div class="sec-head">
       <h2 id="boardTitle" data-i18n="boardTitle">Price board</h2>
       <p data-i18n="boardLead" data-i18n-idx="boardLeadNow">The lowest price in each row is highlighted. Select an item to see how its price changed.</p>
@@ -860,6 +896,7 @@ footer a{color:inherit}
       <div class="cats" id="cats" role="group" aria-label="Categories"></div>
     </div>
     <p class="board-note" id="boardNote" hidden></p>
+    <p class="swipe-hint" data-i18n="swipeHint">Swipe sideways to see all the stores.</p>
     <div class="card table-wrap">
       <table>
         <thead><tr id="theadRow"></tr></thead>
@@ -885,7 +922,7 @@ footer a{color:inherit}
     <div class="submit">
       <div class="card method">
         <h3 data-i18n="methodTitle">How the numbers work</h3>
-        <ol>
+        <ul>
           <li class="needs-live" data-i18n="m1"></li>
           <li data-i18n="m2" data-i18n-idx="m2Idx"></li>
           <li class="only-nolive" data-i18n="m5"></li>
@@ -895,7 +932,7 @@ footer a{color:inherit}
           <li class="only-nolive" data-i18n="m7"></li>
           <li class="only-nolive needs-store" data-i18n="m8"></li>
           <li class="only-nolive needs-store" data-i18n="m9"></li>
-        </ol>
+        </ul>
         <p class="data-link only-nolive"><a href="https://github.com/machboosindex/website/tree/main/data" target="_blank" rel="noopener" data-i18n="dataLink">Download the price data</a></p>
       </div>
       <form class="card needs-live" id="priceForm" novalidate>
@@ -984,7 +1021,10 @@ const T = {
     idxEyebrow:"The Machboos Index", idxItem:"Chicken machboos, one plate", idxItemLamb:"Lamb machboos, one plate", dChicken:"Chicken", dLamb:"Lamb",
     heroTitle:"How much is a plate of machboos today?", ctaIndex:"See this month's index", ctaBasket:"Compare supermarkets", heroLead:"We track what people in Kuwait pay for machboos and for the groceries to cook it, month by month.", idxSub:"Median price across the restaurants we check",
     idxSubN:"Median price across {n} restaurants", noMach:"No machboos prices yet.",
-    yoy:"{p} vs. a year ago", since:"{p} since {m}",
+    yoy:"{p} vs. a year ago", since:"{p} since {m}", in10:"{p} in 10 years",
+    navIndex:"Index", navHome:"Cook or order", navBasket:"Ingredients", navBoard:"Price board",
+    swipeHint:"Swipe sideways to see all the stores.", pickMore:"Scroll for more products",
+    missGroup:"{n} stores are not compared: they don't list every item", missGroup1:"1 store is not compared: it doesn't list every item",
     tBudget:"Budget restaurants", tMid:"Mid-range restaurants", tPremium:"Premium restaurants",
     home:"Cook it at home", homeNote:"per plate, at co-op prices",
     falafel:"Falafel sandwich", falafelNote:"fixed at 100 fils since 1984",
@@ -1073,7 +1113,10 @@ const T = {
     idxEyebrow:"مؤشر المجبوس", idxItem:"صحن واحد", idxItemLamb:"صحن واحد", dChicken:"دجاج", dLamb:"لحم",
     heroTitle:"كم سعر صحن المجبوس اليوم؟", ctaIndex:"شوف مؤشر هذا الشهر", ctaBasket:"قارن الأسواق", heroLead:"نتابع كم يدفع الناس في الكويت ثمن المجبوس ومكوّناته، شهراً بعد شهر.", idxSub:"السعر الوسيط في المطاعم التي نتابعها",
     idxSubN:"السعر الوسيط في {n} مطعماً", noMach:"لا توجد أسعار مجبوس بعد.",
-    yoy:"{p} مقارنة بالعام الماضي", since:"{p} منذ {m}",
+    yoy:"{p} مقارنة بالعام الماضي", since:"{p} منذ {m}", in10:"{p} خلال 10 سنوات",
+    navIndex:"المؤشر", navHome:"تطبخ أو تطلب", navBasket:"المقادير", navBoard:"لوحة الأسعار",
+    swipeHint:"اسحب يميناً ويساراً لمشاهدة كل المتاجر.", pickMore:"مرّر لمشاهدة باقي المنتجات",
+    missGroup:"{n} من المتاجر خارج المقارنة لأنها لا تعرض كل الأصناف", missGroup1:"متجر واحد خارج المقارنة لأنه لا يعرض كل الأصناف",
     tBudget:"مطاعم اقتصادية", tMid:"مطاعم متوسطة", tPremium:"مطاعم راقية",
     home:"طبخه في البيت", homeNote:"للصحن الواحد بأسعار الجمعيات",
     falafel:"سندويشة فلافل", falafelNote:"سعرها ثابت 100 فلس منذ 1984",
@@ -1509,7 +1552,8 @@ function renderIndex(){
     const chips = [];
     if (k >= 12 && M.med[k - 12] != null) { const p = pct(cur, M.med[k - 12]); chips.push(`<span class="pill ${chipClass(p)} num">${t("yoy", { p: pctStr(p) })}</span>`); }
     const f = M.med.findIndex(v => v != null);
-    if (f >= 0 && f < k - 12) { const p = pct(cur, M.med[f]); chips.push(`<span class="pill ${chipClass(p)} num">${t("since", { p: pctStr(p), m: monthLabel(f) })}</span>`); }
+    if (k >= 120 && M.med[k - 120] != null) { const p = pct(cur, M.med[k - 120]); chips.push(`<span class="pill ${chipClass(p)} num">${t("in10", { p: pctStr(p) })}</span>`); }
+    else if (f >= 0 && f < k - 12) { const p = pct(cur, M.med[f]); chips.push(`<span class="pill ${chipClass(p)} num">${t("since", { p: pctStr(p), m: monthLabel(f) })}</span>`); }
     $("idxChips").innerHTML = chips.join("");
   }
   const rows = [];
@@ -1570,7 +1614,7 @@ function renderIdxChart(){
   if (!window.Chart) return;
   idxChart && idxChart.destroy();
   const cv = $("idxChart"), g = cv.getContext("2d").createLinearGradient(0, 0, 0, cv.parentElement.clientHeight || 300);
-  const acc = tok("--accent"), rgb = acc.startsWith("#") && acc.length === 7 ? [1, 3, 5].map(i => parseInt(acc.slice(i, i + 2), 16)).join(",") : "185,122,6";
+  const acc = tok("--chart") || tok("--accent"), rgb = acc.startsWith("#") && acc.length === 7 ? [1, 3, 5].map(i => parseInt(acc.slice(i, i + 2), 16)).join(",") : "185,122,6";
   g.addColorStop(0, `rgba(${rgb},.30)`); g.addColorStop(1, `rgba(${rgb},0)`);
   const sets = [{ label:t("sRest"), data, borderColor:acc, backgroundColor:g, fill:true, borderWidth:2.5, tension:.25, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:acc, pointHoverBorderColor:tok("--surface") }];
   const hasHome = home.some(v => v != null);
@@ -1667,8 +1711,11 @@ function renderPick(){
       <label for="b-${esc(it.id)}"><span>${esc(name(it))}</span><small>${esc(sub(it))}</small></label>
       <input class="qty num" type="number" min="1" max="20" id="q-${esc(it.id)}" data-id="${esc(it.id)}" value="${on ? basket[it.id] : 1}" ${on ? "" : "disabled"} aria-label="${esc(t("qty") + ": " + name(it))}">
     </div>`;
-  }).join("");
+  }).join("") + `<div class="pick-more" aria-hidden="true">${esc(t("pickMore"))}</div>`;
+  pickEnd();
 }
+function pickEnd(){ const p = $("pickList"); p.classList.toggle("at-end", p.scrollHeight - p.clientHeight - p.scrollTop < 14); }
+let missOpen = false;
 function renderTotals(){
   const ids = Object.keys(basket).filter(k => basket[k] > 0 && D.byId[k]);
   if (!ids.length) { $("totals").innerHTML = `<p class="empty">${esc(t("emptyBasket"))}</p>`; return; }
@@ -1688,18 +1735,23 @@ function renderTotals(){
   const count = ids.reduce((a, id) => a + basket[id], 0);
   const order = full.slice().sort((a, b) => a.v - b.v).concat(tot.filter(x => x.miss).sort((a, b) => a.miss - b.miss));
   const lackText = x => t("missingList", { list: list(x.lack.length > 4 ? x.lack.slice(0, 3).concat(t("andMore", { n: x.lack.length - 3 })) : x.lack) });
-  $("totals").innerHTML =
-    `<p class="empty">${esc(t(count === 1 && lang === "en" ? "itemsCount1" : "itemsCount", { n: count }))}</p>` +
-    order.map(x => `
+  const row = x => `
       <div class="total-row ${isBest(x) ? "best" : ""} ${x.miss ? "incomplete" : ""}">
         <div class="total-top">
           <span class="total-name">${esc(name(x.s))}${isBest(x) ? `<span class="pill pill-good">${esc(t(bests.length > 1 ? "cheapestTie" : "cheapest"))}</span>` : ""}</span>
           <span class="total-val num">${x.miss ? "–" : money(x.v)}</span>
         </div>
         ${x.miss ? `<small class="miss-note">${esc(lackText(x))}</small>` : `<div class="bar"><span style="width:${(x.v / scale * 100).toFixed(1)}%"></span></div>`}
-      </div>`).join("") +
+      </div>`;
+  const left = order.filter(x => x.miss);
+  $("totals").innerHTML =
+    `<p class="empty">${esc(t(count === 1 && lang === "en" ? "itemsCount1" : "itemsCount", { n: count }))}</p>` +
+    order.filter(x => !x.miss).map(row).join("") +
     (spread ? `<p class="save-line">${esc(t(bests.length > 1 ? "saveTie" : "save", { best: list(bests.map(x => name(x.s))), worst: list(worsts.map(x => name(x.s))), x: money(max - min), n: bests.length }))}</p>`
-      : full.length > 1 ? `<p class="save-line same">${esc(t("samePrice", { n: full.length }))}</p>` : "");
+      : full.length > 1 ? `<p class="save-line same">${esc(t("samePrice", { n: full.length }))}</p>` : "") +
+    (left.length ? `<details class="miss-group"${missOpen || !full.length ? " open" : ""}><summary>${esc(t(left.length === 1 ? "missGroup1" : "missGroup", { n: left.length }))}</summary>${left.map(row).join("")}</details>` : "");
+  const mg = $("totals").querySelector(".miss-group");
+  if (mg) mg.addEventListener("toggle", () => { missOpen = mg.open; });
 }
 
 /* ---------- Board ---------- */
@@ -1805,6 +1857,7 @@ $("cCopy").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText("machboosindex@gmail.com"); out.textContent = t("cCopied"); out.className = "msg ok"; }
   catch (e) { out.textContent = "machboosindex@gmail.com"; out.className = "msg"; }
 });
+$("pickList").addEventListener("scroll", pickEnd, { passive: true });
 $("presetM").addEventListener("click", () => setBasket(machIds()));
 $("presetClear").addEventListener("click", () => setBasket([]));
 const pickDish = e => {
